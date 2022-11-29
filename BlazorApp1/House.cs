@@ -27,7 +27,7 @@ namespace BlazorApp1
             this.YearBuilt = yb;
             this.images = imgs;
             this.listDate = House.generateListDate();
-            this.perks = ["Perk #1", "Perk #2", "Perk #3", "Perk #4"];
+            this.perks = new String[] { "Perk #1", "Perk #2", "Perk #3", "Perk #4" };
         }
 
         public static String generateListDate()
