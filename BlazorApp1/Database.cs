@@ -18,6 +18,7 @@ namespace BlazorApp1
         {
             List<House> data = new List<House>();
             Random rand = new Random();
+            int j = 0;
             for (int i = 0; i < 20; i++)
             {
                 string address = "Address #" + i;
@@ -27,7 +28,13 @@ namespace BlazorApp1
                 int bathr = rand.Next(1, 5);
                 string pt = Database.randomPropertyType();
                 int yb = rand.Next(1980, 2023);
-                House house = new House(i, address, price, sf, br, bathr, pt, yb);
+                String[] imgs = new string[4];
+                for (int k=0; k<4; k++)
+                {
+                    imgs[k] = "img_" + j + ".png";
+                    j += 1;
+                }
+                House house = new House(i, address, price, sf, br, bathr, pt, yb, imgs);
                 data.Add(house);
             }
             return data;

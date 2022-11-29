@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 namespace BlazorApp1
 {
     public class House
@@ -11,8 +12,9 @@ namespace BlazorApp1
         public int Bathrooms { get; set; }
         public string PropertyType { get; set; }
         public int YearBuilt { get; set; }
+        public String[] images { get; set; }
 
-        public House(int id, string address, double price, int sf, int br, int bathr, string pt, int yb)
+        public House(int id, string address, double price, int sf, int br, int bathr, string pt, int yb, String[] imgs)
         {
             this.Address = address;
             this.Price = price;
@@ -21,6 +23,7 @@ namespace BlazorApp1
             this.Bathrooms = bathr;
             this.PropertyType = pt;
             this.YearBuilt = yb;
+            this.images = imgs;
         }
     }
 }
