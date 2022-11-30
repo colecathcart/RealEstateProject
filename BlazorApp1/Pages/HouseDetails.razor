@@ -73,7 +73,7 @@
 
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" id="defaultbutton" data-toggle="modal" data-target="#exampleModalCenter">
-  @Value
+  @Thehouse.Address
 </button>
 
 <!-- Modal -->
@@ -81,7 +81,7 @@
   <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h3 class="modal-title" id="exampleModalLongTitle">123 placeholder place SE</h3>
+        <h3 class="modal-title" id="exampleModalLongTitle">@Thehouse.Address</h3>
         <button type="button" class="close" id="close" data-dismiss="modal" aria-label="Close">
           X
         </button>
@@ -89,30 +89,29 @@
       <div class="modal-body">
         <div>
             <div style="display: inline-block; padding-right: 10%;">
-                <img src="map.png" alt="Image" style="margin-bottom: 20px; border: 2px solid #555; height: 400px; width: 500px'">
+                <img src=@Thehouse.images[0] alt="Image" style="margin-bottom: 20px; border: 2px solid #555; height: 410px; width: 540px'">
                 <br>
-                <img src="map.png" alt="Image" id="carousel">
-                <img src="map.png" alt="Image" id="carousel">
-                <img src="map.png" alt="Image" id="carousel">
-                <img src="map.png" alt="Image" id="carousel">
+                <img src=@Thehouse.images[0] alt="Image" id="carousel">
+                <img src=@Thehouse.images[1] alt="Image" id="carousel">
+                <img src=@Thehouse.images[2] alt="Image" id="carousel">
+                <img src=@Thehouse.images[3] alt="Image" id="carousel">
                 <br>
                 
             </div>
             <div style="display: inline-block; vertical-align: top;">
-                <h3>List Price: $500,000</h3>
-                <p>Area: 3,000 sq.ft</p>
+                <h3>List Price: $@Thehouse.Price</h3>
+                <p>Area: @Thehouse.SquareFootage sq.ft</p>
                 <p>Price / Sq.ft: $167</p>
-                <p>1 bedrooms | 2 bathroos</p>
-                <p>Type: Condo</p>
-                <p>Year Built: 2005</p>
-                <p>List Date: 01/11/2022</p>
-                <p>Parking: Underground (1)</p>
+                <p>@Thehouse.Bedrooms bedrooms | @Thehouse.Bathrooms bathroos</p>
+                <p>Type: @Thehouse.PropertyType</p>
+                <p>Year Built: @Thehouse.YearBuilt</p>
+                <p>List Date: @Thehouse.listDate</p>
                 <p>Perks</p>
                 <ul>
-                    <li>Stylish development featuring pool</li>
-                    <li>Walking-distance to the train station</li>
-                    <li>Spacious heated underground garage</li>
-                    <li>Recently outfitted with new appliances</li>
+                    <li>@Thehouse.perks[0]</li>
+                    <li>@Thehouse.perks[1]</li>
+                    <li>@Thehouse.perks[2]</li>
+                    <li>@Thehouse.perks[3]</li>
                 </ul>
 
             </div>
@@ -256,5 +255,5 @@
 @code {
 
     [Parameter]
-    public string Value {get; set;}
+    public House Thehouse {get; set;}
 }
