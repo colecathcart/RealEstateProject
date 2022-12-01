@@ -1,291 +1,293 @@
-@page "/SearchResults"
+@page "/SearchResults/{serializedString}"
+@using System.Text.Json;
+@using System.Text.Json.Serialization;
+@inject NavigationManager UriHelper
 
 <PageTitle>Search Results</PageTitle>
 
-    <div class="NavBar">
+<p>@somehouse.Address</p>
+
+<div class="NavBar">
     <button id="defaultbutton" style="padding-left: 8px; padding-right: 8px; float:right;">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-question-lg" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M4.475 5.458c-.284 0-.514-.237-.47-.517C4.28 3.24 5.576 2 7.825 2c2.25 0 3.767 1.36 3.767 3.215 0 1.344-.665 2.288-1.79 2.973-1.1.659-1.414 1.118-1.414 2.01v.03a.5.5 0 0 1-.5.5h-.77a.5.5 0 0 1-.5-.495l-.003-.2c-.043-1.221.477-2.001 1.645-2.712 1.03-.632 1.397-1.135 1.397-2.028 0-.979-.758-1.698-1.926-1.698-1.009 0-1.71.529-1.938 1.402-.066.254-.278.461-.54.461h-.777ZM7.496 14c.622 0 1.095-.474 1.095-1.09 0-.618-.473-1.092-1.095-1.092-.606 0-1.087.474-1.087 1.091S6.89 14 7.496 14Z" />
-            </svg>
-        </button>
-        <p>Help</p>
-    </div>
-    <div class="NavBar">
-        <button id="defaultbutton" style="padding-left: 8px; padding-right: 8px;">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
-                <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
-            </svg>
-        </button>
-        <p>Saved</p>
-    </div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-question-lg" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M4.475 5.458c-.284 0-.514-.237-.47-.517C4.28 3.24 5.576 2 7.825 2c2.25 0 3.767 1.36 3.767 3.215 0 1.344-.665 2.288-1.79 2.973-1.1.659-1.414 1.118-1.414 2.01v.03a.5.5 0 0 1-.5.5h-.77a.5.5 0 0 1-.5-.495l-.003-.2c-.043-1.221.477-2.001 1.645-2.712 1.03-.632 1.397-1.135 1.397-2.028 0-.979-.758-1.698-1.926-1.698-1.009 0-1.71.529-1.938 1.402-.066.254-.278.461-.54.461h-.777ZM7.496 14c.622 0 1.095-.474 1.095-1.09 0-.618-.473-1.092-1.095-1.092-.606 0-1.087.474-1.087 1.091S6.89 14 7.496 14Z" />
+        </svg>
+    </button>
+    <p>Help</p>
+</div>
+<div class="NavBar">
+    <button id="defaultbutton" style="padding-left: 8px; padding-right: 8px;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+            <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
+        </svg>
+    </button>
+    <p>Saved</p>
+</div>
 
-    <!--Saved and Help button-->
-
-
-    <!--Modify Search button-->
+<!--Saved and Help button-->
+<!--Modify Search button-->
 <div class="container text-center">
-        <div class="row">
-            <div class="col">
-                <div class="dropdown">
-                    <p>
-                        <button type="button" class="btn btn-primary btn-lg dropdown-toggle" id="bigbutton" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                            Modify Filters
-                        </button>
-                    </p>
-                    <div class="collapse" id="collapseExample">
-                        <div class="card card-body">
+    <div class="row">
+        <div class="col">
+            <div class="dropdown">
+                <p>
+                    <button type="button" class="btn btn-primary btn-lg dropdown-toggle" id="bigbutton" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        Modify Filters
+                    </button>
+                </p>
+                <div class="collapse" id="collapseExample">
+                    <div class="card card-body">
 
-                            <div class="container text-start">
-                                <div class="row">
-                                    <div class="col-6">
-                                        <div class="row">
-                                            <div class="col">
-                                                <form class="form-inline">
-                                                    <label>Location:</label>
-                                                    <input type="text" name="location" id="filterfield">
-                                                </form>
-                                                <br>
-                                            </div>
+                        <div class="container text-start">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="row">
+                                        <div class="col">
+                                            <form class="form-inline">
+                                                <label>Location:</label>
+                                                <input type="text" name="location" id="filterfield">
+                                            </form>
+                                            <br>
                                         </div>
-                                        <div class="row">
-                                            <div class="col">
-                                                <img src="map.png" alt="map" width="507" height="326">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <img src="map.png" alt="map" width="507" height="326">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="row">
+                                        <div class="col">
+                                            <label>Price Range:</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">$</span>
+                                                </div>
+                                                <input type="text" placeholder="Min" id="filterfield">
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text">.00</span>
+                                                </div>
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">-</span>
+                                                </div>
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">$</span>
+                                                </div>
+                                                <input type="text" placeholder="Max" id="filterfield">
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text">.00</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-6">
-                                        <div class="row">
-                                            <div class="col">
-                                                <label>Price Range:</label>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col">
+                                            <label for="customRange1" class="form-label">Square Footage: > 1000 sq. ft.</label>
+                                            <input type="range" class="form-range" id="customRange1">
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col">
+                                            <form class="row row-cols-lg-auto g-3">
+                                                <label style="font-size: small">Number of Bedrooms:</label>
+                                                <div class="col-12">
+                                                    <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
+                                                    <select class="form-select" id="inlineFormSelectPref" style="background-color: rgb(125, 184, 140); border-color: black;">
+                                                        <option selected>Choose...</option>
+                                                        <option value="1">1+</option>
+                                                        <option value="2">2+</option>
+                                                        <option value="3">3+</option>
+                                                        <option value="3">4+</option>
+                                                        <option value="3">5+</option>
+                                                    </select>
+                                                </div>
+                                                <label style="font-size: small">Number of Bathrooms:</label>
+                                                <div class="col-12">
+                                                    <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
+                                                    <select class="form-select" id="inlineFormSelectPref" style="background-color: rgb(125, 184, 140); border-color: black;">
+                                                        <option selected>Choose...</option>
+                                                        <option value="1">1+</option>
+                                                        <option value="2">2+</option>
+                                                        <option value="3">3+</option>
+                                                        <option value="3">4+</option>
+                                                        <option value="3">5+</option>
+                                                    </select>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <label>Property Type:</label>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                                <label class="form-check-label" for="flexCheckDefault">
+                                                    Single-Family
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                                                <label class="form-check-label" for="flexCheckChecked">
+                                                    Multi-Family
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                                                <label class="form-check-label" for="flexCheckChecked">
+                                                    Townhouse
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                                                <label class="form-check-label" for="flexCheckChecked">
+                                                    Appartment
+                                                </label>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col">
-                                                <div class="input-group">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text">$</span>
-                                                    </div>
-                                                    <input type="text" placeholder="Min" id="filterfield">
-                                                    <div class="input-group-append">
-                                                        <span class="input-group-text">.00</span>
-                                                    </div>
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text">-</span>
-                                                    </div>
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text">$</span>
-                                                    </div>
-                                                    <input type="text" placeholder="Max" id="filterfield">
-                                                    <div class="input-group-append">
-                                                        <span class="input-group-text">.00</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <br>
-                                        <div class="row">
-                                            <div class="col">
-                                                <label for="customRange1" class="form-label">Square Footage: > 1000 sq. ft.</label>
-                                                <input type="range" class="form-range" id="customRange1">
-                                            </div>
-                                        </div>
-                                        <br>
-                                        <div class="row">
-                                            <div class="col">
-                                                <form class="row row-cols-lg-auto g-3">
-                                                    <label style="font-size: small">Number of Bedrooms:</label>
-                                                    <div class="col-12">
-                                                        <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
-                                                        <select class="form-select" id="inlineFormSelectPref" style="background-color: rgb(125, 184, 140); border-color: black;">
-                                                            <option selected>Choose...</option>
-                                                            <option value="1">1+</option>
-                                                            <option value="2">2+</option>
-                                                            <option value="3">3+</option>
-                                                            <option value="3">4+</option>
-                                                            <option value="3">5+</option>
-                                                        </select>
-                                                    </div>
-                                                    <label style="font-size: small">Number of Bathrooms:</label>
-                                                    <div class="col-12">
-                                                        <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
-                                                        <select class="form-select" id="inlineFormSelectPref" style="background-color: rgb(125, 184, 140); border-color: black;">
-                                                            <option selected>Choose...</option>
-                                                            <option value="1">1+</option>
-                                                            <option value="2">2+</option>
-                                                            <option value="3">3+</option>
-                                                            <option value="3">4+</option>
-                                                            <option value="3">5+</option>
-                                                        </select>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                        <br>
-                                        <div class="row">
-                                            <div class="col-3">
-                                                <label>Property Type:</label>
-                                            </div>
-                                            <div class="col-3">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                                    <label class="form-check-label" for="flexCheckDefault">
-                                                        Single-Family
-                                                    </label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                                                    <label class="form-check-label" for="flexCheckChecked">
-                                                        Multi-Family
-                                                    </label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                                                    <label class="form-check-label" for="flexCheckChecked">
-                                                        Townhouse
-                                                    </label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                                                    <label class="form-check-label" for="flexCheckChecked">
-                                                        Appartment
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <br>
-                                        <div class="row">
-                                            <div class="col">
-                                                <div class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
-                                                    <button class="btn btn-primary btn-lg dropdown-toggle" id="bigbutton" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample2">
-                                                        More Filters
-                                                    </button>
-                                                    <div class="collapse" id="collapseExample2">
-                                                        <div class="card card-body">
-                                                           <div class="container text-start">
-                                                                <div class="row">
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
+                                                <button class="btn btn-primary btn-lg dropdown-toggle" id="bigbutton" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample2">
+                                                    More Filters
+                                                </button>
+                                                <div class="collapse" id="collapseExample2">
+                                                    <div class="card card-body">
+                                                        <div class="container text-start">
+                                                            <div class="row">
 
-                                                                    <div class="col">
-                                                                        <div class="row">
-                                                                            <div class="col">
-                                                                                <form class="row row-cols-lg-auto g-3">
-                                                                                    <label>Property Size:</label>
-                                                                                    <div class="col-12">
-                                                                                        <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
-                                                                                        <select class="form-select" id="inlineFormSelectPref" style="background-color: rgb(125, 184, 140); border-color: black;">
-                                                                                            <option selected>Choose...</option>
-                                                                                            <option value="1"> less than 1000 sq. ft.</option>
-                                                                                            <option value="2">> 1000 sq. ft.</option>
-                                                                                            <option value="3">> 1500 sq. ft.</option>
-                                                                                            <option value="3">> 2000 sq. ft.</option>
-                                                                                            <option value="3">> 2500 sq. ft.</option>
-                                                                                        </select>
-                                                                                    </div>
-                                                                                </form>
-                                                                            </div>
+                                                                <div class="col">
+                                                                    <div class="row">
+                                                                        <div class="col">
+                                                                            <form class="row row-cols-lg-auto g-3">
+                                                                                <label>Property Size:</label>
+                                                                                <div class="col-12">
+                                                                                    <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
+                                                                                    <select class="form-select" id="inlineFormSelectPref" style="background-color: rgb(125, 184, 140); border-color: black;">
+                                                                                        <option selected>Choose...</option>
+                                                                                        <option value="1"> less than 1000 sq. ft.</option>
+                                                                                        <option value="2">> 1000 sq. ft.</option>
+                                                                                        <option value="3">> 1500 sq. ft.</option>
+                                                                                        <option value="3">> 2000 sq. ft.</option>
+                                                                                        <option value="3">> 2500 sq. ft.</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                            </form>
                                                                         </div>
-                                                                        <br>
-                                                                        <div class="row">
-                                                                            <div class="col">
-                                                                                <label>Amenities: </label>
+                                                                    </div>
+                                                                    <br>
+                                                                    <div class="row">
+                                                                        <div class="col">
+                                                                            <label>Amenities: </label>
+                                                                        </div>
+                                                                        <div class="col">
+                                                                            <div class="form-check">
+                                                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                                                                <label class="form-check-label" for="flexCheckDefault">
+                                                                                    Pool
+                                                                                </label>
                                                                             </div>
-                                                                            <div class="col">
-                                                                                <div class="form-check">
-                                                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                                                                    <label class="form-check-label" for="flexCheckDefault">
-                                                                                        Pool
-                                                                                    </label>
-                                                                                </div>
-                                                                                <div class="form-check">
-                                                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                                                                                    <label class="form-check-label" for="flexCheckChecked">
-                                                                                        Backyard
-                                                                                    </label>
-                                                                                </div>
-                                                                                <div class="form-check">
-                                                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                                                                                    <label class="form-check-label" for="flexCheckChecked">
-                                                                                        A/C
-                                                                                    </label>
-                                                                                </div>
-                                                                                <div class="form-check">
-                                                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                                                                                    <label class="form-check-label" for="flexCheckChecked">
-                                                                                        Garage
-                                                                                    </label>
-                                                                                </div>
-                                                                                <div class="form-check">
-                                                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                                                                                    <label class="form-check-label" for="flexCheckChecked">
-                                                                                        Balcony
-                                                                                    </label>
-                                                                                </div>
+                                                                            <div class="form-check">
+                                                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                                                                                <label class="form-check-label" for="flexCheckChecked">
+                                                                                    Backyard
+                                                                                </label>
+                                                                            </div>
+                                                                            <div class="form-check">
+                                                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                                                                                <label class="form-check-label" for="flexCheckChecked">
+                                                                                    A/C
+                                                                                </label>
+                                                                            </div>
+                                                                            <div class="form-check">
+                                                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                                                                                <label class="form-check-label" for="flexCheckChecked">
+                                                                                    Garage
+                                                                                </label>
+                                                                            </div>
+                                                                            <div class="form-check">
+                                                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                                                                                <label class="form-check-label" for="flexCheckChecked">
+                                                                                    Balcony
+                                                                                </label>
                                                                             </div>
                                                                         </div>
                                                                     </div>
-
-                                                                    <div class="col">
-                                                                        <div class="row">
-                                                                            <div class="col">
-                                                                                <form class="row row-cols-lg-auto g-3">
-                                                                                    <label style="font-size:small">Parking Spaces:</label>
-                                                                                    <div class="col-12">
-                                                                                        <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
-                                                                                        <select class="form-select" id="inlineFormSelectPref" style="background-color: rgb(125, 184, 140); border-color: black;">
-                                                                                            <option selected>Choose...</option>
-                                                                                            <option value="1">1+</option>
-                                                                                            <option value="2">2+</option>
-                                                                                            <option value="3">3+</option>
-                                                                                            <option value="3">4+</option>
-                                                                                            <option value="3">5+</option>
-                                                                                        </select>
-                                                                                    </div>
-                                                                                </form>
-                                                                            </div>
-                                                                        </div>
-                                                                        <br>
-                                                                        <div class="row">
-                                                                            <div class="col">
-                                                                                <form class="row row-cols-lg-auto g-3">
-                                                                                    <label>Year Built:</label>
-                                                                                    <div class="col-12">
-                                                                                        <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
-                                                                                        <select class="form-select" id="inlineFormSelectPref" style="background-color: rgb(125, 184, 140); border-color: black;">
-                                                                                            <option selected>Choose...</option>
-                                                                                            <option value="1">2010</option>
-                                                                                            <option value="2">2009</option>
-                                                                                            <option value="3">2008</option>
-                                                                                            <option value="3">2007</option>
-                                                                                            <option value="3">2006</option>
-                                                                                        </select>
-                                                                                    </div>
-                                                                                </form>
-                                                                            </div>
-                                                                        </div>
-                                                                        <br>
-                                                                        <div class="row">
-                                                                            <div class="col">
-                                                                                <div class="input-group">
-                                                                                    <label>Price Reduction: </label>
-                                                                                    <input type="text" id="filterfield">
-                                                                                    <div class="input-group-append">
-                                                                                        <span class="input-group-text">%</span>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-
                                                                 </div>
+
+                                                                <div class="col">
+                                                                    <div class="row">
+                                                                        <div class="col">
+                                                                            <form class="row row-cols-lg-auto g-3">
+                                                                                <label style="font-size:small">Parking Spaces:</label>
+                                                                                <div class="col-12">
+                                                                                    <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
+                                                                                    <select class="form-select" id="inlineFormSelectPref" style="background-color: rgb(125, 184, 140); border-color: black;">
+                                                                                        <option selected>Choose...</option>
+                                                                                        <option value="1">1+</option>
+                                                                                        <option value="2">2+</option>
+                                                                                        <option value="3">3+</option>
+                                                                                        <option value="3">4+</option>
+                                                                                        <option value="3">5+</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+                                                                    <br>
+                                                                    <div class="row">
+                                                                        <div class="col">
+                                                                            <form class="row row-cols-lg-auto g-3">
+                                                                                <label>Year Built:</label>
+                                                                                <div class="col-12">
+                                                                                    <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
+                                                                                    <select class="form-select" id="inlineFormSelectPref" style="background-color: rgb(125, 184, 140); border-color: black;">
+                                                                                        <option selected>Choose...</option>
+                                                                                        <option value="1">2010</option>
+                                                                                        <option value="2">2009</option>
+                                                                                        <option value="3">2008</option>
+                                                                                        <option value="3">2007</option>
+                                                                                        <option value="3">2006</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+                                                                    <br>
+                                                                    <div class="row">
+                                                                        <div class="col">
+                                                                            <div class="input-group">
+                                                                                <label>Price Reduction: </label>
+                                                                                <input type="text" id="filterfield">
+                                                                                <div class="input-group-append">
+                                                                                    <span class="input-group-text">%</span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div>
-                                                        <button type="button" class="btn btn-primary btn-lg" id="bigbutton">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                                                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-                                                            </svg>Search
-                                                        </button>
-                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <button type="button" class="btn btn-primary btn-lg" id="bigbutton">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                                                        </svg>Search
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
@@ -298,272 +300,273 @@
             </div>
         </div>
     </div>
+</div>
 <!-- Modify Search Section ^ -->
 
-            <div class="job-shortby ml-sm-auto d-flex align-items-center">
-                <form class="form-inline">
-                    <div class="form-group mb-0">
-                        <label class="justify-content-start mr-1"> Sort by :</label>
-                        <div class="short-by">
-                            <select class="form-control basic-select select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
-                                <option data-select2-id="2">Price (Lowest to Highest)</option>
-                                <option>Price (Highest to Lowest)</option>
-                                <option>Most Recent</option>
-                            </select>
-                        </div>
-                    </div>
-                </form>
+<div class="job-shortby ml-sm-auto d-flex align-items-center">
+    <form class="form-inline">
+        <div class="form-group mb-0">
+            <label class="justify-content-start mr-1"> Sort by :</label>
+            <div class="short-by">
+                <select class="form-control basic-select select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                    <option data-select2-id="2">Price (Lowest to Highest)</option>
+                    <option>Price (Highest to Lowest)</option>
+                    <option>Most Recent</option>
+                </select>
             </div>
+        </div>
+    </form>
+</div>
 
-        <div class="row">
-            <div class="col-6">
-                <div class="candidate-list candidate-grid">
-                    <div class="candidate-list-image">
-                        <img class="img-fluid" src="https://www.build-review.com/wp-content/webp-express/webp-images/uploads/2020/07/luxury-real-estate.jpg.webp" alt="">
+<div class="row">
+    <div class="col-6">
+        <div class="candidate-list candidate-grid">
+            <div class="candidate-list-image">
+                <img class="img-fluid" src="https://www.build-review.com/wp-content/webp-express/webp-images/uploads/2020/07/luxury-real-estate.jpg.webp" alt="">
+            </div>
+            <div class="candidate-list-details">
+                <div class="candidate-list-info">
+                    <div class="candidate-list-title">
+                        <h4><a href="candidate-detail.html">328 University Drive NW</a></h4>
+                        <h5><a><i class="fas fa-dollar-sign"></i> 330,399</a></h5>
                     </div>
-                    <div class="candidate-list-details">
-                        <div class="candidate-list-info">
-                            <div class="candidate-list-title">
-                                <h4><a href="candidate-detail.html">328 University Drive NW</a></h4>
-                                <h5><a><i class="fas fa-dollar-sign"></i> 330,399</a></h5>
-                            </div>
-                            <div class="candidate-list-option">
-                                <ul class="list-unstyled">
-                                    <li><i class="fas fa-home"></i> 4 bedrooms | 4 bathrooms</li>
-                                    <li>          </li>
-                                    <li><i class="fas fa-ruler"></i> 2,700 sq ft. </li>
-                                    <li>          </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="candidate-list-favourite-time">
-                            <a class="candidate-list-favourite order-2" href="#"><i class="far fa-heart"></i>Save</a>
-                            <a class="candidate-list-favourite order-2" href="#"><i class="fa fa-signal"></i>Compare</a>
-                        </div>
+                    <div class="candidate-list-option">
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-home"></i> 4 bedrooms | 4 bathrooms</li>
+                            <li>          </li>
+                            <li><i class="fas fa-ruler"></i> 2,700 sq ft. </li>
+                            <li>          </li>
+                        </ul>
                     </div>
                 </div>
-            </div>
-            <div class="col-6">
-                <div class="candidate-list candidate-grid">
-                    <div class="candidate-list-image">
-                        <img class="img-fluid" src="https://www.fortunebuilders.com/wp-content/uploads/2014/09/real-estate-photography.jpg" alt="">
-                    </div>
-                    <div class="candidate-list-details">
-                        <div class="candidate-list-info">
-                            <div class="candidate-list-title">
-                                <h4><a href="candidate-detail.html">481 University Heights NW</a></h4>
-                                <h5><a><i class="fas fa-dollar-sign"></i> 499,000 </a></h5>
-                            </div>
-                            <div class="candidate-list-option">
-                                <ul class="list-unstyled">
-                                    <li><i class="fas fa-home"></i> 5 bedrooms | 4 bathrooms</li>
-                                    <li>           </li>
-                                    <li><i class="fas fa-ruler"></i> 3,100 sq ft. </li>
-                                    <li>          </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="candidate-list-favourite-time">
-                            <a class="candidate-list-favourite order-2" href="#"><i class="far fa-heart"></i>Save</a>
-                            <a class="candidate-list-favourite order-2" href="#"><i class="fa fa-signal"></i>Compare</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-6">
-                <div class="candidate-list candidate-grid">
-                    <div class="candidate-list-image">
-                        <img class="img-fluid" src="https://images.squarespace-cdn.com/content/v1/53225844e4b08f966012561e/1529465311315-NHDT1VRROCTLVMCXWILQ/Simcoe-Real-Estate-Photographer-and-Videographer_1.jpg" alt="">
-                    </div>
-                    <div class="candidate-list-details">
-                        <div class="candidate-list-info">
-                            <div class="candidate-list-title">
-                                <h4><a href="candidate-detail.html">328 University Drive NW</a></h4>
-                                <h5><a><i class="fas fa-dollar-sign"></i> 330,399</a></h5>
-                            </div>
-                            <div class="candidate-list-option">
-                                <ul class="list-unstyled">
-                                    <li><i class="fas fa-home"></i> 4 bedrooms | 4 bathrooms</li>
-                                    <li>          </li>
-                                    <li><i class="fas fa-ruler"></i> 2,700 sq ft. </li>
-                                    <li>          </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="candidate-list-favourite-time">
-                            <a class="candidate-list-favourite order-2" href="#"><i class="far fa-heart"></i>Save</a>
-                            <span class="candidate-list-time order-1"><i class="fa-solid fa-chart-mixed"></i>Compare</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-6">
-                <div class="candidate-list candidate-grid">
-                    <div class="candidate-list-image">
-                        <img class="img-fluid" src="https://www.mckissock.com/wp-content/uploads/2016/11/GettyImages-1151832961.jpg" alt="">
-                    </div>
-                    <div class="candidate-list-details">
-                        <div class="candidate-list-info">
-                            <div class="candidate-list-title">
-                                <h4><a href="candidate-detail.html">328 University Drive NW</a></h4>
-                                <h5><a><i class="fas fa-dollar-sign"></i> 330,399</a></h5>
-                            </div>
-                            <div class="candidate-list-option">
-                                <ul class="list-unstyled">
-                                    <li><i class="fas fa-home"></i> 4 bedrooms | 4 bathrooms</li>
-                                    <li>          </li>
-                                    <li><i class="fas fa-ruler"></i> 2,700 sq ft. </li>
-                                    <li>          </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="candidate-list-favourite-time">
-                            <a class="candidate-list-favourite order-2" href="#"><i class="far fa-heart"></i></a>
-                            <span class="candidate-list-time order-1"><i class="fa-solid fa-chart-mixed"></i>Compare</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-6">
-                <div class="candidate-list candidate-grid">
-                    <div class="candidate-list-image">
-                        <img class="img-fluid" src="https://www.build-review.com/wp-content/webp-express/webp-images/uploads/2020/07/luxury-real-estate.jpg.webp" alt="">
-                    </div>
-                    <div class="candidate-list-details">
-                        <div class="candidate-list-info">
-                            <div class="candidate-list-title">
-                                <h4><a href="candidate-detail.html">328 University Drive NW</a></h4>
-                                <h5><a><i class="fas fa-dollar-sign"></i> 330,399</a></h5>
-                            </div>
-                            <div class="candidate-list-option">
-                                <ul class="list-unstyled">
-                                    <li><i class="fas fa-home"></i> 4 bedrooms | 4 bathrooms</li>
-                                    <li>          </li>
-                                    <li><i class="fas fa-ruler"></i> 2,700 sq ft. </li>
-                                    <li>          </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="candidate-list-favourite-time">
-                            <a class="candidate-list-favourite order-2" href="#"><i class="far fa-heart"></i></a>
-                            <span class="candidate-list-time order-1"><i class="fa-solid fa-chart-mixed"></i>Compare</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-6">
-                <div class="candidate-list candidate-grid">
-                    <div class="candidate-list-image">
-                        <img class="img-fluid" src="https://www.build-review.com/wp-content/webp-express/webp-images/uploads/2020/07/luxury-real-estate.jpg.webp" alt="">
-                    </div>
-                    <div class="candidate-list-details">
-                        <div class="candidate-list-info">
-                            <div class="candidate-list-title">
-                                <h4><a href="candidate-detail.html">328 University Drive NW</a></h4>
-                                <h5><a><i class="fas fa-dollar-sign"></i> 330,399</a></h5>
-                            </div>
-                            <div class="candidate-list-option">
-                                <ul class="list-unstyled">
-                                    <li><i class="fas fa-home"></i> 4 bedrooms | 4 bathrooms</li>
-                                    <li>          </li>
-                                    <li><i class="fas fa-ruler"></i> 2,700 sq ft. </li>
-                                    <li>          </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="candidate-list-favourite-time">
-                            <a class="candidate-list-favourite order-2" href="#"><i class="far fa-heart"></i></a>
-                            <span class="candidate-list-time order-1"><i class="fa-solid fa-chart-mixed"></i>Compare</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-6">
-                <div class="candidate-list candidate-grid">
-                    <div class="candidate-list-image">
-                        <img class="img-fluid" src="https://www.build-review.com/wp-content/webp-express/webp-images/uploads/2020/07/luxury-real-estate.jpg.webp" alt="">
-                    </div>
-                    <div class="candidate-list-details">
-                        <div class="candidate-list-info">
-                            <div class="candidate-list-title">
-                                <h4><a href="candidate-detail.html">328 University Drive NW</a></h4>
-                                <h5><a><i class="fas fa-dollar-sign"></i> 330,399</a></h5>
-                            </div>
-                            <div class="candidate-list-option">
-                                <ul class="list-unstyled">
-                                    <li><i class="fas fa-home"></i> 4 bedrooms | 4 bathrooms</li>
-                                    <li>          </li>
-                                    <li><i class="fas fa-ruler"></i> 2,700 sq ft. </li>
-                                    <li>          </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="candidate-list-favourite-time">
-                            <a class="candidate-list-favourite order-2" href="#"><i class="far fa-heart"></i></a>
-                            <span class="candidate-list-time order-1"><i class="fa-solid fa-chart-mixed"></i>Compare</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-6">
-                <div class="candidate-list candidate-grid">
-                    <div class="candidate-list-image">
-                        <img class="img-fluid" src="https://www.build-review.com/wp-content/webp-express/webp-images/uploads/2020/07/luxury-real-estate.jpg.webp" alt="">
-                    </div>
-                    <div class="candidate-list-details">
-                        <div class="candidate-list-info">
-                            <div class="candidate-list-title">
-                                <h4><a href="candidate-detail.html">328 University Drive NW</a></h4>
-                                <h5><a><i class="fas fa-dollar-sign"></i> 330,399</a></h5>
-                            </div>
-                            <div class="candidate-list-option">
-                                <ul class="list-unstyled">
-                                    <li><i class="fas fa-home"></i> 4 bedrooms | 4 bathrooms</li>
-                                    <li>          </li>
-                                    <li><i class="fas fa-ruler"></i> 2,700 sq ft. </li>
-                                    <li>          </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="candidate-list-favourite-time">
-                            <a class="candidate-list-favourite order-2" href="#"><i class="far fa-heart"></i></a>
-                            <span class="candidate-list-time order-1"><i class="fa-solid fa-chart-mixed"></i>Compare</span>
-                        </div>
-                    </div>
+                <div class="candidate-list-favourite-time">
+                    <a class="candidate-list-favourite order-2" href="#"><i class="far fa-heart"></i>Save</a>
+                    <a class="candidate-list-favourite order-2" href="#"><i class="fa fa-signal"></i>Compare</a>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-12 text-center mt-4 mt-sm-5">
-                <ul class="pagination justify-content-center mb-0">
-                    <li class="page-item disabled"> <span class="page-link">Prev</span> </li>
-                    <li class="page-item active" aria-current="page"><span class="page-link">1 </span> <span class="sr-only">(current)</span></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">...</a></li>
-                    <li class="page-item"><a class="page-link" href="#">25</a></li>
-                    <li class="page-item"> <a class="page-link" href="#">Next</a> </li>
-                </ul>
+    </div>
+    <div class="col-6">
+        <div class="candidate-list candidate-grid">
+            <div class="candidate-list-image">
+                <img class="img-fluid" src="https://www.fortunebuilders.com/wp-content/uploads/2014/09/real-estate-photography.jpg" alt="">
+            </div>
+            <div class="candidate-list-details">
+                <div class="candidate-list-info">
+                    <div class="candidate-list-title">
+                        <h4><a href="candidate-detail.html">481 University Heights NW</a></h4>
+                        <h5><a><i class="fas fa-dollar-sign"></i> 499,000 </a></h5>
+                    </div>
+                    <div class="candidate-list-option">
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-home"></i> 5 bedrooms | 4 bathrooms</li>
+                            <li>           </li>
+                            <li><i class="fas fa-ruler"></i> 3,100 sq ft. </li>
+                            <li>          </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="candidate-list-favourite-time">
+                    <a class="candidate-list-favourite order-2" href="#"><i class="far fa-heart"></i>Save</a>
+                    <a class="candidate-list-favourite order-2" href="#"><i class="fa fa-signal"></i>Compare</a>
+                </div>
             </div>
         </div>
+    </div>
+    <div class="col-6">
+        <div class="candidate-list candidate-grid">
+            <div class="candidate-list-image">
+                <img class="img-fluid" src="https://images.squarespace-cdn.com/content/v1/53225844e4b08f966012561e/1529465311315-NHDT1VRROCTLVMCXWILQ/Simcoe-Real-Estate-Photographer-and-Videographer_1.jpg" alt="">
+            </div>
+            <div class="candidate-list-details">
+                <div class="candidate-list-info">
+                    <div class="candidate-list-title">
+                        <h4><a href="candidate-detail.html">328 University Drive NW</a></h4>
+                        <h5><a><i class="fas fa-dollar-sign"></i> 330,399</a></h5>
+                    </div>
+                    <div class="candidate-list-option">
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-home"></i> 4 bedrooms | 4 bathrooms</li>
+                            <li>          </li>
+                            <li><i class="fas fa-ruler"></i> 2,700 sq ft. </li>
+                            <li>          </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="candidate-list-favourite-time">
+                    <a class="candidate-list-favourite order-2" href="#"><i class="far fa-heart"></i>Save</a>
+                    <span class="candidate-list-time order-1"><i class="fa-solid fa-chart-mixed"></i>Compare</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="candidate-list candidate-grid">
+            <div class="candidate-list-image">
+                <img class="img-fluid" src="https://www.mckissock.com/wp-content/uploads/2016/11/GettyImages-1151832961.jpg" alt="">
+            </div>
+            <div class="candidate-list-details">
+                <div class="candidate-list-info">
+                    <div class="candidate-list-title">
+                        <h4><a href="candidate-detail.html">328 University Drive NW</a></h4>
+                        <h5><a><i class="fas fa-dollar-sign"></i> 330,399</a></h5>
+                    </div>
+                    <div class="candidate-list-option">
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-home"></i> 4 bedrooms | 4 bathrooms</li>
+                            <li>          </li>
+                            <li><i class="fas fa-ruler"></i> 2,700 sq ft. </li>
+                            <li>          </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="candidate-list-favourite-time">
+                    <a class="candidate-list-favourite order-2" href="#"><i class="far fa-heart"></i></a>
+                    <span class="candidate-list-time order-1"><i class="fa-solid fa-chart-mixed"></i>Compare</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="candidate-list candidate-grid">
+            <div class="candidate-list-image">
+                <img class="img-fluid" src="https://www.build-review.com/wp-content/webp-express/webp-images/uploads/2020/07/luxury-real-estate.jpg.webp" alt="">
+            </div>
+            <div class="candidate-list-details">
+                <div class="candidate-list-info">
+                    <div class="candidate-list-title">
+                        <h4><a href="candidate-detail.html">328 University Drive NW</a></h4>
+                        <h5><a><i class="fas fa-dollar-sign"></i> 330,399</a></h5>
+                    </div>
+                    <div class="candidate-list-option">
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-home"></i> 4 bedrooms | 4 bathrooms</li>
+                            <li>          </li>
+                            <li><i class="fas fa-ruler"></i> 2,700 sq ft. </li>
+                            <li>          </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="candidate-list-favourite-time">
+                    <a class="candidate-list-favourite order-2" href="#"><i class="far fa-heart"></i></a>
+                    <span class="candidate-list-time order-1"><i class="fa-solid fa-chart-mixed"></i>Compare</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="candidate-list candidate-grid">
+            <div class="candidate-list-image">
+                <img class="img-fluid" src="https://www.build-review.com/wp-content/webp-express/webp-images/uploads/2020/07/luxury-real-estate.jpg.webp" alt="">
+            </div>
+            <div class="candidate-list-details">
+                <div class="candidate-list-info">
+                    <div class="candidate-list-title">
+                        <h4><a href="candidate-detail.html">328 University Drive NW</a></h4>
+                        <h5><a><i class="fas fa-dollar-sign"></i> 330,399</a></h5>
+                    </div>
+                    <div class="candidate-list-option">
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-home"></i> 4 bedrooms | 4 bathrooms</li>
+                            <li>          </li>
+                            <li><i class="fas fa-ruler"></i> 2,700 sq ft. </li>
+                            <li>          </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="candidate-list-favourite-time">
+                    <a class="candidate-list-favourite order-2" href="#"><i class="far fa-heart"></i></a>
+                    <span class="candidate-list-time order-1"><i class="fa-solid fa-chart-mixed"></i>Compare</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="candidate-list candidate-grid">
+            <div class="candidate-list-image">
+                <img class="img-fluid" src="https://www.build-review.com/wp-content/webp-express/webp-images/uploads/2020/07/luxury-real-estate.jpg.webp" alt="">
+            </div>
+            <div class="candidate-list-details">
+                <div class="candidate-list-info">
+                    <div class="candidate-list-title">
+                        <h4><a href="candidate-detail.html">328 University Drive NW</a></h4>
+                        <h5><a><i class="fas fa-dollar-sign"></i> 330,399</a></h5>
+                    </div>
+                    <div class="candidate-list-option">
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-home"></i> 4 bedrooms | 4 bathrooms</li>
+                            <li>          </li>
+                            <li><i class="fas fa-ruler"></i> 2,700 sq ft. </li>
+                            <li>          </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="candidate-list-favourite-time">
+                    <a class="candidate-list-favourite order-2" href="#"><i class="far fa-heart"></i></a>
+                    <span class="candidate-list-time order-1"><i class="fa-solid fa-chart-mixed"></i>Compare</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="candidate-list candidate-grid">
+            <div class="candidate-list-image">
+                <img class="img-fluid" src="https://www.build-review.com/wp-content/webp-express/webp-images/uploads/2020/07/luxury-real-estate.jpg.webp" alt="">
+            </div>
+            <div class="candidate-list-details">
+                <div class="candidate-list-info">
+                    <div class="candidate-list-title">
+                        <h4><a href="candidate-detail.html">328 University Drive NW</a></h4>
+                        <h5><a><i class="fas fa-dollar-sign"></i> 330,399</a></h5>
+                    </div>
+                    <div class="candidate-list-option">
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-home"></i> 4 bedrooms | 4 bathrooms</li>
+                            <li>          </li>
+                            <li><i class="fas fa-ruler"></i> 2,700 sq ft. </li>
+                            <li>          </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="candidate-list-favourite-time">
+                    <a class="candidate-list-favourite order-2" href="#"><i class="far fa-heart"></i></a>
+                    <span class="candidate-list-time order-1"><i class="fa-solid fa-chart-mixed"></i>Compare</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 text-center mt-4 mt-sm-5">
+        <ul class="pagination justify-content-center mb-0">
+            <li class="page-item disabled"> <span class="page-link">Prev</span> </li>
+            <li class="page-item active" aria-current="page"><span class="page-link">1 </span> <span class="sr-only">(current)</span></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">...</a></li>
+            <li class="page-item"><a class="page-link" href="#">25</a></li>
+            <li class="page-item"> <a class="page-link" href="#">Next</a> </li>
+        </ul>
+    </div>
+</div>
 
 
 
-    <style>
+<style>
 
-        body {
-            margin-top: 20px;
-            background: #F5F5F5;
-            margin-bottom: 20px;
-            align-items: center;
-        }
+    body {
+        margin-top: 20px;
+        background: #F5F5F5;
+        margin-bottom: 20px;
+        align-items: center;
+    }
 
-        .NavBar {
-            display: inline-block;
-            text-align: center;
-            margin-right: 10px;
-            float: right;
-        }
+    .NavBar {
+        display: inline-block;
+        text-align: center;
+        margin-right: 10px;
+        float: right;
+    }
 
     button#bigbutton {
         padding: 5px;
@@ -576,196 +579,205 @@
         margin-top: 50px;
     }
 
-        button#defaultbutton {
-            padding: 5px;
-            background-color: rgb(127, 180, 240);
-            color: black;
-            border-color: black;
-            font-weight: bold;
-            border-radius: 5px;
+    button#defaultbutton {
+        padding: 5px;
+        background-color: rgb(127, 180, 240);
+        color: black;
+        border-color: black;
+        font-weight: bold;
+        border-radius: 5px;
+        display: inline-block;
+    }
+
+    .flex-parent {
+        margin-top: 50px;
+        display: flex;
+    }
+
+    .jc-center {
+        justify-content: center;
+        font-size: 15px;
+    }
+
+    .job-shortby {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    /* Candidate List */
+    .candidate-list {
+        background: #ffffff;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        border-bottom: 1px solid #eeeeee;
+        margin-bottom: 20px;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        padding: 20px;
+        -webkit-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+    }
+
+        .candidate-list:hover {
+            -webkit-box-shadow: 0px 0px 34px 4px rgba(33, 37, 41, 0.06);
+            box-shadow: 0px 0px 34px 4px rgba(33, 37, 41, 0.06);
+            position: relative;
+            z-index: 99;
+        }
+
+            .candidate-list:hover a.candidate-list-favourite {
+                color: #e74c3c;
+                -webkit-box-shadow: -1px 4px 10px 1px rgba(24, 111, 201, 0.1);
+                box-shadow: -1px 4px 10px 1px rgba(24, 111, 201, 0.1);
+            }
+
+        .candidate-list .candidate-list-image {
+            margin-right: 25px;
+            -webkit-box-flex: 0;
+            -ms-flex: 0 0 80px;
+            flex: 0 0 80px;
+            border: none;
+        }
+
+            .candidate-list .candidate-list-image img {
+                width: 80px;
+                height: 80px;
+                -o-object-fit: cover;
+                object-fit: cover;
+            }
+
+    .candidate-list-title {
+        margin-bottom: 5px;
+        font-size: 25px;
+    }
+
+    .candidate-list-details ul {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        margin-bottom: 0px;
+    }
+
+        .candidate-list-details ul li {
+            margin: 5px 10px 5px 0px;
+            font-size: 18px;
+        }
+
+    .candidate-list .candidate-list-favourite-time {
+        margin-left: auto;
+        margin-right: 6px;
+        text-align: center;
+        font-size: 10px;
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 90px;
+        flex: 0 0 90px;
+        float: inline-start;
+        margin-bottom: 25px;
+    }
+
+
+        .candidate-list .candidate-list-favourite-time .candidate-list-favourite {
             display: inline-block;
-        }
-
-        .flex-parent {
-            margin-top: 50px;
-            display: flex;
-        }
-
-        .jc-center {
-            justify-content: center;
-            font-size: 15px;
-        }
-
-        .job-shortby {
-            margin-top: 20px;
-            margin-bottom: 20px;
-        }
-
-        /* Candidate List */
-        .candidate-list {
-            background: #ffffff;
-            display: -webkit-box;
-            display: -ms-flexbox;
-            display: flex;
-            border-bottom: 1px solid #eeeeee;
-            margin-bottom: 20px;
-            -webkit-box-align: center;
-            -ms-flex-align: center;
-            align-items: center;
-            padding: 20px;
+            position: relative;
+            height: 40px;
+            width: 40px;
+            line-height: 40px;
+            border: 1px solid #eeee;
+            border-radius: 100%;
+            text-align: center;
             -webkit-transition: all 0.3s ease-in-out;
             transition: all 0.3s ease-in-out;
-        }
-
-            .candidate-list:hover {
-                -webkit-box-shadow: 0px 0px 34px 4px rgba(33, 37, 41, 0.06);
-                box-shadow: 0px 0px 34px 4px rgba(33, 37, 41, 0.06);
-                position: relative;
-                z-index: 99;
-            }
-
-                .candidate-list:hover a.candidate-list-favourite {
-                    color: #e74c3c;
-                    -webkit-box-shadow: -1px 4px 10px 1px rgba(24, 111, 201, 0.1);
-                    box-shadow: -1px 4px 10px 1px rgba(24, 111, 201, 0.1);
-                }
-
-            .candidate-list .candidate-list-image {
-                margin-right: 25px;
-                -webkit-box-flex: 0;
-                -ms-flex: 0 0 80px;
-                flex: 0 0 80px;
-                border: none;
-            }
-
-                .candidate-list .candidate-list-image img {
-                    width: 80px;
-                    height: 80px;
-                    -o-object-fit: cover;
-                    object-fit: cover;
-                }
-
-        .candidate-list-title {
-            margin-bottom: 5px;
-            font-size: 25px;
-        }
-
-        .candidate-list-details ul {
-            display: -webkit-box;
-            display: -ms-flexbox;
-            display: flex;
-            -ms-flex-wrap: wrap;
-            flex-wrap: wrap;
-            margin-bottom: 0px;
-        }
-
-            .candidate-list-details ul li {
-                margin: 5px 10px 5px 0px;
-                font-size: 18px;
-            }
-
-        .candidate-list .candidate-list-favourite-time {
-            margin-left: auto;
-            margin-right: 6px;
-            text-align: center;
-            font-size: 10px;
-            -webkit-box-flex: 0;
-            -ms-flex: 0 0 90px;
-            flex: 0 0 90px;
-            float: inline-start;
-            margin-bottom: 25px;
-        }
-
-
-            .candidate-list .candidate-list-favourite-time .candidate-list-favourite {
-                display: inline-block;
-                position: relative;
-                height: 40px;
-                width: 40px;
-                line-height: 40px;
-                border: 1px solid #eeee;
-                border-radius: 100%;
-                text-align: center;
-                -webkit-transition: all 0.3s ease-in-out;
-                transition: all 0.3s ease-in-out;
-                margin-bottom: 20px;
-                font-size: 15px;
-                color: #646f79;
-            }
-
-                .candidate-list .candidate-list-favourite-time .candidate-list-favourite:hover {
-                    background: #ffffff;
-                    color: darkblue;
-                }
-
-        .candidate-banner .candidate-list:hover {
-            position: inherit;
-            -webkit-box-shadow: inherit;
-            box-shadow: inherit;
-            z-index: inherit;
-        }
-
-
-        /* Candidate Grid */
-        .candidate-list.candidate-grid {
-            padding: 0px;
-            display: block;
-            border-bottom: none;
-        }
-
-        .candidate-grid .candidate-list-image {
-            text-align: center;
-            margin-right: 0px;
-        }
-
-            .candidate-grid .candidate-list-image img {
-                height: 300px;
-                width: 100%;
-            }
-
-        .candidate-grid .candidate-list-details {
-            text-align: center;
-            padding: 20px 20px 0px 20px;
-            border: 1px solid #eeeeee;
-            border-top: none;
-        }
-
-            .candidate-grid .candidate-list-details ul {
-                -webkit-box-pack: center;
-                -ms-flex-pack: center;
-                justify-content: center;
-            }
-
-                .candidate-grid .candidate-list-details ul li {
-                    margin: 2px 5px;
-                }
-
-        .candidate-grid .candidate-list-favourite-time {
-            display: -webkit-box;
-            display: -ms-flexbox;
-            display: flex;
-            border-top: 1px solid #eeeeee;
-            margin-top: 10px;
-            padding: 10px 0;
-        }
-
-            .candidate-grid .candidate-list-favourite-time a {
-                margin-bottom: 0;
-                margin-left: auto;
-            }
-
-            .candidate-grid .candidate-list-favourite-time span {
-                display: inline-block;
-                margin: 0;
-                -ms-flex-item-align: center;
-                align-self: center;
-            }
-
-        .candidate-list.candidate-grid .candidate-list-favourite-time .candidate-list-favourite {
-            margin-bottom: 0px;
-        }
-
-        .owl-carousel .candidate-list.candidate-grid {
             margin-bottom: 20px;
+            font-size: 15px;
+            color: #646f79;
         }
-    </style>
+
+            .candidate-list .candidate-list-favourite-time .candidate-list-favourite:hover {
+                background: #ffffff;
+                color: darkblue;
+            }
+
+    .candidate-banner .candidate-list:hover {
+        position: inherit;
+        -webkit-box-shadow: inherit;
+        box-shadow: inherit;
+        z-index: inherit;
+    }
+
+
+    /* Candidate Grid */
+    .candidate-list.candidate-grid {
+        padding: 0px;
+        display: block;
+        border-bottom: none;
+    }
+
+    .candidate-grid .candidate-list-image {
+        text-align: center;
+        margin-right: 0px;
+    }
+
+        .candidate-grid .candidate-list-image img {
+            height: 300px;
+            width: 100%;
+        }
+
+    .candidate-grid .candidate-list-details {
+        text-align: center;
+        padding: 20px 20px 0px 20px;
+        border: 1px solid #eeeeee;
+        border-top: none;
+    }
+
+        .candidate-grid .candidate-list-details ul {
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+        }
+
+            .candidate-grid .candidate-list-details ul li {
+                margin: 2px 5px;
+            }
+
+    .candidate-grid .candidate-list-favourite-time {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        border-top: 1px solid #eeeeee;
+        margin-top: 10px;
+        padding: 10px 0;
+    }
+
+        .candidate-grid .candidate-list-favourite-time a {
+            margin-bottom: 0;
+            margin-left: auto;
+        }
+
+        .candidate-grid .candidate-list-favourite-time span {
+            display: inline-block;
+            margin: 0;
+            -ms-flex-item-align: center;
+            align-self: center;
+        }
+
+    .candidate-list.candidate-grid .candidate-list-favourite-time .candidate-list-favourite {
+        margin-bottom: 0px;
+    }
+
+    .owl-carousel .candidate-list.candidate-grid {
+        margin-bottom: 20px;
+    }
+</style>
+@code{
+    [Parameter]
+    public String serializedString { get; set; }
+    public House somehouse;
+    private void somefunc()
+    {
+        somehouse = System.Text.Json.JsonSerializer.Deserialize<House>(serializedString);
+    }
+}
