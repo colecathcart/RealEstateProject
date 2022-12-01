@@ -43,7 +43,7 @@
         margin: 5px;
         margin-top: 0px;
         margin-bottom: 0px;
-        width: 600px;
+        width: 680px;
         height: 90px;
         vertical-align: bottom;
        
@@ -53,7 +53,8 @@
     }
     img#carousel {
         margin-bottom: 20px; 
-        border: 2px solid #555;
+        border: 1px solid #555;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         display: inline-block;
         width: 150px;
         height: 100px;
@@ -69,6 +70,12 @@
         text-align: center;
             
     }
+
+    h5 {
+        margin-bottom: 20px;
+        margin-left: 10px;
+        padding: 5px;
+    }
 </style>
 
 <!-- Button trigger modal -->
@@ -81,33 +88,43 @@
   <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h3 class="modal-title" id="exampleModalLongTitle">@Thehouse.Address</h3>
+        <h2 class="modal-title" id="exampleModalLongTitle">@Thehouse.Address</h2>
         <button type="button" class="close" id="close" data-dismiss="modal" aria-label="Close">
           X
         </button>
       </div>
       <div class="modal-body">
         <div>
-            <div style="display: inline-block; padding-right: 10%;">
-                <img src=@Thehouse.images[0] alt="Image" style="margin-bottom: 20px; border: 2px solid #555; height: 410px; width: 540px'">
+            <div style="display: inline-block; padding-right: 5%;">
+                <img src=@Thehouse.images[Displayimg] alt="Image" style="margin-bottom: 20px; height: 470px;width:710px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
                 <br>
+                <button @onclick = "previmg" id="defaultbutton" style="padding-left: 8px; padding-right: 8px;margin-left:6px;vertical-align:top;margin-top:35px">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left" viewBox="0 0 16 16">
+                            <path d="M10 12.796V3.204L4.519 8 10 12.796zm-.659.753-5.48-4.796a1 1 0 0 1 0-1.506l5.48-4.796A1 1 0 0 1 11 3.204v9.592a1 1 0 0 1-1.659.753z"/>
+                            </svg>
+                </button>
                 <img src=@Thehouse.images[0] alt="Image" id="carousel">
                 <img src=@Thehouse.images[1] alt="Image" id="carousel">
                 <img src=@Thehouse.images[2] alt="Image" id="carousel">
                 <img src=@Thehouse.images[3] alt="Image" id="carousel">
+                <button @onclick = "nextimg" id="defaultbutton" style="padding-left: 8px; padding-right: 8px;margin-left:2px;vertical-align:top;margin-top:35px">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right" viewBox="0 0 16 16">
+                            <path d="M6 12.796V3.204L11.481 8 6 12.796zm.659.753 5.48-4.796a1 1 0 0 0 0-1.506L6.66 2.451C6.011 1.885 5 2.345 5 3.204v9.592a1 1 0 0 0 1.659.753z"/>
+                            </svg>
+                </button>
                 <br>
                 
             </div>
             <div style="display: inline-block; vertical-align: top;">
-                <h3>List Price: $@Thehouse.Price</h3>
-                <p>Area: @Thehouse.SquareFootage sq.ft</p>
-                <p>Price / Sq.ft: $167</p>
-                <p>@Thehouse.Bedrooms bedrooms | @Thehouse.Bathrooms bathroos</p>
-                <p>Type: @Thehouse.PropertyType</p>
-                <p>Year Built: @Thehouse.YearBuilt</p>
-                <p>List Date: @Thehouse.listDate</p>
-                <p>Perks</p>
-                <ul>
+                <h2>List Price: $@Thehouse.Price</h2>
+                <h5>Area: @Thehouse.SquareFootage sq.ft</h5>
+                <h5>Price per Sqare Foot: $@calc(@Thehouse.Price, @Thehouse.SquareFootage)</h5>
+                <h5>@Thehouse.Bedrooms bedrooms | @Thehouse.Bathrooms bathrooms</h5>
+                <h5>Type: @Thehouse.PropertyType</h5>
+                <h5>Year Built: @Thehouse.YearBuilt</h5>
+                <h5>List Date: @Thehouse.listDate</h5>
+                <h5 style="margin-bottom: 10px;">Perks of This Property:</h5>
+                <ul style="margin-left: 15px;">
                     <li>@Thehouse.perks[0]</li>
                     <li>@Thehouse.perks[1]</li>
                     <li>@Thehouse.perks[2]</li>
@@ -117,25 +134,25 @@
             </div>
             <div style="float:right'">
                 <div style="display:inline-block;vertical-align:top;margin:auto;">
-                    <button class="btn btn-primary" style="margin-right:10px"id="defaultbutton" type="button" data-toggle="collapse" data-target="#collapse1" aria-expanded="false" aria-controls="collapseExample">
+                    <button class="btn btn-primary" style="margin-right:10px;margin-left:175px;"id="defaultbutton" type="button" data-toggle="collapse" data-target="#collapse1" aria-expanded="false" aria-controls="collapseExample">
                         Contact Realtor
                     </button>
                 </div>
                 <div style="display:inline-block;vertical-align:top;">
-                    <button class="btn btn-primary" style="vertical-align:top;margin-right:10px;" id="defaultbutton" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                    <button class="btn btn-primary" style="vertical-align:top;margin-right:5px;" id="defaultbutton" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                         Book a Showing
                     </button>
                     <div id="inlinediv">
-                        <button id="defaultbutton" style="padding-left: 8px; padding-right: 8px;">
+                        <button id="defaultbutton" style="padding-left: 8px; padding-right: 8px;margin-left:5px">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-upload" viewBox="0 0 16 16">
                                 <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
                                 <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/>
                             </svg>
                         </button>
-                        <p style="padding-right: 5px;">Share</p>
+                        <p style="padding-right: 0px;padding-left:0px;margin-left:0px">Share</p>
                         </div>
                         <div id="inlinediv">
-                        <button id="defaultbutton" style="padding-left: 8px; padding-right: 8px;">
+                        <button id="defaultbutton" style="padding-left: 8px; padding-right: 8px;margin-left:5px">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"  fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
                                 <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
                             </svg>
@@ -172,14 +189,14 @@
                                 <br>
                             </div>
                             <div style="display: inline-block;">
-                                <input id="defaultfield" placeholder="example@gmail.com" name="email"/>
+                                <input id="defaultfield" @bind = "@inputclear1" placeholder="example@gmail.com" name="email"/>
                                     <br>
-                                <input id="defaultfield" placeholder="(###)-###-####" name="phonenum"/>
+                                <input id="defaultfield" @bind = "@inputclear2" placeholder="(###)-###-####" name="phonenum"/>
                                     <br>
-                                <input id="defaultfield" placeholder="John Doe" name="phonenum"/>
+                                <input id="defaultfield" @bind = "@inputclear3" placeholder="John Doe" name="phonenum"/>
                             </div>
                             <br>
-                            <button class="btn btn-primary" style="margin-left:420px;margin-top:70px" id="defaultbutton" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                            <button class="btn btn-primary" @onclick = "clear" style="margin-left:420px;margin-top:70px" id="defaultbutton" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                                 Confirm Booking
                             </button>
                         </div>
@@ -192,7 +209,7 @@
                         <h4>Contact Real Estate Agent</h4>
                         <div style="display:inline-block;">
                         <div style="display: inline-block; padding-right: 30px;">
-                            <h5>
+                            <h5 style="padding: 0px; margin-left: 0px;margin-bottom:0px;">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
                                 <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
                                 <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
@@ -201,7 +218,7 @@
                                 John Smith</h5>
                         </div>
                         <div style="display: inline-block;">
-                            <h5>
+                            <h5 style="padding:0px;margin-left:0px;margin-bottom:10px">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-telephone-fill" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
                                 </svg>
@@ -225,19 +242,19 @@
                             
                         </div>
                         <div style="display: inline-block;">
-                            <input id="defaultfield" style="margin-top:0px;"placeholder="example@gmail.com" name="email"/>
+                            <input id="defaultfield" @bind = "@inputclear1" style="margin-top:0px;"placeholder="example@gmail.com" name="email"/>
                             <br>
-                            <input id="defaultfield" style="margin-bottom:0px;" placeholder="(###)-###-####" name="phonenum"/>
+                            <input id="defaultfield" @bind = "@inputclear2" style="margin-bottom:0px;" placeholder="(###)-###-####" name="phonenum"/>
                             <br>
                             
                         </div>
                         <div style="display: inline-block;margin:0px;vertical-align:bottom;">
                             <p style="margin-bottom:0px;margin-left:10px;margin-top:0px;">Your Message</p>
-                            <textarea id="defaultlargefield" style="margin-bottom:20px;padding-bottom:0px" placeholder="Write your message here (250 word cap)" name="message"></textarea>
+                            <textarea id="defaultlargefield" @bind = "@inputclear3" style="margin-bottom:20px;padding-bottom:0px" placeholder="Write your message here (250 word cap)" name="message"></textarea>
                         </div>
                         </div>
-                        <br>
-                        <button class="btn btn-primary" style="margin:auto;margin-left:940px;"id="defaultbutton" type="button" data-toggle="collapse" data-target="#collapse1" aria-expanded="false" aria-controls="collapseExample">
+                        
+                        <button @onclick="clear" class="btn btn-primary" style="margin:auto;margin-left:940px;"id="defaultbutton" type="button" data-toggle="collapse" data-target="#collapse1" aria-expanded="false" aria-controls="collapseExample">
                         Contact Realtor
                     </button>
                     </div>
@@ -256,4 +273,38 @@
 
     [Parameter]
     public House Thehouse {get; set;}
+
+    public string inputclear1 = "";
+    public string inputclear2 = "";
+    public string inputclear3 = "";
+
+    public int Displayimg = 0;
+
+    private int calc(double one, int two){
+        return (int)one / two;
+    }
+
+    private void nextimg(){
+        if(Displayimg < 3){
+            Displayimg ++;
+        } else {
+            Displayimg = 0;
+        }
+    }
+
+    private void previmg(){
+        if(Displayimg > 0){
+            Displayimg --;
+        } else {
+            Displayimg = 3;
+        }
+    }
+
+
+    private void clear(){
+        inputclear1 = "";
+        inputclear2 = "";
+        inputclear3 = "";
+
+    }
 }
