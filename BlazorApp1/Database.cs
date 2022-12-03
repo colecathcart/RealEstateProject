@@ -4,15 +4,10 @@ using System.Collections.Generic;
 using static BlazorApp1.House;
 namespace BlazorApp1
 {
-    public class Database
+    public static class Database
     {
-        public List<House> houses { get; set; }
+        public static List<House> houses = generateData();
         private static string[] properties = new string[] { "Single-Family", "Multi-Family", "Townhouse", "Apartment" };
-
-        public Database()
-        {
-            houses = generateData();
-        }
 
         private static List<House> generateData()
         {
@@ -48,7 +43,7 @@ namespace BlazorApp1
 
         }
 
-        public House searchByAddress(string address)
+        public static House searchByAddress(string address)
         { 
             for (int i=0; i< 20; i++)
             {
@@ -60,7 +55,7 @@ namespace BlazorApp1
             return null;
         }
 
-        public List<House> searchByPrice(List<House> data, double minPrice, double maxPrice)
+        public static List<House> searchByPrice(List<House> data, double minPrice, double maxPrice)
         {
             if (data.Count == 0)
             {
@@ -77,7 +72,7 @@ namespace BlazorApp1
             return filteredData;
         }
 
-        public List<House> searchBySquareFootage(List<House> data, int sq)
+        public static List<House> searchBySquareFootage(List<House> data, int sq)
         {
             if (data.Count == 0)
             {
@@ -94,7 +89,7 @@ namespace BlazorApp1
             return filteredData;
         }
 
-        public List<House> searchByBedrooms(List<House> data, int bd)
+        public static List<House> searchByBedrooms(List<House> data, int bd)
         {
             if (data.Count == 0)
             {
@@ -111,7 +106,7 @@ namespace BlazorApp1
             return filteredData;
         }
 
-        public List<House> searchByBathrooms(List<House> data, int bathr)
+        public static List<House> searchByBathrooms(List<House> data, int bathr)
         {
             if (data.Count == 0)
             {
@@ -128,7 +123,7 @@ namespace BlazorApp1
             return filteredData;
         }
 
-        public List<House> searchByPropertyType(List<House> data, string pt)
+        public static List<House> searchByPropertyType(List<House> data, string pt)
         {
             if (data.Count == 0)
             {
@@ -145,7 +140,7 @@ namespace BlazorApp1
             return filteredData;
         }
 
-        public List<House> searchByYearBuilt(List<House> data, int yb)
+        public static List<House> searchByYearBuilt(List<House> data, int yb)
         {
             if (data.Count == 0)
             {
