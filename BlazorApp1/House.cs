@@ -13,10 +13,10 @@ namespace BlazorApp1
         public string PropertyType { get; set; }
         public int YearBuilt { get; set; }
         public String[] images { get; set; }
-        public String listDate { get; set; }
+        public DateTime listDate { get; set; }
         public String[] perks { get; set; }
 
-        public House(int id, string address, double price, int sf, int br, int bathr, string pt, int yb, String[] imgs)
+        public House(int id, string address, double price, int sf, int br, int bathr, string pt, int yb, String[] imgs, DateTime ld, String[] p)
         {
             this.Address = address;
             this.Price = price;
@@ -26,18 +26,8 @@ namespace BlazorApp1
             this.PropertyType = pt;
             this.YearBuilt = yb;
             this.images = imgs;
-            this.listDate = House.generateListDate();
-            this.perks = new String[] { "Perk #1", "Perk #2", "Perk #3", "Perk #4" };
-        }
-
-        public static String generateListDate()
-        {
-            Random rand = new Random();
-            int year = rand.Next(2018, 2023);
-            int day = rand.Next(1, 29);
-            int month = rand.Next(1, 13);
-            String date = month.ToString() + "/" + day.ToString() + "/" + year.ToString();
-            return date;
+            this.listDate = ld;
+            this.perks = p;
         }
 
     }
