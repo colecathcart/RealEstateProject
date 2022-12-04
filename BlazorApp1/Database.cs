@@ -47,9 +47,9 @@ namespace BlazorApp1
         { 
             for (int i=0; i< 20; i++)
             {
-                if (houses[i].Address == address)
+                if (Database.houses[i].Address == address)
                 {
-                    return houses[i];
+                    return Database.houses[i];
                 } 
             }
             return null;
@@ -59,7 +59,7 @@ namespace BlazorApp1
         {
             if (data.Count == 0)
             {
-                data = houses;
+                data = Database.houses;
             }
             List<House> filteredData = new List<House>();
             for (int i = 0; i < data.Count; i++)
@@ -76,7 +76,7 @@ namespace BlazorApp1
         {
             if (data.Count == 0)
             {
-                data = houses;
+                data = Database.houses;
             }
             List<House> filteredData = new List<House>();
             for (int i = 0; i < data.Count; i++)
@@ -93,7 +93,7 @@ namespace BlazorApp1
         {
             if (data.Count == 0)
             {
-                data = houses;
+                data = Database.houses;
             }
             List<House> filteredData = new List<House>();
             for (int i = 0; i < data.Count; i++)
@@ -110,7 +110,7 @@ namespace BlazorApp1
         {
             if (data.Count == 0)
             {
-                data = houses;
+                data = Database.houses;
             }
             List<House> filteredData = new List<House>();
             for (int i = 0; i < data.Count; i++)
@@ -127,7 +127,7 @@ namespace BlazorApp1
         {
             if (data.Count == 0)
             {
-                data = houses;
+                data = Database.houses;
             }
             List<House> filteredData = new List<House>();
             for (int i = 0; i < data.Count; i++)
@@ -144,7 +144,7 @@ namespace BlazorApp1
         {
             if (data.Count == 0)
             {
-                data = houses;
+                data = Database.houses;
             }
             List<House> filteredData = new List<House>();
             for (int i = 0; i < data.Count; i++)
