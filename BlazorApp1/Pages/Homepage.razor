@@ -109,11 +109,13 @@
         <div class="row">
             <div class="col">
                 <div class="input-group">
-                    <input class="form-control" placeholder="Already know what you're looking for? Enter the address" id="filterfield">
+                    <input value="@address" @onchange="@((ChangeEventArgs __e) => address = __e?.Value?.ToString())" class="form-control" placeholder="Already know what you're looking for? Enter the address" id="filterfield">
                     <div class="input-group-append">
                         <button class="btn btn-secondary" type="button" style=" background-color: rgb(127, 180, 240); color: black; border-color: black; font-weight: bold;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                                 <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+
+                                *
                             </svg>
                         </button>
                     </div>
@@ -121,7 +123,7 @@
             </div>
         </div>
     </div>
-
+    <p></p>
     <br>
     <!-- 557 376 -->
     <div class="container text-center">
@@ -202,8 +204,8 @@
                                                             <option value="1">1+</option>
                                                             <option value="2">2+</option>
                                                             <option value="3">3+</option>
-                                                            <option value="3">4+</option>
-                                                            <option value="3">5+</option>
+                                                            <option value="4">4+</option>
+                                                            <option value="5">5+</option>
                                                         </select>
                                                     </div>
                                                     <label style="font-size: small">Number of Bathrooms:</label>
@@ -228,25 +230,25 @@
                                             </div>
                                             <div class="col-3">
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                                    <input class="form-check-input" type="checkbox" @bind-value="@singleFamily" id="flexCheckDefault">
                                                     <label class="form-check-label" for="flexCheckDefault">
                                                         Single-Family
                                                     </label>
                                                 </div>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                                                    <input class="form-check-input" type="checkbox" @bind-value="@multiFamily" id="flexCheckChecked">
                                                     <label class="form-check-label" for="flexCheckChecked">
                                                         Multi-Family
                                                     </label>
                                                 </div>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                                                    <input class="form-check-input" type="checkbox" @bind-value="@townHouse" id="flexCheckChecked">
                                                     <label class="form-check-label" for="flexCheckChecked">
                                                         Townhouse
                                                     </label>
                                                 </div>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                                                    <input class="form-check-input" type="checkbox" @bind-value="@appartment" id="flexCheckChecked">
                                                     <label class="form-check-label" for="flexCheckChecked">
                                                         Appartment
                                                     </label>
@@ -291,31 +293,31 @@
                                                                             </div>
                                                                             <div class="col">
                                                                                 <div class="form-check">
-                                                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                                                                    <input class="form-check-input" type="checkbox" value="Pool" id="flexCheckDefault">
                                                                                     <label class="form-check-label" for="flexCheckDefault">
                                                                                         Pool
                                                                                     </label>
                                                                                 </div>
                                                                                 <div class="form-check">
-                                                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                                                                                    <input class="form-check-input" type="checkbox" value="Backyard" id="flexCheckChecked">
                                                                                     <label class="form-check-label" for="flexCheckChecked">
                                                                                         Backyard
                                                                                     </label>
                                                                                 </div>
                                                                                 <div class="form-check">
-                                                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                                                                                    <input class="form-check-input" type="checkbox" value="A/C" id="flexCheckChecked">
                                                                                     <label class="form-check-label" for="flexCheckChecked">
                                                                                         A/C
                                                                                     </label>
                                                                                 </div>
                                                                                 <div class="form-check">
-                                                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                                                                                    <input class="form-check-input" type="checkbox" value="Garage" id="flexCheckChecked">
                                                                                     <label class="form-check-label" for="flexCheckChecked">
                                                                                         Garage
                                                                                     </label>
                                                                                 </div>
                                                                                 <div class="form-check">
-                                                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                                                                                    <input class="form-check-input" type="checkbox" value="Balcony" id="flexCheckChecked">
                                                                                     <label class="form-check-label" for="flexCheckChecked">
                                                                                         Balcony
                                                                                     </label>
@@ -332,12 +334,12 @@
                                                                                     <div class="col-12">
                                                                                         <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
                                                                                         <select class="form-select" id="inlineFormSelectPref" style="background-color: rgb(230,230,230); border-color: black; ">
-                                                                                            <option selected>Choose...</option>
+                                                                                            <option>Choose...</option>
                                                                                             <option value="1">1+</option>
                                                                                             <option value="2">2+</option>
                                                                                             <option value="3">3+</option>
-                                                                                            <option value="3">4+</option>
-                                                                                            <option value="3">5+</option>
+                                                                                            <option value="4">4+</option>
+                                                                                            <option value="5">5+</option>
                                                                                         </select>
                                                                                     </div>
                                                                                 </form>
@@ -351,12 +353,18 @@
                                                                                     <div class="col-12">
                                                                                         <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
                                                                                         <select class="form-select" id="inlineFormSelectPref" style="background-color: rgb(230,230,230); border-color: black;">
-                                                                                            <option selected>Choose...</option>
-                                                                                            <option value="1">2010</option>
-                                                                                            <option value="2">2009</option>
-                                                                                            <option value="3">2008</option>
-                                                                                            <option value="3">2007</option>
-                                                                                            <option value="3">2006</option>
+                                                                                            <option>Choose...</option>
+                                                                                            <option value="2010">2010</option>
+                                                                                            <option value="2009">2009</option>
+                                                                                            <option value="2008">2008</option>
+                                                                                            <option value="2007">2007</option>
+                                                                                            <option value="2006">2006</option>
+                                                                                            <option value="2005">2005</option>
+                                                                                            <option value="2004">2004</option>
+                                                                                            <option value="2003">2003</option>
+                                                                                            <option value="2002">2002</option>
+                                                                                            <option value="2001">2001</option>
+                                                                                            <option value="2000">2000</option>
                                                                                         </select>
                                                                                     </div>
                                                                                 </form>
@@ -409,12 +417,119 @@
             </div>
         </div>
     </div>
+    <p>
+        <label>
+            Select one or more cars:
+            <select @onchange="SelectedCarsChanged" multiple>
+                <option value="audi">Audi</option>
+                <option value="jeep">Jeep</option>
+                <option value="opel">Opel</option>
+                <option value="saab">Saab</option>
+                <option value="volvo">Volvo</option>
+            </select>
+        </label>
+    </p>
 </body>
 @code{
-    private String test = "test string";
-    public String serializedString = System.Text.Json.JsonSerializer.Serialize(new Database().houses[0]);
-    private void OnClick()
-    {
-        UriHelper.NavigateTo($"SearchResults/{serializedString}");
-    }
+        /*
+        public List<string> CheckBox { get; set; } = new List<string>();
+        void CheckboxClicked(string CheckID, object checkedValue)
+        {
+            if ((bool)checkedValue)
+            {
+                if (!CheckBox.Contains(CheckID))
+                {
+                    CheckBox.Add(CheckID);
+                }
+            }
+            else
+            {
+                if (CheckBox.Contains(CheckID))
+                {
+                    CheckBox.Remove(CheckID);
+                }
+            }
+        }
+
+        public List<String> CheckBoxList()
+        {
+            List<String> checkBox = new List<String>();
+            checkBox.Add("Single-Family");
+            checkBox.Add("Multi-Family");
+            checkBox.Add("Townhouse");
+            checkBox.Add("Apartment");
+
+            return checkBox;
+        }
+        */
+        public string[] SelectedCars { get; set; } = new string[] { };
+
+
+
+        private string? address;
+        private double? minPrice;
+        private double? maxPrice;
+        private int? numBeds;
+        private int? numBaths;
+        private int? yearBuilt;
+
+        public bool singleFamily { get; set; }
+        public bool multiFamily { get; set; }
+        public bool townHouse { get; set; }
+        public bool appartment { get; set; }
+
+        private void OnClick()
+        {
+            if (singleFamily)
+            {
+                Database.selectedTypes.Add("Single-Family");
+            }
+            else
+            {
+                Database.selectedTypes.Remove("Single-Family");
+            }
+
+            if (multiFamily)
+            {
+                Database.selectedTypes.Add("Multi-Family");
+            }
+            else
+            {
+                Database.selectedTypes.Remove("Multi-Family");
+            }
+
+            if (townHouse)
+            {
+                Database.selectedTypes.Add("Townhouse");
+            }
+            else
+            {
+                Database.selectedTypes.Remove("Townhouse");
+            }
+
+            if (appartment)
+            {
+                Database.selectedTypes.Add("Apartment");
+            }
+            else
+            {
+                Database.selectedTypes.Remove("Apartment");
+            }
+
+            //Tester.setTest("Hello");
+            Database.test = "hello";
+            for (int i = 0; i < Database.selectedTypes.Count; i++)
+            {
+                Console.WriteLine(Database.selectedTypes[i]);
+            }
+            UriHelper.NavigateTo($"SearchResults/");
+        }
+        void SelectedCarsChanged(ChangeEventArgs e)
+        {
+            if (e.Value is not null)
+            {
+                SelectedCars = (string[])e.Value;
+            }
+        }
+
 }

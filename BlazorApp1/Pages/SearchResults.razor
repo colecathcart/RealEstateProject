@@ -1,11 +1,11 @@
-@page "/SearchResults/{serializedString}"
+@page "/SearchResults/"
 @using System.Text.Json;
 @using System.Text.Json.Serialization;
 @inject NavigationManager UriHelper
 
 <PageTitle>Search Results</PageTitle>
 
-<p>@somehouse.Address</p>
+<p></p>
 
 <div class="NavBar">
     <button id="defaultbutton" style="padding-left: 8px; padding-right: 8px; float:right;">
@@ -773,11 +773,4 @@
     }
 </style>
 @code{
-    [Parameter]
-    public String serializedString { get; set; }
-    public House somehouse;
-    private void somefunc()
-    {
-        somehouse = System.Text.Json.JsonSerializer.Deserialize<House>(serializedString);
     }
-}
