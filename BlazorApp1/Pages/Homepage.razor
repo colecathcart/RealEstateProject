@@ -75,7 +75,7 @@
         <div class="row">
             <div class="col">
                 <div id="inlinediv">
-                    <button id="defaultbutton" style="padding-left: 8px; padding-right: 8px;">
+                    <button @onclick="OnClickSaved" id="defaultbutton" style="padding-left: 8px; padding-right: 8px;">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
                             <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
                         </svg>
@@ -109,9 +109,9 @@
         <div class="row">
             <div class="col">
                 <div class="input-group">
-                    <input value="@address" @onchange="@((ChangeEventArgs __e) => address = __e?.Value?.ToString())" class="form-control" placeholder="Already know what you're looking for? Enter the address" id="filterfield">
+                    <input value="@address" @onchange="FilterChangedAsync" class="form-control" placeholder="Already know what you're looking for? Enter the address" id="filterfield">
                     <div class="input-group-append">
-                        <button class="btn btn-secondary" type="button" style=" background-color: rgb(127, 180, 240); color: black; border-color: black; font-weight: bold;">
+                        <button class="btn btn-secondary" type="button" style=" background-color: rgb(127, 180, 240); color: black; border-color: black; font-weight: bold;" @onclick="OnClickSearchAddress">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                                 <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
 
@@ -123,7 +123,7 @@
             </div>
         </div>
     </div>
-    <p></p>
+    <p style="color: red">@errorMessage</p>
     <br>
     <!-- 557 376 -->
     <div class="container text-center">
@@ -168,7 +168,7 @@
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text">$</span>
                                                     </div>
-                                                    <input type="text" placeholder="Min" id="filterfield">
+                                                    <input type="text" placeholder="Min" id="filterfield" @bind="minPrice">
                                                     <div class="input-group-append">
                                                         <span class="input-group-text">.00</span>
                                                     </div>
@@ -178,7 +178,7 @@
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text">$</span>
                                                     </div>
-                                                    <input type="text" placeholder="Max" id="filterfield">
+                                                    <input type="text" placeholder="Max" id="filterfield" @bind="maxPrice">
                                                     <div class="input-group-append">
                                                         <span class="input-group-text">.00</span>
                                                     </div>
@@ -196,28 +196,26 @@
                                         <div class="row">
                                             <div class="col">
                                                 <form class="row row-cols-lg-auto g-3">
-                                                    <label style="font-size: small">Number of Bedrooms:</label>
+                                                    <label>Number of Bedrooms:</label>
                                                     <div class="col-12">
                                                         <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
-                                                        <select class="form-select" id="inlineFormSelectPref" style="background-color: rgb(230,230,230); border-color: black; ">
-                                                            <option selected>Choose...</option>
-                                                            <option value="1">1+</option>
-                                                            <option value="2">2+</option>
-                                                            <option value="3">3+</option>
-                                                            <option value="4">4+</option>
-                                                            <option value="5">5+</option>
+                                                        <select class="form-select" @bind="numBeds" id="inlineFormSelectPref" style="background-color: rgb(230,230,230); border-color: black;">
+                                                            <option value="" selected> </option>
+                                                            @foreach (var template in beds)
+                                                            {
+                                                                <option value=@template>@template+</option>
+                                                            }
                                                         </select>
                                                     </div>
-                                                    <label style="font-size: small">Number of Bathrooms:</label>
+                                                    <label>Number of Bathrooms:</label>
                                                     <div class="col-12">
                                                         <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
-                                                        <select class="form-select" id="inlineFormSelectPref" style="background-color: rgb(230,230,230); border-color: black; ">
-                                                            <option selected>Choose...</option>
-                                                            <option value="1">1+</option>
-                                                            <option value="2">2+</option>
-                                                            <option value="3">3+</option>
-                                                            <option value="3">4+</option>
-                                                            <option value="3">5+</option>
+                                                        <select class="form-select" @bind="numBaths" id="inlineFormSelectPref" style="background-color: rgb(230,230,230); border-color: black;">
+                                                            <option value="" selected> </option>
+                                                            @foreach (var template in baths)
+                                                            {
+                                                                <option value=@template>@template+</option>
+                                                            }
                                                         </select>
                                                     </div>
                                                 </form>
@@ -229,30 +227,15 @@
                                                 <label>Property Type:</label>
                                             </div>
                                             <div class="col-3">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" @bind-value="@singleFamily" id="flexCheckDefault">
-                                                    <label class="form-check-label" for="flexCheckDefault">
-                                                        Single-Family
-                                                    </label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" @bind-value="@multiFamily" id="flexCheckChecked">
-                                                    <label class="form-check-label" for="flexCheckChecked">
-                                                        Multi-Family
-                                                    </label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" @bind-value="@townHouse" id="flexCheckChecked">
-                                                    <label class="form-check-label" for="flexCheckChecked">
-                                                        Townhouse
-                                                    </label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" @bind-value="@appartment" id="flexCheckChecked">
-                                                    <label class="form-check-label" for="flexCheckChecked">
-                                                        Appartment
-                                                    </label>
-                                                </div>
+                                                @foreach (var check in CheckBoxList())
+                                                {
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" @onchange="eventArgs => { CheckboxClicked(check, eventArgs.Value); }" id="flexCheckChecked">
+                                                        <label class="form-check-label" for="flexCheckChecked">
+                                                            @check
+                                                        </label>
+                                                    </div>
+                                                }
                                             </div>
                                         </div>
                                         <br>
@@ -275,7 +258,7 @@
                                                                                     <div class="col-12">
                                                                                         <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
                                                                                         <select class="form-select" id="inlineFormSelectPref" style="background-color: rgb(230,230,230); border-color: black; ">
-                                                                                            <option selected>Choose...</option>
+                                                                                            <option selected></option>
                                                                                             <option value="1"> less than 1000 sq. ft.</option>
                                                                                             <option value="2">> 1000 sq. ft.</option>
                                                                                             <option value="3">> 1500 sq. ft.</option>
@@ -330,11 +313,11 @@
                                                                         <div class="row">
                                                                             <div class="col">
                                                                                 <form class="row row-cols-lg-auto g-3">
-                                                                                    <label style="font-size:small">Parking Spaces:</label>
+                                                                                    <label>Parking Spaces:</label>
                                                                                     <div class="col-12">
                                                                                         <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
                                                                                         <select class="form-select" id="inlineFormSelectPref" style="background-color: rgb(230,230,230); border-color: black; ">
-                                                                                            <option>Choose...</option>
+                                                                                            <option></option>
                                                                                             <option value="1">1+</option>
                                                                                             <option value="2">2+</option>
                                                                                             <option value="3">3+</option>
@@ -352,19 +335,12 @@
                                                                                     <label>Year Built:</label>
                                                                                     <div class="col-12">
                                                                                         <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
-                                                                                        <select class="form-select" id="inlineFormSelectPref" style="background-color: rgb(230,230,230); border-color: black;">
-                                                                                            <option>Choose...</option>
-                                                                                            <option value="2010">2010</option>
-                                                                                            <option value="2009">2009</option>
-                                                                                            <option value="2008">2008</option>
-                                                                                            <option value="2007">2007</option>
-                                                                                            <option value="2006">2006</option>
-                                                                                            <option value="2005">2005</option>
-                                                                                            <option value="2004">2004</option>
-                                                                                            <option value="2003">2003</option>
-                                                                                            <option value="2002">2002</option>
-                                                                                            <option value="2001">2001</option>
-                                                                                            <option value="2000">2000</option>
+                                                                                        <select class="form-select" @bind="yearBuilt" id="inlineFormSelectPref" style="background-color: rgb(230,230,230); border-color: black;">
+                                                                                            <option value="" selected> </option>
+                                                                                            @foreach (var template in yearsBuilt)
+                                                                                            {
+                                                                                                <option value=@template>@template</option>
+                                                                                            }
                                                                                         </select>
                                                                                     </div>
                                                                                 </form>
@@ -389,7 +365,7 @@
                                                         </div>
                                                     </div>
                                                     <div>
-                                                        <button type="button" class="btn btn-primary btn-lg" id="bigbutton">
+                                                        <button type="button" class="btn btn-primary btn-lg" id="bigbutton" @onclick="OnClickSearch">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                                                                 <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
                                                             </svg>Search
@@ -413,123 +389,172 @@
     <div class="container text-center">
         <div class="row">
             <div class="col">
-                <button type="button" class="btn btn-primary btn-lg" @onclick="OnClick" id="bigbutton">Explore All Listings</button>
+                <button type="button" class="btn btn-primary btn-lg" @onclick="OnClickAllListings" id="bigbutton">Explore All Listings</button>
             </div>
         </div>
     </div>
-    <p>
-        <label>
-            Select one or more cars:
-            <select @onchange="SelectedCarsChanged" multiple>
-                <option value="audi">Audi</option>
-                <option value="jeep">Jeep</option>
-                <option value="opel">Opel</option>
-                <option value="saab">Saab</option>
-                <option value="volvo">Volvo</option>
-            </select>
-        </label>
-    </p>
+
+
 </body>
+
 @code{
+
+    public List<string> CheckBox { get; set; } = new List<string>();
+    void CheckboxClicked(string CheckID, object checkedValue)
+    {
+        if ((bool)checkedValue)
+        {
+            if (!CheckBox.Contains(CheckID))
+            {
+                CheckBox.Add(CheckID);
+            }
+        }
+        else
+        {
+            if (CheckBox.Contains(CheckID))
+            {
+                CheckBox.Remove(CheckID);
+            }
+        }
+    }
+
+    public List<String> CheckBoxList()
+    {
+        List<String> checkBox = new List<String>();
+        checkBox.Add("Single-Family");
+        checkBox.Add("Multi-Family");
+        checkBox.Add("Townhouse");
+        checkBox.Add("Apartment");
+
+        return checkBox;
+    }
+
+    private string? address;
+    private double? minPrice;
+    private double? maxPrice;
+
+    public bool singleFamily { get; set; }
+    public bool multiFamily { get; set; }
+    public bool townHouse { get; set; }
+    public bool appartment { get; set; }
+    public string errorMessage { get; set; }
+
+    List<int> beds = new List<int>() {1, 2, 3, 4, 5};
+    public int numBeds { get; set; }
+
+    List<int> baths = new List<int>() { 1, 2, 3, 4, 5 };
+    public int numBaths { get; set; }
+
+
+    List<int> yearsBuilt = new List<int>() { 1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022 };
+    public int yearBuilt { get; set; }
+
+    private void FilterChangedAsync(ChangeEventArgs args)
+    {
+        address = args.Value.ToString();
+        OnClickSearchAddress();
+    }
+
+    private void OnClickSaved()
+    {
+        UriHelper.NavigateTo($"SavedListings/");
+    }
+
+    private void OnClickSearchAddress()
+    {
+
+        if(address != null)
+        {
+            for (int i = 0; i < Database.houses.Count; i++)
+            {
+                if (Database.houses[i].Address == address)
+                {
+                    Database.filtered.Clear();
+                    Database.filtered.Add(Database.houses[i]);
+                    UriHelper.NavigateTo($"SearchResults/");
+                    return;
+                }
+            }
+            errorMessage = "No Listings Found";
+            return;
+        }
+        else
+        {
+            errorMessage = "No Listings Found";
+            return;
+        }
+    }
+
+    private void OnClickAllListings()
+    {
+        Database.filtered = Database.houses;
+        UriHelper.NavigateTo($"SearchResults/");
+    }
+
+    private void OnClickSearch()
+    {
+        Database.filtered.Clear();
+
+        if(minPrice == null && maxPrice == null)
+        {
+            Database.filtered = Database.houses;
+        }
+        else if(minPrice != null && maxPrice == null)
+        {
+            Database.filtered = Database.searchByPrice(Database.filtered, minPrice, 10000000000000);
+        }
+        else if (minPrice == null && maxPrice != null)
+        {
+            Database.filtered = Database.searchByPrice(Database.filtered, 0, maxPrice);
+        }
+        else if (minPrice != null && maxPrice != null)
+        {
+            Database.filtered = Database.searchByPrice(Database.filtered, minPrice, maxPrice);
+        }
+
+        if(yearBuilt != 0)
+        {
+            Database.filtered = Database.searchByYearBuilt(Database.filtered, yearBuilt);
+        }
+
+        Database.filtered = Database.searchByBedrooms(Database.filtered, numBeds);
+        Database.filtered = Database.searchByBathrooms(Database.filtered, numBaths);
+
         /*
-        public List<string> CheckBox { get; set; } = new List<string>();
-        void CheckboxClicked(string CheckID, object checkedValue)
+        Console.WriteLine("Selected:");
+        for (int i = 0; i < CheckBox.Count; i++)
         {
-            if ((bool)checkedValue)
-            {
-                if (!CheckBox.Contains(CheckID))
-                {
-                    CheckBox.Add(CheckID);
-                }
-            }
-            else
-            {
-                if (CheckBox.Contains(CheckID))
-                {
-                    CheckBox.Remove(CheckID);
-                }
-            }
+            Console.WriteLine(CheckBox[i]);
         }
-
-        public List<String> CheckBoxList()
+        Console.WriteLine("Min:");
+        if (minPrice == null)
         {
-            List<String> checkBox = new List<String>();
-            checkBox.Add("Single-Family");
-            checkBox.Add("Multi-Family");
-            checkBox.Add("Townhouse");
-            checkBox.Add("Apartment");
-
-            return checkBox;
+            Console.WriteLine("min is null");
         }
+        else
+        {
+            Console.WriteLine(minPrice);
+        }
+        Console.WriteLine("Max:");
+        if (maxPrice == null)
+        {
+            Console.WriteLine("max is null");
+        }
+        else
+        {
+            Console.WriteLine(maxPrice);
+        }
+        Console.WriteLine("numBaths:");
+        Console.WriteLine(numBaths);
+        Console.WriteLine("numBeds:");
+        Console.WriteLine(numBeds);
+        Console.WriteLine("Year Built:");
+        Console.WriteLine(yearBuilt);
         */
-        public string[] SelectedCars { get; set; } = new string[] { };
 
 
-
-        private string? address;
-        private double? minPrice;
-        private double? maxPrice;
-        private int? numBeds;
-        private int? numBaths;
-        private int? yearBuilt;
-
-        public bool singleFamily { get; set; }
-        public bool multiFamily { get; set; }
-        public bool townHouse { get; set; }
-        public bool appartment { get; set; }
-
-        private void OnClick()
-        {
-            if (singleFamily)
-            {
-                Database.selectedTypes.Add("Single-Family");
-            }
-            else
-            {
-                Database.selectedTypes.Remove("Single-Family");
-            }
-
-            if (multiFamily)
-            {
-                Database.selectedTypes.Add("Multi-Family");
-            }
-            else
-            {
-                Database.selectedTypes.Remove("Multi-Family");
-            }
-
-            if (townHouse)
-            {
-                Database.selectedTypes.Add("Townhouse");
-            }
-            else
-            {
-                Database.selectedTypes.Remove("Townhouse");
-            }
-
-            if (appartment)
-            {
-                Database.selectedTypes.Add("Apartment");
-            }
-            else
-            {
-                Database.selectedTypes.Remove("Apartment");
-            }
-
-            //Tester.setTest("Hello");
-            Database.test = "hello";
-            for (int i = 0; i < Database.selectedTypes.Count; i++)
-            {
-                Console.WriteLine(Database.selectedTypes[i]);
-            }
-            UriHelper.NavigateTo($"SearchResults/");
-        }
-        void SelectedCarsChanged(ChangeEventArgs e)
-        {
-            if (e.Value is not null)
-            {
-                SelectedCars = (string[])e.Value;
-            }
-        }
+        UriHelper.NavigateTo($"SearchResults/");
+    }
+   
 
 }

@@ -6,11 +6,12 @@ namespace BlazorApp1
 {
     public static class Database
     {
-        public static List<String> selectedTypes = new List<string>();
-        public static List<String> selectedAmmenities = new List<string>();
+        //public static List<String> selectedTypes = new List<string>();
+        //public static List<String> selectedAmmenities = new List<string>();
         public static string test = "tester";
         public static List<House> houses = generateData();
         private static string[] properties = new string[] { "Single-Family", "Multi-Family", "Townhouse", "Apartment" };
+        public static List<House> filtered = new List<House>();
 
         private static List<House> generateData()
         {
@@ -58,7 +59,7 @@ namespace BlazorApp1
             return null;
         }
 
-        public static List<House> searchByPrice(List<House> data, double minPrice, double maxPrice)
+        public static List<House> searchByPrice(List<House> data, double? minPrice, double? maxPrice)
         {
             if (data.Count == 0)
             {
