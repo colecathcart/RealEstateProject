@@ -373,7 +373,7 @@ button#defaultbutton {
         </div>
         <div style="float:left; width:50%; height:100%; padding-right:10px">
             <!-- Set Div As your requirement -->
-            <div hidden="@IsShow" class="card">
+            <div class="card">
                 <img src="../houseimages/house5.jpg" alt="house 1" style="width:100%; padding:20px; border-radius:30px;">
                 <h2><a href="">3456 24 Ave NW</a></h2>
                 <h4><b>List price: $3,500,000</b></h4>
@@ -420,7 +420,7 @@ button#defaultbutton {
             </div>
 
 
-            <div>
+            <div hidden="@ListShow">
                 <div class="row">
                     <div class="candidate-list candidate-grid">
                         <div class="candidate-list-image">
@@ -443,7 +443,7 @@ button#defaultbutton {
                             </div>
                             <div class="candidate-list-favourite-time">
                                 <a class="candidate-list-favourite order-2" href="#"><i class="far fa-heart"></i>Save</a>
-                                <a class="candidate-list-favourite order-2" href="#"><i class="fa fa-signal"></i>Compare</a>
+                                <button @onclick="@Show" style="background-color:red; border-radius:15px;"><i class="fa fa-signal"></i> Compare</button>
                             </div>
                         </div>
                     </div>
@@ -470,7 +470,7 @@ button#defaultbutton {
                             </div>
                             <div class="candidate-list-favourite-time">
                                 <a class="candidate-list-favourite order-2" href="#"><i class="far fa-heart"></i>Save</a>
-                                <a class="candidate-list-favourite order-2" href="#"><i class="fa fa-signal"></i>Compare</a>
+                                <button @onclick="@Show" style="background-color:red; border-radius:15px;"><i class="fa fa-signal"></i>Compare</button>
                             </div>
                         </div>
                     </div>
@@ -496,8 +496,8 @@ button#defaultbutton {
                                 </div>
                             </div>
                             <div class="candidate-list-favourite-time">
-                                <a class="candidate-list-favourite order-2" href="#"><i class="far fa-heart"></i>Save</a>
-                                <span class="candidate-list-time order-1"><i class="fa-solid fa-chart-mixed"></i>Compare</span>
+                                <button><a class="candidate-list-favourite order-2" href="#"><i class="far fa-heart"></i>Save</a></button>
+                                <button @onclick="@Show" style="background-color:red; border-radius:15px;"><i class="fa fa-signal"></i>Compare</button>
                             </div>
                         </div>
                     </div>
@@ -510,7 +510,11 @@ button#defaultbutton {
 
 </html>
 @code {
-    private bool IsShow { get; set; } = false;
-    private void Show() => IsShow = !IsShow;
+    private bool ListShow { get; set; } = false;
+    private bool IsShow { get; set; } = true;
+    private void Show() {
+        IsShow = !IsShow;
+        ListShow = !ListShow;
+    }
 }
  
