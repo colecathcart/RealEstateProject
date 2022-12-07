@@ -29,7 +29,7 @@
         border-radius: 5px;
         background-color: rgb(230,230,230);
         margin: 5px;
-        border-width: 0px;
+        border-width: 1px;
         height: 40px;
         
     }
@@ -39,7 +39,7 @@
     textarea#defaultlargefield {
         background-color: rgb(230,230,230);
         border-color: black;
-        border-width: 0px;
+        border-width: 1px;
         border-radius: 5px;
         margin: 5px;
         margin-top: 0px;
@@ -89,17 +89,27 @@
         padding: 5px;
         border-radius: 10px;;
         margin-bottom: 0px;
+        display: inline-block;
     }
 
 </style>
 
 <div>
             <div style="display: inline-block; padding-right: 5%;">
-                <h1 id="address">@Database.filtered[@index].Address</h1>
+                
+                <h1 id="address" style="padding:0px;width:100%;margin-bottom:10px;vertical-align:top;margin-right:0px">  
+                        <button @onclick="back" id="defaultbutton" style="border-top-right-radius:0px;border-bottom-right-radius:0px;padding-left: 8px; padding-right: 12px;padding-top:3px;padding-bottom:5px;margin:0px">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 18 18"font-size="35">
+                                <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z"/>
+                                <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
+                            </svg>
+                        </button>
+                    @Database.filtered[@index].Address
+                    </h1>
                 <br>
                 <img src=@Database.filtered[@index].images[Displayimg] alt="Image" style="margin-bottom: 20px; height: 630px; width: 940px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
                 <br>
-                <button @onclick = "previmg" id="defaultbutton" style="padding-left: 8px; padding-right: 8px;margin-left:6px;vertical-align:top;margin-top:48px">
+                <button @onclick = "previmg" id="defaultbutton" style="padding-left: 8px; padding-right: 8px;margin-left:5px;vertical-align:top;margin-top:48px">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left" viewBox="0 0 16 16">
                             <path d="M10 12.796V3.204L4.519 8 10 12.796zm-.659.753-5.48-4.796a1 1 0 0 1 0-1.506l5.48-4.796A1 1 0 0 1 11 3.204v9.592a1 1 0 0 1-1.659.753z"/>
                             </svg>
@@ -119,21 +129,28 @@
             
 
                 <div style="display:inline-block; vertical-align:top;">
-                     <div id="inlinediv" style="margin-left:410px;">
-                            <button id="defaultbutton" style="padding-left: 16px; padding-right: 16px;padding-top:8px;padding-bottom:8px;margin-left:0px;" data-toggle="toast">
+                     <div id="inlinediv" style="margin-left:350px;">
+                            <button id="defaultbutton" style="padding-left: 15px; padding-right: 15px;padding-top:8px;padding-bottom:8px;margin-left:0px;" data-toggle="toast">
                                 ?
                             </button>
                             
-                        <p style="padding-left: 5px;padding-right:6px;">Help</p>
+                        <p style="padding-left: 4px;padding-right:6px;">Help</p>
                     </div>
-                    <div id="inlinediv">
-                        <button @onclick="back" id="defaultbutton" style="padding-left: 8px; padding-right: 12px;padding-top:8px;padding-bottom:8px;margin-left:5px" data-toggle="toast">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16"font-size="20">
-                                <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z"/>
-                                <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
+                <div id="inlinediv">
+                        <button @onclick="tosaved" id="defaultbutton" style="padding-left: 11px; padding-right: 11px;padding-top:9px;padding-bottom:7px;margin-left:11px" data-toggle="toast">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+                            <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
                             </svg>
                         </button>
-                        <p style="padding-right: 0px;padding-left:2px;margin-left:5px">Back</p>
+                        <p style="padding-right: 0px;padding-left:2px;margin-left:5px">Saved</p>
+                    </div>
+                <div id="inlinediv">
+                        <button @onclick="tohome" id="defaultbutton" style="padding-left: 11px; padding-right: 11px;padding-top:8px;padding-bottom:8px;margin-left:9px" data-toggle="toast">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-door-fill" viewBox="0 0 16 16">
+                            <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5Z"/>
+                            </svg>
+                        </button>
+                        <p style="padding-right: 0px;padding-left:2px;margin-left:5px">Home</p>
                         
                         </div>
                 
@@ -329,6 +346,14 @@
         } else {
             Displayimg = 3;
         }
+    }
+
+    private void tosaved(){
+        UriHelper.NavigateTo($"SavedListings");
+    }
+
+    private void tohome(){
+        UriHelper.NavigateTo($"Homepage");
     }
 
     private void saved(){
