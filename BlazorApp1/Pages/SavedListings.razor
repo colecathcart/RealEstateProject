@@ -3,267 +3,94 @@
 @inject NavigationManager UriHelper;
 
 <PageTitle>Index</PageTitle>
-    <div class="NavBar">
-        <button id="defaultbutton" style="padding-left: 8px; padding-right: 8px; float:right;">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-question-lg" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M4.475 5.458c-.284 0-.514-.237-.47-.517C4.28 3.24 5.576 2 7.825 2c2.25 0 3.767 1.36 3.767 3.215 0 1.344-.665 2.288-1.79 2.973-1.1.659-1.414 1.118-1.414 2.01v.03a.5.5 0 0 1-.5.5h-.77a.5.5 0 0 1-.5-.495l-.003-.2c-.043-1.221.477-2.001 1.645-2.712 1.03-.632 1.397-1.135 1.397-2.028 0-.979-.758-1.698-1.926-1.698-1.009 0-1.71.529-1.938 1.402-.066.254-.278.461-.54.461h-.777ZM7.496 14c.622 0 1.095-.474 1.095-1.09 0-.618-.473-1.092-1.095-1.092-.606 0-1.087.474-1.087 1.091S6.89 14 7.496 14Z" />
-            </svg>
-        </button>
-        <p>Help</p>
-    </div>
-    <div class="NavBar">
-        <button id="defaultbutton" style="padding-left: 8px; padding-right: 8px;">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-door-fill" viewBox="0 0 16 16">
-            <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5Z" />
-        </svg>
-        </button>
-        <p>Home</p>
-    </div>
 
     <!--Saved and Help button-->
 
     <div class="container">
-        <div class="row">
-            <div class="flex-parent jc-center">
-                <div class="heading">
-                <h2> Saved Listings </h2>
+        <div class="row" style="margin:0px">
+            <div class="flex-parent jc-center" style="margin:0px">
+                <div id="inlinediv" style="margin-bottom:0px;margin-right:445px;">
+                    <button @onclick="tores" id="defaultbutton" style="padding-left: 8px; padding-right: 12px;padding-top:6px;padding-bottom:6px;margin-left:0px;border-width:0px;margin-top:10px;font-size:18px">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z"/>
+                        <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
+                        </svg>
+                    </button>
+                    <p style="padding-right: 0px;padding-left:2px;margin-left:0px;margin-bottom:0px">Back</p>
+                                    
                 </div>
-
+                
+                <h1 style="background-color: rgb(220,220,220);padding:8px;padding-left:20px;padding-right:20px;border-radius:10px;margin-bottom:20px;vertical-align:top"> Saved Listings </h1>
+                
+            <div id="inlinediv" style="margin-left:400px;margin-bottom:0px">
+                <button id="defaultbutton" style="padding-left: 15px; padding-right: 15px;padding-top:8px;padding-bottom:8px;margin-left:0px;border-width:0px;margin-top:10px">
+                ?
+                </button>
+                                        
+                <p style="padding-left: 4px;padding-right:6px;margin-bottom:0px;">Help</p>
+            </div>
+    <div id="inlinediv" style="margin-bottom:0px">
+        <button @onclick="tohome" id="defaultbutton" style="padding-left: 11px; padding-right: 11px;padding-top:8px;padding-bottom:8px;margin-left:9px;border-width:0px;margin-top:10px">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-door-fill" viewBox="0 0 16 16">
+                <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5Z"/>
+            </svg>
+        </button>
+        <p style="padding-right:0px;padding-left:2px;margin-left:5px;margin-bottom:0px">Home</p>
+                        
+        
+        </div>
             </div>
 
 <!-- Modify Search Section ^ -->
         </div>
         <div class="row">
+        @for(int i = 0; i < Database.saved.Count; i++){
+            int j = i;
             <div class="col-6">
                 <div class="candidate-list candidate-grid">
                     <div class="candidate-list-image">
-                        <img class="img-fluid" src="https://www.build-review.com/wp-content/webp-express/webp-images/uploads/2020/07/luxury-real-estate.jpg.webp" alt="">
+                        <img class="img-fluid" src="@Database.saved[i].images[0]" alt="">
                     </div>
                     <div class="candidate-list-details">
                         <div class="candidate-list-info">
                             <div class="candidate-list-title">
-                                <h4><a href="candidate-detail.html">328 University Drive NW</a></h4>
-                                <h5><a><i class="fas fa-dollar-sign"></i> 330,399</a></h5>
+                                <h4><button @onclick="() => tohouse(j)" class="btn btn-primary" id="defaultbutton" type="button" style="border-width:0;border-radius:15px;background-color:white;font-size:30px;font-weight:10;padding-left:15px;padding-right:15px">
+                                    <u style="color:#3381ff">@Database.saved[i].Address</u>
+                                </button>
+                                </h4>
+                               
+                                <h5><a><i class="fas fa-dollar-sign"></i> $@Database.saved[i].Price </a></h5>
+                                <h5><a><i class="fas fa-dollar-sign"></i> @Database.saved[i].PropertyType </a></h5>
                             </div>
                             <div class="candidate-list-option">
                                 <ul class="list-unstyled">
-                                    <li><i class="fas fa-home"></i> 4 bedrooms | 4 bathrooms</li>
-                                    <li>          </li>
-                                    <li><i class="fas fa-ruler"></i> 2,700 sq ft. </li>
-                                    <li>          </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="candidate-list-favourite-time">
-                            <a class="candidate-list-favourite order-2" href="#"><i class="far fa-heart"></i>Save</a>
-                            <a class="candidate-list-favourite order-2" href="#"><i class="fa fa-signal"></i>Compare</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-6">
-                <div class="candidate-list candidate-grid">
-                    <div class="candidate-list-image">
-                        <img class="img-fluid" src="https://www.fortunebuilders.com/wp-content/uploads/2014/09/real-estate-photography.jpg" alt="">
-                    </div>
-                    <div class="candidate-list-details">
-                        <div class="candidate-list-info">
-                            <div class="candidate-list-title">
-                                <h4><a href="candidate-detail.html">481 University Heights NW</a></h4>
-                                <h5><a><i class="fas fa-dollar-sign"></i> 499,000 </a></h5>
-                            </div>
-                            <div class="candidate-list-option">
-                                <ul class="list-unstyled">
-                                    <li><i class="fas fa-home"></i> 5 bedrooms | 4 bathrooms</li>
+                                    <li><i class="fas fa-home"></i> @Database.saved[i].Bedrooms bedrooms | @Database.saved[i].Bathrooms bathrooms</li>
                                     <li>           </li>
-                                    <li><i class="fas fa-ruler"></i> 3,100 sq ft. </li>
+                                    <li><i class="fas fa-ruler"></i> @Database.saved[i].SquareFootage sq ft. </li>
                                     <li>          </li>
                                 </ul>
                             </div>
                         </div>
-                        <div class="candidate-list-favourite-time">
-                            <a class="candidate-list-favourite order-2" href="#"><i class="far fa-heart"></i>Save</a>
-                            <a class="candidate-list-favourite order-2" href="#"><i class="fa fa-signal"></i>Compare</a>
+                        <div class="candidate-list-favourite-time" style="margin-bottom:0px">
+                            <div>
+                            <button @onclick="() => unsave(j)" id="defaultbutton" style="padding-left: 12px; padding-right: 12px;padding-top:6px; padding-bottom: 6px;margin-left:530px;border-width:0;font-size:25px">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-heartbreak-fill" viewBox="0 0 16 16">
+                                <path d="M8.931.586 7 3l1.5 4-2 3L8 15C22.534 5.396 13.757-2.21 8.931.586ZM7.358.77 5.5 3 7 7l-1.5 3 1.815 4.537C-6.533 4.96 2.685-2.467 7.358.77Z"/>
+                                </svg>
+                            </button>
+                            <p style="margin-left:528px;font-size:15px;margin-bottom:0px">Un-save</p>
+                            </div>
+                            
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-6">
-                <div class="candidate-list candidate-grid">
-                    <div class="candidate-list-image">
-                        <img class="img-fluid" src="https://images.squarespace-cdn.com/content/v1/53225844e4b08f966012561e/1529465311315-NHDT1VRROCTLVMCXWILQ/Simcoe-Real-Estate-Photographer-and-Videographer_1.jpg" alt="">
-                    </div>
-                    <div class="candidate-list-details">
-                        <div class="candidate-list-info">
-                            <div class="candidate-list-title">
-                                <h4><a href="candidate-detail.html">328 University Drive NW</a></h4>
-                                <h5><a><i class="fas fa-dollar-sign"></i> 330,399</a></h5>
-                            </div>
-                            <div class="candidate-list-option">
-                                <ul class="list-unstyled">
-                                    <li><i class="fas fa-home"></i> 4 bedrooms | 4 bathrooms</li>
-                                    <li>          </li>
-                                    <li><i class="fas fa-ruler"></i> 2,700 sq ft. </li>
-                                    <li>          </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="candidate-list-favourite-time">
-                            <a class="candidate-list-favourite order-2" href="#"><i class="far fa-heart"></i>Save</a>
-                            <span class="candidate-list-time order-1"><i class="fa-solid fa-chart-mixed"></i>Compare</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-6">
-                <div class="candidate-list candidate-grid">
-                    <div class="candidate-list-image">
-                        <img class="img-fluid" src="https://www.mckissock.com/wp-content/uploads/2016/11/GettyImages-1151832961.jpg" alt="">
-                    </div>
-                    <div class="candidate-list-details">
-                        <div class="candidate-list-info">
-                            <div class="candidate-list-title">
-                                <h4><a href="candidate-detail.html">328 University Drive NW</a></h4>
-                                <h5><a><i class="fas fa-dollar-sign"></i> 330,399</a></h5>
-                            </div>
-                            <div class="candidate-list-option">
-                                <ul class="list-unstyled">
-                                    <li><i class="fas fa-home"></i> 4 bedrooms | 4 bathrooms</li>
-                                    <li>          </li>
-                                    <li><i class="fas fa-ruler"></i> 2,700 sq ft. </li>
-                                    <li>          </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="candidate-list-favourite-time">
-                            <a class="candidate-list-favourite order-2" href="#"><i class="far fa-heart"></i></a>
-                            <span class="candidate-list-time order-1"><i class="fa-solid fa-chart-mixed"></i>Compare</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-6">
-                <div class="candidate-list candidate-grid">
-                    <div class="candidate-list-image">
-                        <img class="img-fluid" src="https://www.build-review.com/wp-content/webp-express/webp-images/uploads/2020/07/luxury-real-estate.jpg.webp" alt="">
-                    </div>
-                    <div class="candidate-list-details">
-                        <div class="candidate-list-info">
-                            <div class="candidate-list-title">
-                                <h4><a href="candidate-detail.html">328 University Drive NW</a></h4>
-                                <h5><a><i class="fas fa-dollar-sign"></i> 330,399</a></h5>
-                            </div>
-                            <div class="candidate-list-option">
-                                <ul class="list-unstyled">
-                                    <li><i class="fas fa-home"></i> 4 bedrooms | 4 bathrooms</li>
-                                    <li>          </li>
-                                    <li><i class="fas fa-ruler"></i> 2,700 sq ft. </li>
-                                    <li>          </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="candidate-list-favourite-time">
-                            <a class="candidate-list-favourite order-2" href="#"><i class="far fa-heart"></i></a>
-                            <span class="candidate-list-time order-1"><i class="fa-solid fa-chart-mixed"></i>Compare</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-6">
-                <div class="candidate-list candidate-grid">
-                    <div class="candidate-list-image">
-                        <img class="img-fluid" src="https://www.build-review.com/wp-content/webp-express/webp-images/uploads/2020/07/luxury-real-estate.jpg.webp" alt="">
-                    </div>
-                    <div class="candidate-list-details">
-                        <div class="candidate-list-info">
-                            <div class="candidate-list-title">
-                                <h4><a href="candidate-detail.html">328 University Drive NW</a></h4>
-                                <h5><a><i class="fas fa-dollar-sign"></i> 330,399</a></h5>
-                            </div>
-                            <div class="candidate-list-option">
-                                <ul class="list-unstyled">
-                                    <li><i class="fas fa-home"></i> 4 bedrooms | 4 bathrooms</li>
-                                    <li>          </li>
-                                    <li><i class="fas fa-ruler"></i> 2,700 sq ft. </li>
-                                    <li>          </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="candidate-list-favourite-time">
-                            <a class="candidate-list-favourite order-2" href="#"><i class="far fa-heart"></i></a>
-                            <span class="candidate-list-time order-1"><i class="fa-solid fa-chart-mixed"></i>Compare</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-6">
-                <div class="candidate-list candidate-grid">
-                    <div class="candidate-list-image">
-                        <img class="img-fluid" src="https://www.build-review.com/wp-content/webp-express/webp-images/uploads/2020/07/luxury-real-estate.jpg.webp" alt="">
-                    </div>
-                    <div class="candidate-list-details">
-                        <div class="candidate-list-info">
-                            <div class="candidate-list-title">
-                                <h4><a href="candidate-detail.html">328 University Drive NW</a></h4>
-                                <h5><a><i class="fas fa-dollar-sign"></i> 330,399</a></h5>
-                            </div>
-                            <div class="candidate-list-option">
-                                <ul class="list-unstyled">
-                                    <li><i class="fas fa-home"></i> 4 bedrooms | 4 bathrooms</li>
-                                    <li>          </li>
-                                    <li><i class="fas fa-ruler"></i> 2,700 sq ft. </li>
-                                    <li>          </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="candidate-list-favourite-time">
-                            <a class="candidate-list-favourite order-2" href="#"><i class="far fa-heart"></i></a>
-                            <span class="candidate-list-time order-1"><i class="fa-solid fa-chart-mixed"></i>Compare</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-6">
-                <div class="candidate-list candidate-grid">
-                    <div class="candidate-list-image">
-                        <img class="img-fluid" src="https://www.build-review.com/wp-content/webp-express/webp-images/uploads/2020/07/luxury-real-estate.jpg.webp" alt="">
-                    </div>
-                    <div class="candidate-list-details">
-                        <div class="candidate-list-info">
-                            <div class="candidate-list-title">
-                                <h4><a href="candidate-detail.html">328 University Drive NW</a></h4>
-                                <h5><a><i class="fas fa-dollar-sign"></i> 330,399</a></h5>
-                            </div>
-                            <div class="candidate-list-option">
-                                <ul class="list-unstyled">
-                                    <li><i class="fas fa-home"></i> 4 bedrooms | 4 bathrooms</li>
-                                    <li>          </li>
-                                    <li><i class="fas fa-ruler"></i> 2,700 sq ft. </li>
-                                    <li>          </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="candidate-list-favourite-time">
-                            <a class="candidate-list-favourite order-2" href="#"><i class="far fa-heart"></i></a>
-                            <span class="candidate-list-time order-1"><i class="fa-solid fa-chart-mixed"></i>Compare</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        }
+        @if(Database.saved.Count == 0){
+            <h3 style="margin-left:505px;margin-top:50px;color:grey"><i>No Saved Listings Yet!</i></h3>
+        }
         </div>
-        <div class="row">
-            <div class="col-12 text-center mt-4 mt-sm-5">
-                <ul class="pagination justify-content-center mb-0">
-                    <li class="page-item disabled"> <span class="page-link">Prev</span> </li>
-                    <li class="page-item active" aria-current="page"><span class="page-link">1 </span> <span class="sr-only">(current)</span></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">...</a></li>
-                    <li class="page-item"><a class="page-link" href="#">25</a></li>
-                    <li class="page-item"> <a class="page-link" href="#">Next</a> </li>
-                </ul>
-            </div>
-        </div>
+        
     </div>
 
 
@@ -479,3 +306,28 @@
             margin-bottom: 20px;
         }
     </style>
+
+    @code {
+
+        private void tohouse(int i){
+
+            UriHelper.NavigateTo($"housepage/{i}");
+        }
+
+        private void tohome(){
+
+            UriHelper.NavigateTo($"Homepage");
+
+        }
+
+        private void tores(){
+
+            UriHelper.NavigateTo($"SearchResults");
+
+        }
+
+        private void unsave(int i){
+            Database.saved.Remove(Database.saved[i]);
+        }
+
+    }

@@ -487,6 +487,7 @@
 
     private void OnClickAllListings()
     {
+        Database.filtered.Clear();
         Database.filtered = Database.houses;
         UriHelper.NavigateTo($"SearchResults/");
     }
