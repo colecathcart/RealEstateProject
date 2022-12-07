@@ -494,7 +494,7 @@
 
     private void OnClickSearch()
     {
-        Database.filtered.Clear();
+        Database.filtered = Database.houses;
 
         if(minPrice == null && maxPrice == null)
         {
