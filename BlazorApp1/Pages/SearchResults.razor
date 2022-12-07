@@ -342,7 +342,7 @@
                 </div>
                 <div class="candidate-list-favourite-time">
                     <a class="candidate-list-favourite order-2" href="#"><i class="far fa-heart"></i>Save</a>
-                    <a class="candidate-list-favourite order-2" href="#"><i class="fa fa-signal"></i>Compare</a>
+                    <button class="btn btn-primary" @onclick="compare">Compare</button>
                 </div>
             </div>
         </div>
@@ -782,6 +782,12 @@
     private void test() {
         index = 0;
         UriHelper.NavigateTo($"housepage/{index}");
+
+    }
+    private void compare()
+    {
+        index = 0;
+        UriHelper.NavigateTo($"Compare/{index}");
 
     }
     private void OnClick()
