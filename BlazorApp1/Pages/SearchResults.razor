@@ -45,6 +45,9 @@
 
 <!-- Modify Search Section ^ -->
         </div>
+    <!--<p>@result</p>
+    <br>
+    <p>@leng</p>-->
         <div class="container text-center">
     <div class="row">
         <div class="col">
@@ -379,7 +382,10 @@
         margin-right: 10px;
         float: right;
     }
-
+    input#filterfield {
+        background-color: rgb(230,230,230);
+        border-color: black;
+    }
     button#bigbutton {
         padding: 5px;
         background-color: rgb(127, 180, 240);
@@ -585,6 +591,11 @@
     }
 </style>
 @code{
+    public List<string> list = new List<string>();
+    public string result;
+    public int leng { get; set; }
+
+
     public int len = Database.filtered.Count();
     List<string> houseNames = new List<string>();
     public string houses1 { get; set; }
@@ -670,15 +681,15 @@
     {
 
         Database.filtered = Database.houses;
-
         if (CheckBox.Count() == 0)
         {
-
+            Console.WriteLine("No property types selected");
         }
         else
         {
             if (CheckBox.Contains("Single-Family"))
             {
+                Console.WriteLine("Single selected");
                 for (int i = 0; i < Database.houses.Count; i++)
                 {
                     if (Database.houses[i].PropertyType == "Single-Family")
@@ -689,6 +700,7 @@
             }
             if (CheckBox.Contains("Multi-Family"))
             {
+                Console.WriteLine("Multi selected");
                 for (int i = 0; i < Database.houses.Count; i++)
                 {
                     if (Database.houses[i].PropertyType == "Multi-Family")
@@ -699,6 +711,7 @@
             }
             if (CheckBox.Contains("Townhouse"))
             {
+                Console.WriteLine("Townhouse selected");
                 for (int i = 0; i < Database.houses.Count; i++)
                 {
                     if (Database.houses[i].PropertyType == "Townhouse")
@@ -709,6 +722,7 @@
             }
             if (CheckBox.Contains("Apartment"))
             {
+                Console.WriteLine("Apartment selected");
                 for (int i = 0; i < Database.houses.Count; i++)
                 {
                     if (Database.houses[i].PropertyType == "Apartment")
@@ -718,6 +732,7 @@
                 }
             }
             Database.filtered = temp;
+            Console.WriteLine(temp.Count());
         }
 
         if (minPrice == null && maxPrice == null)
@@ -745,8 +760,18 @@
         Database.filtered = Database.searchByBedrooms(Database.filtered, numBeds);
         Database.filtered = Database.searchByBathrooms(Database.filtered, numBaths);
 
-
+        temp.Clear();
         UriHelper.NavigateTo($"SearchResults/");
+    }
+    private void OnClickTest()
+    {
+        for(int i = 0; i < Database.filtered.Count(); i++)
+        {
+            list.Add(Database.filtered[i].Address);
+        }
+        leng = Database.filtered.Count();
+        result = String.Join(',', list);
+
     }
 
     }
