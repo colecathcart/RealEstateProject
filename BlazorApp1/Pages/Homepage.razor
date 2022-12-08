@@ -478,14 +478,14 @@
 
     private void OnClickSearchAddress()
     {
-
         if(address != null)
         {
             for (int i = 0; i < Database.houses.Count; i++)
             {
                 if (Database.houses[i].Address.Contains(address))
                 {
-                    Database.filtered.Add(Database.houses[i]);
+                    temp.Add(Database.houses[i]);
+                    Database.filtered = temp;
                     UriHelper.NavigateTo($"SearchResults/");
                 }
             }
