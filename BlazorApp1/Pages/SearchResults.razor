@@ -349,6 +349,9 @@
                             </div>
                         </div>
                         <div class="candidate-list-favourite-time" style="margin-bottom:0px">
+                            <button class="btn btn-primary" @onclick="() => tocompare(j)" style="" id="defaultbutton" type="button">
+                                Compare
+                            </button>
                             <div>
                             <button @onclick="() => unsave(j)" id="defaultbutton" style="padding-left: 12px; padding-right: 12px;padding-top:6px; padding-bottom: 6px;margin-left:530px;border-width:0;font-size:25px">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-heartbreak-fill" viewBox="0 0 16 16">
@@ -618,6 +621,12 @@
 
             UriHelper.NavigateTo($"housepage/{i}");
         }
+
+    private void tocompare(int i)
+    {
+
+        UriHelper.NavigateTo($"Compare/{i}");
+    }
 
         private void tohome(){
 
