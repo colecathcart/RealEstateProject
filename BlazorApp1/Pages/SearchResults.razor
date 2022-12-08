@@ -606,208 +606,207 @@
 </style>
 @code{
     public List<string> list = new List<string>();
-    public string result;
-    public int leng { get; set; }
+        public string result;
+        public int leng { get; set; }
 
 
-    public int len = Database.filtered.Count();
-    List<string> houseNames = new List<string>();
-    public string houses1 { get; set; }
-    public string tooltip = "";
-    public bool issaved = false;
+        public int len = Database.filtered.Count();
+        List<string> houseNames = new List<string>();
+        public string houses1 { get; set; }
+        public string tooltip = "";
+        public bool issaved = false;
 
-    private int index;
-    private void test() {
-        index = 0;
-        UriHelper.NavigateTo($"housepage/{index}");
+        private int index;
+        private void test() {
+            index = 0;
+            UriHelper.NavigateTo($"housepage/{index}");
 
-    }
-
-    private void tohouse(int i){
-
-        UriHelper.NavigateTo($"housepage/{i}");
-    }
-
-    private void tohome(){
-
-        UriHelper.NavigateTo($"Homepage");
-
-    }
-
-    private void tores(){
-
-        UriHelper.NavigateTo($"Homepage");
-
-    }
-
-    private void unsave(int i){
-        Database.saved.Remove(Database.saved[i]);
-    }
-
-    public List<string> CheckBox { get; set; } = new List<string>();
-    void CheckboxClicked(string CheckID, object checkedValue)
-    {
-        if ((bool)checkedValue)
-        {
-            if (!CheckBox.Contains(CheckID))
-            {
-                CheckBox.Add(CheckID);
-            }
         }
-        else
-        {
-            if (CheckBox.Contains(CheckID))
-            {
-                CheckBox.Remove(CheckID);
-            }
+
+        private void tohouse(int i){
+
+            UriHelper.NavigateTo($"housepage/{i}");
         }
-    }
-
-
-    public List<String> CheckBoxList()
-    {
-        List<String> checkBox = new List<String>();
-        checkBox.Add("Single-Family");
-        checkBox.Add("Multi-Family");
-        checkBox.Add("Townhouse");
-        checkBox.Add("Apartment");
-
-        return checkBox;
-    }
-    List<House> temp = new List<House>();
-    private string? address;
-    private double? minPrice;
-    private double? maxPrice;
-
-    public bool singleFamily { get; set; }
-    public bool multiFamily { get; set; }
-    public bool townHouse { get; set; }
-    public bool appartment { get; set; }
-
-    List<int> beds = new List<int>() { 1, 2, 3, 4, 5 };
-    public int numBeds { get; set; }
-    private void tocompare(int i)
-    {
-
-        UriHelper.NavigateTo($"Compare/{i}");
-    }
 
         private void tohome(){
 
-    List<int> baths = new List<int>() { 1, 2, 3, 4, 5 };
-    public int numBaths { get; set; }
+            UriHelper.NavigateTo($"Homepage");
 
-    List<int> yearsBuilt = new List<int>() { 1990, 1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022 };
-    public int yearBuilt { get; set; }
-
-    private void OnClickSearch()
-    {
-
-        Database.filtered = Database.houses;
-        if (CheckBox.Count() == 0)
-        {
-            Console.WriteLine("No property types selected");
         }
-        else
+
+        private void tores(){
+
+            UriHelper.NavigateTo($"Homepage");
+
+        }
+
+        private void unsave(int i){
+            Database.saved.Remove(Database.saved[i]);
+        }
+
+        public List<string> CheckBox { get; set; } = new List<string>();
+        void CheckboxClicked(string CheckID, object checkedValue)
         {
-            if (CheckBox.Contains("Single-Family"))
+            if ((bool)checkedValue)
             {
-                Console.WriteLine("Single selected");
-                for (int i = 0; i < Database.houses.Count; i++)
+                if (!CheckBox.Contains(CheckID))
                 {
-                    if (Database.houses[i].PropertyType == "Single-Family")
-                    {
-                        temp.Add(Database.houses[i]);
-                    }
+                    CheckBox.Add(CheckID);
                 }
             }
-            if (CheckBox.Contains("Multi-Family"))
+            else
             {
-                Console.WriteLine("Multi selected");
-                for (int i = 0; i < Database.houses.Count; i++)
+                if (CheckBox.Contains(CheckID))
                 {
-                    if (Database.houses[i].PropertyType == "Multi-Family")
-                    {
-                        temp.Add(Database.houses[i]);
-                    }
+                    CheckBox.Remove(CheckID);
                 }
             }
-            if (CheckBox.Contains("Townhouse"))
+        }
+
+
+        public List<String> CheckBoxList()
+        {
+            List<String> checkBox = new List<String>();
+            checkBox.Add("Single-Family");
+            checkBox.Add("Multi-Family");
+            checkBox.Add("Townhouse");
+            checkBox.Add("Apartment");
+
+            return checkBox;
+        }
+        List<House> temp = new List<House>();
+        private string? address;
+        private double? minPrice;
+        private double? maxPrice;
+
+        public bool singleFamily { get; set; }
+        public bool multiFamily { get; set; }
+        public bool townHouse { get; set; }
+        public bool appartment { get; set; }
+
+        List<int> beds = new List<int>() { 1, 2, 3, 4, 5 };
+        public int numBeds { get; set; }
+        private void tocompare(int i)
+        {
+
+            UriHelper.NavigateTo($"Compare/{i}");
+        }
+
+
+        List<int> baths = new List<int>() { 1, 2, 3, 4, 5 };
+        public int numBaths { get; set; }
+
+        List<int> yearsBuilt = new List<int>() { 1990, 1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022 };
+        public int yearBuilt { get; set; }
+
+        private void OnClickSearch()
+        {
+
+            Database.filtered = Database.houses;
+            if (CheckBox.Count() == 0)
             {
-                Console.WriteLine("Townhouse selected");
-                for (int i = 0; i < Database.houses.Count; i++)
+                Console.WriteLine("No property types selected");
+            }
+            else
+            {
+                if (CheckBox.Contains("Single-Family"))
                 {
-                    if (Database.houses[i].PropertyType == "Townhouse")
+                    Console.WriteLine("Single selected");
+                    for (int i = 0; i < Database.houses.Count; i++)
                     {
-                        temp.Add(Database.houses[i]);
+                        if (Database.houses[i].PropertyType == "Single-Family")
+                        {
+                            temp.Add(Database.houses[i]);
+                        }
                     }
                 }
-            }
-            if (CheckBox.Contains("Apartment"))
-            {
-                Console.WriteLine("Apartment selected");
-                for (int i = 0; i < Database.houses.Count; i++)
+                if (CheckBox.Contains("Multi-Family"))
                 {
-                    if (Database.houses[i].PropertyType == "Apartment")
+                    Console.WriteLine("Multi selected");
+                    for (int i = 0; i < Database.houses.Count; i++)
                     {
-                        temp.Add(Database.houses[i]);
+                        if (Database.houses[i].PropertyType == "Multi-Family")
+                        {
+                            temp.Add(Database.houses[i]);
+                        }
                     }
                 }
+                if (CheckBox.Contains("Townhouse"))
+                {
+                    Console.WriteLine("Townhouse selected");
+                    for (int i = 0; i < Database.houses.Count; i++)
+                    {
+                        if (Database.houses[i].PropertyType == "Townhouse")
+                        {
+                            temp.Add(Database.houses[i]);
+                        }
+                    }
+                }
+                if (CheckBox.Contains("Apartment"))
+                {
+                    Console.WriteLine("Apartment selected");
+                    for (int i = 0; i < Database.houses.Count; i++)
+                    {
+                        if (Database.houses[i].PropertyType == "Apartment")
+                        {
+                            temp.Add(Database.houses[i]);
+                        }
+                    }
+                }
+                Database.filtered = temp;
+                Console.WriteLine(temp.Count());
             }
-            Database.filtered = temp;
-            Console.WriteLine(temp.Count());
+
+            if (minPrice == null && maxPrice == null)
+            {
+
+            }
+            else if (minPrice != null && maxPrice == null)
+            {
+                Database.filtered = Database.searchByPrice(Database.filtered, minPrice, 10000000000000);
+            }
+            else if (minPrice == null && maxPrice != null)
+            {
+                Database.filtered = Database.searchByPrice(Database.filtered, 0, maxPrice);
+            }
+            else if (minPrice != null && maxPrice != null)
+            {
+                Database.filtered = Database.searchByPrice(Database.filtered, minPrice, maxPrice);
+            }
+
+            if (yearBuilt != 0)
+            {
+                Database.filtered = Database.searchByYearBuilt(Database.filtered, yearBuilt);
+            }
+
+            Database.filtered = Database.searchByBedrooms(Database.filtered, numBeds);
+            Database.filtered = Database.searchByBathrooms(Database.filtered, numBaths);
+
+            temp.Clear();
+            UriHelper.NavigateTo($"SearchResults/");
+        }
+        private void OnClickTest()
+        {
+            for(int i = 0; i < Database.filtered.Count(); i++)
+            {
+                list.Add(Database.filtered[i].Address);
+            }
+            leng = Database.filtered.Count();
+            result = String.Join(',', list);
+
         }
 
-        if (minPrice == null && maxPrice == null)
+        private void saved(int j)
         {
-
+            issaved = !issaved;
+            tooltip = "";
+            if (!issaved)
+            {
+                Database.saved.Remove(Database.filtered[j]);
+            }
+            else
+            {
+                Database.saved.Add(Database.filtered[j]);
+            }
         }
-        else if (minPrice != null && maxPrice == null)
-        {
-            Database.filtered = Database.searchByPrice(Database.filtered, minPrice, 10000000000000);
-        }
-        else if (minPrice == null && maxPrice != null)
-        {
-            Database.filtered = Database.searchByPrice(Database.filtered, 0, maxPrice);
-        }
-        else if (minPrice != null && maxPrice != null)
-        {
-            Database.filtered = Database.searchByPrice(Database.filtered, minPrice, maxPrice);
-        }
-
-        if (yearBuilt != 0)
-        {
-            Database.filtered = Database.searchByYearBuilt(Database.filtered, yearBuilt);
-        }
-
-        Database.filtered = Database.searchByBedrooms(Database.filtered, numBeds);
-        Database.filtered = Database.searchByBathrooms(Database.filtered, numBaths);
-
-        temp.Clear();
-        UriHelper.NavigateTo($"SearchResults/");
     }
-    private void OnClickTest()
-    {
-        for(int i = 0; i < Database.filtered.Count(); i++)
-        {
-            list.Add(Database.filtered[i].Address);
-        }
-        leng = Database.filtered.Count();
-        result = String.Join(',', list);
-
-    }
-
-    private void saved(int j)
-    {
-        issaved = !issaved;
-        tooltip = "";
-        if (!issaved)
-        {
-            Database.saved.Remove(Database.filtered[j]);
-        }
-        else
-        {
-            Database.saved.Add(Database.filtered[j]);
-        }
-    }
-}
