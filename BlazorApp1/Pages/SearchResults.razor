@@ -353,12 +353,23 @@
                                 Compare
                             </button>
                             <div>
-                            <button @onclick="() => unsave(j)" id="defaultbutton" style="padding-left: 12px; padding-right: 12px;padding-top:6px; padding-bottom: 6px;margin-left:530px;border-width:0;font-size:25px">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-heartbreak-fill" viewBox="0 0 16 16">
-                                <path d="M8.931.586 7 3l1.5 4-2 3L8 15C22.534 5.396 13.757-2.21 8.931.586ZM7.358.77 5.5 3 7 7l-1.5 3 1.815 4.537C-6.533 4.96 2.685-2.467 7.358.77Z"/>
-                                </svg>
-                            </button>
-                            <p style="margin-left:528px;font-size:15px;margin-bottom:0px">Un-save</p>
+                            <div id="inlinediv">
+                            @if(!issaved){
+                                <button @onclick="() => saved(j)" id="defaultbutton" style="padding-left: 8px; padding-right: 8px;margin-left:5px">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"  fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+                                        <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+                                    </svg>
+                                </button>
+                            } else {
+                                <button @onclick="() => saved(j)" id="defaultbutton" style="padding-left: 8px; padding-right: 8px;margin-left:5px">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+                                    </svg>
+                                </button>
+                            }
+                        <p style="padding-left: 2px;padding-right:4px;">Save</p>
+                    </div>
+                            
                             </div>
                             
                         </div>
@@ -609,6 +620,8 @@
     public int len = Database.filtered.Count();
     List<string> houseNames = new List<string>();
     public string houses1 { get; set; }
+    public string tooltip = "";
+    public bool issaved = false;
 
     private int index;
     private void test() {
@@ -644,4 +657,17 @@
             Database.saved.Remove(Database.saved[i]);
         }
 
+    private void saved(int j)
+    {
+        issaved = !issaved;
+        tooltip = "";
+        if (!issaved)
+        {
+            Database.saved.Remove(Database.filtered[j]);
+        }
+        else
+        {
+            Database.saved.Add(Database.filtered[j]);
+        }
     }
+}
