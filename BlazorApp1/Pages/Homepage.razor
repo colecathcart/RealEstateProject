@@ -83,11 +83,7 @@
         <div class="row">
             <div class="col">
                 <div id="inlinediv">
-<<<<<<< HEAD
-                    <button @onclick="OnClickSaved" id="defaultbutton" style="padding-left: 8px; padding-right: 8px;" data-toggle="tooltip" data-placement="top" title="Click here to see your saved listings!">
-=======
-                    <button @onclick="OnClickSaved" id="defaultbutton" style="padding-left: 8px; padding-right: 8px;margin-left:5px">
->>>>>>> master
+                    <button @onclick="OnClickSaved" id="defaultbutton" style="padding-left: 8px; padding-right: 8px;margin-left:5px" data-toggle="tooltip" data-placement="top" title="Click here to see your saved listings!">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
                             <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
                         </svg>
@@ -143,11 +139,7 @@
             <div class="col">
                 <div class="dropdown">
                     <p>
-<<<<<<< HEAD
-                        <button type="button" class="btn btn-primary btn-lg dropdown-toggle" id="bigbutton" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" data-toggle="tooltip" data-placement="top" title="Clickling here will display more filters.">
-=======
-                        <button type="button" class="btn btn-primary btn-lg dropdown-toggle" id="defaultbutton" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
->>>>>>> master
+                        <button type="button" class="btn btn-primary btn-lg dropdown-toggle" id="defaultbutton" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" data-toggle="tooltip" data-placement="top" title="Clickling here will display more filters.">
                             Search With Filters
                         </button>
                     </p>
@@ -381,11 +373,7 @@
                                                         </div>
                                                     </div>
                                                     <div>
-<<<<<<< HEAD
-                                                        <button type="button" class="btn btn-primary btn-lg" id="bigbutton" @onclick="OnClickSearch" data-toggle="tooltip" data-placement="top" title="Click here to see listings that fit your filters!">
-=======
-                                                        <button type="button" class="btn btn-primary btn-lg" id="defaultbutton" @onclick="OnClickSearch">
->>>>>>> master
+                                                        <button type="button" class="btn btn-primary btn-lg" id="defaultbutton" @onclick="OnClickSearch" data-toggle="tooltip" data-placement="top" title="Click here to see listings that fit your filters!">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                                                                 <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
                                                             </svg>Search
@@ -409,11 +397,7 @@
     <div class="container text-center">
         <div class="row">
             <div class="col">
-<<<<<<< HEAD
-                <button type="button" class="btn btn-primary btn-lg" @onclick="OnClickAllListings" id="bigbutton" data-toggle="tooltip" data-placement="top" title="Click here to see all listings that are available!">Explore All Listings</button>
-=======
-                <button type="button" class="btn btn-primary btn-lg" @onclick="OnClickAllListings" id="defaultbutton">Explore All Listings</button>
->>>>>>> master
+                <button type="button" class="btn btn-primary btn-lg" @onclick="OnClickAllListings" id="defaultbutton" data-toggle="tooltip" data-placement="top" title="Click here to see all listings that are available!">Explore All Listings</button>
             </div>
         </div>
     </div>
@@ -425,12 +409,9 @@
 
 @code{
 
-<<<<<<< HEAD
-    private Modal helpModal { get; set; }
 
-=======
+    private Modal helpModal { get; set; }
     public List<string> list = new List<string>();
->>>>>>> master
     public List<string> CheckBox { get; set; } = new List<string>();
     public string result;
     void CheckboxClicked(string CheckID, object checkedValue)
@@ -537,14 +518,7 @@
 
     private void OnClickSearch()
     {
-
-<<<<<<< HEAD
-        if (minPrice == null && maxPrice == null)
-=======
-        Database.filtered = Database.houses;
-
         if (CheckBox.Count() == 0)
->>>>>>> master
         {
 
         }
