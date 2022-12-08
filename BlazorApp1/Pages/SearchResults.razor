@@ -50,8 +50,8 @@
         <div class="col">
             <div class="dropdown">
                 <p>
-                    <button type="button" class="btn btn-primary btn-lg dropdown-toggle" id="bigbutton" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" style="margin-top:0px;">
-                        Modify Filters
+                    <button type="button" class="btn btn-primary btn-lg dropdown-toggle" id="defaultbutton" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        Search With Filters
                     </button>
                 </p>
                 <div class="collapse" id="collapseExample">
@@ -87,7 +87,7 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text">$</span>
                                                 </div>
-                                                <input type="text" placeholder="Min" id="filterfield">
+                                                <input type="text" placeholder="Min" id="filterfield" @bind="minPrice">
                                                 <div class="input-group-append">
                                                     <span class="input-group-text">.00</span>
                                                 </div>
@@ -97,7 +97,7 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text">$</span>
                                                 </div>
-                                                <input type="text" placeholder="Max" id="filterfield">
+                                                <input type="text" placeholder="Max" id="filterfield" @bind="maxPrice">
                                                 <div class="input-group-append">
                                                     <span class="input-group-text">.00</span>
                                                 </div>
@@ -115,28 +115,26 @@
                                     <div class="row">
                                         <div class="col">
                                             <form class="row row-cols-lg-auto g-3">
-                                                <label style="font-size: small">Number of Bedrooms:</label>
+                                                <label>Number of Bedrooms:</label>
                                                 <div class="col-12">
                                                     <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
-                                                    <select class="form-select" id="inlineFormSelectPref" style="background-color: rgb(125, 184, 140); border-color: black;">
-                                                        <option selected>Choose...</option>
-                                                        <option value="1">1+</option>
-                                                        <option value="2">2+</option>
-                                                        <option value="3">3+</option>
-                                                        <option value="3">4+</option>
-                                                        <option value="3">5+</option>
+                                                    <select class="form-select" @bind="numBeds" id="inlineFormSelectPref" style="background-color: rgb(230,230,230); border-color: black;">
+                                                        <option value="" selected> </option>
+                                                        @foreach (var template in beds)
+                                                        {
+                                                            <option value=@template>@template+</option>
+                                                        }
                                                     </select>
                                                 </div>
-                                                <label style="font-size: small">Number of Bathrooms:</label>
+                                                <label>Number of Bathrooms:</label>
                                                 <div class="col-12">
                                                     <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
-                                                    <select class="form-select" id="inlineFormSelectPref" style="background-color: rgb(125, 184, 140); border-color: black;">
-                                                        <option selected>Choose...</option>
-                                                        <option value="1">1+</option>
-                                                        <option value="2">2+</option>
-                                                        <option value="3">3+</option>
-                                                        <option value="3">4+</option>
-                                                        <option value="3">5+</option>
+                                                    <select class="form-select" @bind="numBaths" id="inlineFormSelectPref" style="background-color: rgb(230,230,230); border-color: black;">
+                                                        <option value="" selected> </option>
+                                                        @foreach (var template in baths)
+                                                        {
+                                                            <option value=@template>@template+</option>
+                                                        }
                                                     </select>
                                                 </div>
                                             </form>
@@ -148,37 +146,22 @@
                                             <label>Property Type:</label>
                                         </div>
                                         <div class="col-3">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                                <label class="form-check-label" for="flexCheckDefault">
-                                                    Single-Family
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Multi-Family
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Townhouse
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Appartment
-                                                </label>
-                                            </div>
+                                            @foreach (var check in CheckBoxList())
+                                            {
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" @onchange="eventArgs => { CheckboxClicked(check, eventArgs.Value); }" id="flexCheckChecked">
+                                                    <label class="form-check-label" for="flexCheckChecked">
+                                                        @check
+                                                    </label>
+                                                </div>
+                                            }
                                         </div>
                                     </div>
                                     <br>
                                     <div class="row">
                                         <div class="col">
                                             <div class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
-                                                <button class="btn btn-primary btn-lg dropdown-toggle" id="bigbutton" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample2">
+                                                <button class="btn btn-primary btn-lg dropdown-toggle" id="defaultbutton" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample2">
                                                     More Filters
                                                 </button>
                                                 <div class="collapse" id="collapseExample2">
@@ -193,8 +176,8 @@
                                                                                 <label>Property Size:</label>
                                                                                 <div class="col-12">
                                                                                     <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
-                                                                                    <select class="form-select" id="inlineFormSelectPref" style="background-color: rgb(125, 184, 140); border-color: black;">
-                                                                                        <option selected>Choose...</option>
+                                                                                    <select class="form-select" id="inlineFormSelectPref" style="background-color: rgb(230,230,230); border-color: black; ">
+                                                                                        <option selected></option>
                                                                                         <option value="1"> less than 1000 sq. ft.</option>
                                                                                         <option value="2">> 1000 sq. ft.</option>
                                                                                         <option value="3">> 1500 sq. ft.</option>
@@ -212,31 +195,31 @@
                                                                         </div>
                                                                         <div class="col">
                                                                             <div class="form-check">
-                                                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                                                                <input class="form-check-input" type="checkbox" value="Pool" id="flexCheckDefault">
                                                                                 <label class="form-check-label" for="flexCheckDefault">
                                                                                     Pool
                                                                                 </label>
                                                                             </div>
                                                                             <div class="form-check">
-                                                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                                                                                <input class="form-check-input" type="checkbox" value="Backyard" id="flexCheckChecked">
                                                                                 <label class="form-check-label" for="flexCheckChecked">
                                                                                     Backyard
                                                                                 </label>
                                                                             </div>
                                                                             <div class="form-check">
-                                                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                                                                                <input class="form-check-input" type="checkbox" value="A/C" id="flexCheckChecked">
                                                                                 <label class="form-check-label" for="flexCheckChecked">
                                                                                     A/C
                                                                                 </label>
                                                                             </div>
                                                                             <div class="form-check">
-                                                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                                                                                <input class="form-check-input" type="checkbox" value="Garage" id="flexCheckChecked">
                                                                                 <label class="form-check-label" for="flexCheckChecked">
                                                                                     Garage
                                                                                 </label>
                                                                             </div>
                                                                             <div class="form-check">
-                                                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                                                                                <input class="form-check-input" type="checkbox" value="Balcony" id="flexCheckChecked">
                                                                                 <label class="form-check-label" for="flexCheckChecked">
                                                                                     Balcony
                                                                                 </label>
@@ -249,16 +232,16 @@
                                                                     <div class="row">
                                                                         <div class="col">
                                                                             <form class="row row-cols-lg-auto g-3">
-                                                                                <label style="font-size:small">Parking Spaces:</label>
+                                                                                <label>Parking Spaces:</label>
                                                                                 <div class="col-12">
                                                                                     <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
-                                                                                    <select class="form-select" id="inlineFormSelectPref" style="background-color: rgb(125, 184, 140); border-color: black;">
-                                                                                        <option selected>Choose...</option>
+                                                                                    <select class="form-select" id="inlineFormSelectPref" style="background-color: rgb(230,230,230); border-color: black; ">
+                                                                                        <option></option>
                                                                                         <option value="1">1+</option>
                                                                                         <option value="2">2+</option>
                                                                                         <option value="3">3+</option>
-                                                                                        <option value="3">4+</option>
-                                                                                        <option value="3">5+</option>
+                                                                                        <option value="4">4+</option>
+                                                                                        <option value="5">5+</option>
                                                                                     </select>
                                                                                 </div>
                                                                             </form>
@@ -271,13 +254,12 @@
                                                                                 <label>Year Built:</label>
                                                                                 <div class="col-12">
                                                                                     <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
-                                                                                    <select class="form-select" id="inlineFormSelectPref" style="background-color: rgb(125, 184, 140); border-color: black;">
-                                                                                        <option selected>Choose...</option>
-                                                                                        <option value="1">2010</option>
-                                                                                        <option value="2">2009</option>
-                                                                                        <option value="3">2008</option>
-                                                                                        <option value="3">2007</option>
-                                                                                        <option value="3">2006</option>
+                                                                                    <select class="form-select" @bind="yearBuilt" id="inlineFormSelectPref" style="background-color: rgb(230,230,230); border-color: black;">
+                                                                                        <option value="" selected> </option>
+                                                                                        @foreach (var template in yearsBuilt)
+                                                                                        {
+                                                                                            <option value=@template>@template</option>
+                                                                                        }
                                                                                     </select>
                                                                                 </div>
                                                                             </form>
@@ -302,7 +284,7 @@
                                                     </div>
                                                 </div>
                                                 <div>
-                                                    <button type="button" class="btn btn-primary btn-lg" id="bigbutton">
+                                                    <button type="button" class="btn btn-primary btn-lg" id="defaultbutton" @onclick="OnClickSearch">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                                                             <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
                                                         </svg>Search
@@ -413,10 +395,10 @@
         padding: 5px;
         background-color: rgb(127, 180, 240);
         color: black;
-        border-color: black;
-        font-weight: bold;
+        border-width: 0px;
         border-radius: 5px;
         display: inline-block;
+        margin: 2px;
     }
 
     .flex-parent {
@@ -613,26 +595,158 @@
         UriHelper.NavigateTo($"housepage/{index}");
 
     }
-    
+
     private void tohouse(int i){
 
-            UriHelper.NavigateTo($"housepage/{i}");
+        UriHelper.NavigateTo($"housepage/{i}");
+    }
+
+    private void tohome(){
+
+        UriHelper.NavigateTo($"Homepage");
+
+    }
+
+    private void tores(){
+
+        UriHelper.NavigateTo($"Homepage");
+
+    }
+
+    private void unsave(int i){
+        Database.saved.Remove(Database.saved[i]);
+    }
+
+    public List<string> CheckBox { get; set; } = new List<string>();
+    void CheckboxClicked(string CheckID, object checkedValue)
+    {
+        if ((bool)checkedValue)
+        {
+            if (!CheckBox.Contains(CheckID))
+            {
+                CheckBox.Add(CheckID);
+            }
+        }
+        else
+        {
+            if (CheckBox.Contains(CheckID))
+            {
+                CheckBox.Remove(CheckID);
+            }
+        }
+    }
+
+
+    public List<String> CheckBoxList()
+    {
+        List<String> checkBox = new List<String>();
+        checkBox.Add("Single-Family");
+        checkBox.Add("Multi-Family");
+        checkBox.Add("Townhouse");
+        checkBox.Add("Apartment");
+
+        return checkBox;
+    }
+    List<House> temp = new List<House>();
+    private string? address;
+    private double? minPrice;
+    private double? maxPrice;
+
+    public bool singleFamily { get; set; }
+    public bool multiFamily { get; set; }
+    public bool townHouse { get; set; }
+    public bool appartment { get; set; }
+
+    List<int> beds = new List<int>() { 1, 2, 3, 4, 5 };
+    public int numBeds { get; set; }
+
+    List<int> baths = new List<int>() { 1, 2, 3, 4, 5 };
+    public int numBaths { get; set; }
+
+    List<int> yearsBuilt = new List<int>() { 1990, 1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022 };
+    public int yearBuilt { get; set; }
+
+    private void OnClickSearch()
+    {
+
+        Database.filtered = Database.houses;
+
+        if (CheckBox.Count() == 0)
+        {
+
+        }
+        else
+        {
+            if (CheckBox.Contains("Single-Family"))
+            {
+                for (int i = 0; i < Database.houses.Count; i++)
+                {
+                    if (Database.houses[i].PropertyType == "Single-Family")
+                    {
+                        temp.Add(Database.houses[i]);
+                    }
+                }
+            }
+            if (CheckBox.Contains("Multi-Family"))
+            {
+                for (int i = 0; i < Database.houses.Count; i++)
+                {
+                    if (Database.houses[i].PropertyType == "Multi-Family")
+                    {
+                        temp.Add(Database.houses[i]);
+                    }
+                }
+            }
+            if (CheckBox.Contains("Townhouse"))
+            {
+                for (int i = 0; i < Database.houses.Count; i++)
+                {
+                    if (Database.houses[i].PropertyType == "Townhouse")
+                    {
+                        temp.Add(Database.houses[i]);
+                    }
+                }
+            }
+            if (CheckBox.Contains("Apartment"))
+            {
+                for (int i = 0; i < Database.houses.Count; i++)
+                {
+                    if (Database.houses[i].PropertyType == "Apartment")
+                    {
+                        temp.Add(Database.houses[i]);
+                    }
+                }
+            }
+            Database.filtered = temp;
         }
 
-        private void tohome(){
-
-            UriHelper.NavigateTo($"Homepage");
-
-        }
-
-        private void tores(){
-
-            UriHelper.NavigateTo($"Homepage");
+        if (minPrice == null && maxPrice == null)
+        {
 
         }
-
-        private void unsave(int i){
-            Database.saved.Remove(Database.saved[i]);
+        else if (minPrice != null && maxPrice == null)
+        {
+            Database.filtered = Database.searchByPrice(Database.filtered, minPrice, 10000000000000);
         }
+        else if (minPrice == null && maxPrice != null)
+        {
+            Database.filtered = Database.searchByPrice(Database.filtered, 0, maxPrice);
+        }
+        else if (minPrice != null && maxPrice != null)
+        {
+            Database.filtered = Database.searchByPrice(Database.filtered, minPrice, maxPrice);
+        }
+
+        if (yearBuilt != 0)
+        {
+            Database.filtered = Database.searchByYearBuilt(Database.filtered, yearBuilt);
+        }
+
+        Database.filtered = Database.searchByBedrooms(Database.filtered, numBeds);
+        Database.filtered = Database.searchByBathrooms(Database.filtered, numBaths);
+
+
+        UriHelper.NavigateTo($"SearchResults/");
+    }
 
     }
