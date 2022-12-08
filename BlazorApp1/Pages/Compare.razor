@@ -421,110 +421,60 @@ button#defaultbutton {
         <div style="float:right; width:50%; padding-left:10px">
             <!-- Set Div As your requirement -->
             <div hidden="@IsShow" class="card">
-                <img src="../houseimages/house4.jpg" alt="house 2" style="width:100%; padding:20px; border-radius:30px;">
-                <h2><a href=""> 9 Ave NW</a></h2>
-                <h4><b>List price: $4,500,000</b></h4>
-                <p><i class="fas fa-bed"></i> 5 Bedrooms</p>
-                <p><i class="fas fa-bath"></i> 7 bathrooms</p>
-                <p><i class="fas fa-expand-arrows-alt"></i><b> Area: </b> 3,000 sq.ft</p>
-                <p><i class="fas fa-file-invoice-dollar"></i> <b>Price/Sq.ft:</b> $167</p>
-                <p><i class="fas fa-building"></i><b> Type:</b> Condo</p>
-                <p><i class="fas fa-tools"></i><b> Year built:</b> 2005</p>
-                <p><i class="fas fa-calendar-alt"></i><b> List Date:</b> 01/11/2022</p>
+                <img src=@Database.filtered[@rightIndex].images[0] alt="house 2" style="width:100%; padding:20px; border-radius:30px;">
+                <h2><a href=""> @Database.filtered[@rightIndex].Address </a></h2>
+                <h4><b>List price: $@Database.filtered[@rightIndex].Price </b></h4>
+                <p><i class="fas fa-bed"></i> @Database.filtered[@rightIndex].Bedrooms Bedrooms</p>
+                <p><i class="fas fa-bath"></i> @Database.filtered[@rightIndex].Bathrooms bathrooms</p>
+                <p><i class="fas fa-expand-arrows-alt"></i><b> Area: </b> @Database.filtered[@rightIndex].SquareFootage sq.ft</p>
+                <p><i class="fas fa-file-invoice-dollar"></i> <b>Price/Sq.ft:</b> $@calc(Database.filtered[@rightIndex].Price, @Database.filtered[@index].SquareFootage)</p>
+                <p><i class="fas fa-building"></i><b> Type:</b> @Database.filtered[@rightIndex].PropertyType</p>
+                <p><i class="fas fa-tools"></i><b> Year built:</b> @Database.filtered[@rightIndex].YearBuilt</p>
+                <p><i class="fas fa-calendar-alt"></i><b> List Date:</b> @Database.filtered[@rightIndex].listDate</p>
                 <p><i class="fas fa-car"></i><b> Parking:</b> Underground (1)</p>
                 <p style="text-align:left"><b>Perks :</b></p>
                 <ul>
-                    <li>Stylish development featuring pool and year-round facilities maintenence</li>
-                    <li>Walking-distance to the train station and an upscale shopping complex</li>
-                    <li>Spacious heated underground garage</li>
-                    <li>Recently outfitted with new appliances</li>
+                    <li>@Database.filtered[@rightIndex].perks[0]</li>
+                    <li>@Database.filtered[@rightIndex].perks[1]</li>
+                    <li>@Database.filtered[@rightIndex].perks[2]</li>
+                    <li>@Database.filtered[@rightIndex].perks[3]</li>
                 </ul>
-                <p><button @onclick="@Show" style="background-color:red"><b>Cancel</b></button></p>
+                <p><button style="background-color:darkgreen"><i class="fas fa-heart"></i><b> Save</b></button></p>
+                <p><button @onclick="() => Show(rightIndex)" style="background-color:red"><b>Cancel</b></button></p>
             </div>
 
 
             <div hidden="@ListShow">
+                @for(int i = 0; i < Database.filtered.Count; i++){
+                int j = i;
                 <div class="row">
                     <div class="candidate-list candidate-grid">
                         <div class="candidate-list-image">
-                            <img class="img-fluid" src="https://www.build-review.com/wp-content/webp-express/webp-images/uploads/2020/07/luxury-real-estate.jpg.webp" alt="">
+                                <img class="img-fluid" src=@Database.filtered[@i].images[0] alt="">
                         </div>
                         <div class="candidate-list-details">
                             <div class="candidate-list-info">
                                 <div class="candidate-list-title">
-                                    <h4><a href="candidate-detail.html">328 University Drive NW</a></h4>
-                                    <h5><a><i class="fas fa-dollar-sign"></i> 330,399</a></h5>
+                                        <h4><a href="candidate-detail.html">@Database.filtered[i].Address</a></h4>
+                                        <h5><a><i class="fas fa-dollar-sign"></i> $@Database.filtered[i].Price</a></h5>
                                 </div>
                                 <div class="candidate-list-option">
                                     <ul class="list-unstyled">
-                                        <li><i class="fas fa-home"></i> 4 bedrooms | 4 bathrooms</li>
+                                            <li><i class="fas fa-home"></i> @Database.filtered[i].Bedrooms bedrooms | @Database.filtered[i].Bathrooms bathrooms</li>
                                         <li>          </li>
-                                        <li><i class="fas fa-ruler"></i> 2,700 sq ft. </li>
+                                        <li><i class="fas fa-ruler"></i> @Database.filtered[i].SquareFootage sq ft. </li>
                                         <li>          </li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="candidate-list-favourite-time">
                                 <a class="candidate-list-favourite order-2" href="#"><i class="far fa-heart"></i>Save</a>
-                                <button @onclick="@Show" style="background-color:red; border-radius:15px;"><i class="fa fa-signal"></i> Compare</button>
+                                <button @onclick="() => Show(j)" style="background-color:red; border-radius:15px;"><i class="fa fa-signal"></i> Compare</button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="candidate-list candidate-grid">
-                        <div class="candidate-list-image">
-                            <img class="img-fluid" src="https://www.fortunebuilders.com/wp-content/uploads/2014/09/real-estate-photography.jpg" alt="">
-                        </div>
-                        <div class="candidate-list-details">
-                            <div class="candidate-list-info">
-                                <div class="candidate-list-title">
-                                    <h4><a href="candidate-detail.html">481 University Heights NW</a></h4>
-                                    <h5><a><i class="fas fa-dollar-sign"></i> 499,000 </a></h5>
-                                </div>
-                                <div class="candidate-list-option">
-                                    <ul class="list-unstyled">
-                                        <li><i class="fas fa-home"></i> 5 bedrooms | 4 bathrooms</li>
-                                        <li>           </li>
-                                        <li><i class="fas fa-ruler"></i> 3,100 sq ft. </li>
-                                        <li>          </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="candidate-list-favourite-time">
-                                <a class="candidate-list-favourite order-2" href="#"><i class="far fa-heart"></i>Save</a>
-                                <button @onclick="@Show" style="background-color:red; border-radius:15px;"><i class="fa fa-signal"></i>Compare</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="candidate-list candidate-grid">
-                        <div class="candidate-list-image">
-                            <img class="img-fluid" src="https://images.squarespace-cdn.com/content/v1/53225844e4b08f966012561e/1529465311315-NHDT1VRROCTLVMCXWILQ/Simcoe-Real-Estate-Photographer-and-Videographer_1.jpg" alt="">
-                        </div>
-                        <div class="candidate-list-details">
-                            <div class="candidate-list-info">
-                                <div class="candidate-list-title">
-                                    <h4><a href="candidate-detail.html">328 University Drive NW</a></h4>
-                                    <h5><a><i class="fas fa-dollar-sign"></i> 330,399</a></h5>
-                                </div>
-                                <div class="candidate-list-option">
-                                    <ul class="list-unstyled">
-                                        <li><i class="fas fa-home"></i> 4 bedrooms | 4 bathrooms</li>
-                                        <li>          </li>
-                                        <li><i class="fas fa-ruler"></i> 2,700 sq ft. </li>
-                                        <li>          </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="candidate-list-favourite-time">
-                                <button><a class="candidate-list-favourite order-2" href="#"><i class="far fa-heart"></i>Save</a></button>
-                                <button @onclick="@Show" style="background-color:red; border-radius:15px;"><i class="fa fa-signal"></i>Compare</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                }
             </div>
         </div>
     </div>
@@ -535,13 +485,15 @@ button#defaultbutton {
 @code {
     [Parameter]
     public int index { get; set; }
+    public int rightIndex{ get; set; }
 
     private bool ListShow { get; set; } = false;
     private bool IsShow { get; set; } = true;
-    
-    private void Show() {
+
+    private void Show(int j) {
         IsShow = !IsShow;
         ListShow = !ListShow;
+        rightIndex = j;
     }
     private void back()
     {
