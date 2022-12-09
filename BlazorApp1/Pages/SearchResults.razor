@@ -22,7 +22,7 @@
                                     
                 </div>
                 
-                <h1 style="background-color: rgb(220,220,220);padding:8px;padding-left:20px;padding-right:20px;border-radius:10px;margin-bottom:20px;vertical-align:top"> Search Results </h1>
+                <h2> Search Results </h2>
                 
             
             <div id="inlinediv" style="margin-left:350px;margin-bottom:0px">
@@ -66,7 +66,7 @@
             <div class="dropdown">
                 <p>
                     <button type="button" class="btn btn-primary btn-lg dropdown-toggle" id="defaultbutton" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                        Search With Filters
+                        Modify Search
                     </button>
                 </p>
                 <div class="collapse" id="collapseExample">
@@ -347,13 +347,15 @@
                                 </button>
                                 </h4>
                                
-                                <h5><a><i class="fas fa-dollar-sign"></i> $ @priceformat(@Database.filtered[i].Price) </a></h5>
+                                <h4><a><i class="fas fa-dollar-sign"></i> $ @priceformat(@Database.filtered[i].Price) </a></h4>
                                 <h5><a><i class="fas fa-dollar-sign"></i> @Database.filtered[i].PropertyType </a></h5>
                             </div>
                             <div class="candidate-list-option">
                                 <ul class="list-unstyled">
                                     <li><i class="fas fa-home"></i> @Database.filtered[i].Bedrooms bedrooms | @Database.filtered[i].Bathrooms bathrooms</li>
                                     <li>           </li>
+                                </ul>
+                                <ul class="list-unstyled">    
                                     <li><i class="fas fa-ruler"></i> @Database.filtered[i].SquareFootage sq ft. </li>
                                     <li>          </li>
                                 </ul>
@@ -390,20 +392,6 @@
             </div>
         }
         </div>
-        
-        @* <div class="row">
-            <div class="col-12 text-center mt-4 mt-sm-5">
-                <ul class="pagination justify-content-center mb-0">
-                    <li class="page-item disabled"> <span class="page-link">Prev</span> </li>
-                    <li class="page-item active" aria-current="page"><span class="page-link">1 </span> <span class="sr-only">(current)</span></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">...</a></li>
-                    <li class="page-item"><a class="page-link" href="#">25</a></li>
-                    <li class="page-item"> <a class="page-link" href="#">Next</a> </li>
-                </ul>
-            </div>
-        </div> *@
 
         <div class="container text-center">
         <div class="row">
