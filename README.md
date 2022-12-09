@@ -1,4 +1,4 @@
-# BlazorApp1
+# Real Estate Browsing Website
 **Group 9:**
 Cole Cathcart
 Sami Taha
