@@ -394,7 +394,7 @@ button#defaultbutton {
             <!-- Set Div As your requirement -->
             <div class="card">
                 <img src=@Database.filtered[@index].images[0] alt="house 1" style="width:100%; padding:20px; border-radius:30px;">
-                <h2><a href="">@Database.filtered[@index].Address</a></h2>
+                <h2><button @onclick="() => tohouse(index)">@Database.filtered[@index].Address</button></h2>
                 <h4><b>List price: $@Database.filtered[@index].Price</b></h4>
                 <p><i class="fas fa-bed"></i> @Database.filtered[@index].Bedrooms Bedrooms</p>
                 <p><i class="fas fa-bath"></i> @Database.filtered[@index].Bathrooms bathrooms</p>
@@ -404,7 +404,14 @@ button#defaultbutton {
                 <p><i class="fas fa-tools"></i><b> Year built:</b> @Database.filtered[@index].YearBuilt </p>
                 <p><i class="fas fa-calendar-alt"></i><b> List Date:</b> @Database.filtered[@index].listDate </p>
 
-                <p><button @onclick="() => saved(index)" style="background-color:darkgreen"><i class="fas fa-heart"></i><b> Save</b></button></p>
+                @if (!Database.saved.Contains(Database.filtered[index]))
+                                            {
+                    <p><button @onclick="() => saved(index)" style="background-color:darkgreen"><i class="fas fa-heart"></i><b> Save</b></button></p>
+                }
+                else
+                {
+                    <p><button @onclick="() => saved(index)" style="background-color:darkgreen"><i class="fas fa-heart"></i><b> Saved</b></button></p>
+                }
                 <p><button @onclick="back" style="background-color:red"><b>Close</b></button></p>
             </div>
         </div>
@@ -412,7 +419,7 @@ button#defaultbutton {
             <!-- Set Div As your requirement -->
             <div hidden="@IsShow" class="card">
                 <img src=@Database.filtered[@rightIndex].images[0] alt="house 2" style="width:100%; padding:20px; border-radius:30px;">
-                <h2><a href=""> @Database.filtered[@rightIndex].Address </a></h2>
+                <h1><a @onclick="() => tohouse(rightIndex)"> @Database.filtered[@rightIndex].Address </a></h1>
                 <h4><b>List price: $@Database.filtered[@rightIndex].Price </b></h4>
                 <p><i class="fas fa-bed"></i> @Database.filtered[@rightIndex].Bedrooms Bedrooms</p>
                 <p><i class="fas fa-bath"></i> @Database.filtered[@rightIndex].Bathrooms bathrooms</p>
@@ -422,7 +429,16 @@ button#defaultbutton {
                 <p><i class="fas fa-tools"></i><b> Year built:</b> @Database.filtered[@rightIndex].YearBuilt</p>
                 <p><i class="fas fa-calendar-alt"></i><b> List Date:</b> @Database.filtered[@rightIndex].listDate</p>
 
-                <p><button @onclick="() => saved(rightIndex)" style="background-color:darkgreen"><i class="fas fa-heart"></i><b> Save</b></button></p>
+                @if (!Database.saved.Contains(Database.filtered[rightIndex]))
+                                            {
+                    <p><button @onclick="() => saved(rightIndex)" style="background-color:darkgreen"><i class="fas fa-heart"></i><b> Save</b></button></p>
+                }
+                else
+                {
+                    <p><button @onclick="() => saved(rightIndex)" style="background-color:darkgreen"><i class="fas fa-heart"></i><b> Saved</b></button></p>
+                }
+
+                
                 <p><button @onclick="() => Show(rightIndex)" style="background-color:red"><b>Cancel</b></button></p>
             </div>
 
