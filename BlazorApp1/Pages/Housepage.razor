@@ -156,7 +156,7 @@
                         </div>
                        
                 
-                <h1 style="margin-top: 0px;">List Price: $@Database.filtered[@index].Price</h1>
+                <h1 style="margin-top: 0px;">List Price: $@priceformat(@Database.filtered[@index].Price)</h1>
                 <h5>Area: @Database.filtered[@index].SquareFootage sq.ft</h5>
                 <h5>Price per Sqare Foot: $@calc(Database.filtered[@index].Price, @Database.filtered[@index].SquareFootage)</h5>
                 <h5>@Database.filtered[@index].Bedrooms bedrooms | @Database.filtered[@index].Bathrooms bathrooms</h5>
@@ -183,7 +183,7 @@
                         Book a Showing
                     </button>
                         <div id="inlinediv">
-                            @if(!issaved){
+                            @if(!Database.saved.Contains(Database.filtered[index])){
                                 <button @onclick="saved" id="defaultbutton" style="padding-left: 8px; padding-right: 8px;margin-left:5px">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"  fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
                                         <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
@@ -328,8 +328,6 @@
 
     public int Displayimg = 0;
 
-    public bool issaved = false;
-
     private int calc(double? one, int two){
         return (int)one / two;
     }
@@ -358,10 +356,13 @@
         UriHelper.NavigateTo($"Homepage");
     }
 
+    private bool issaved(){
+        return Database.saved.Contains(Database.filtered[index]);
+    }
+
     private void saved(){
-        issaved = !issaved;
         tooltip = "";
-        if(!issaved){
+        if(Database.saved.Contains(Database.filtered[index])){
             Database.saved.Remove(Database.filtered[index]);
         } else {
             Database.saved.Add(Database.filtered[index]);
@@ -387,5 +388,20 @@
     private void back(){
         UriHelper.NavigateTo($"SearchResults");
     }
+
+    private string priceformat(double? price){
+            string formatted = price.ToString();
+            if(formatted.Length == 7){
+                formatted = formatted.Insert(4,",");
+                formatted = formatted.Insert(1,",");
+            } else if(formatted.Length == 6){
+                formatted = formatted.Insert(3,",");
+            } else if(formatted.Length == 5){
+                formatted = formatted.Insert(2,",");
+            } else {
+                return "fail";
+            }
+            return formatted;
+        }
 
 }

@@ -123,7 +123,7 @@ namespace BlazorApp1
             List<House> filteredData = new List<House>();
             for (int i = 0; i < data.Count; i++)
             {
-                if (data[i].Bathrooms > bathr)
+                if (data[i].Bathrooms >= bathr)
                 {
                     filteredData.Add(data[i]);
                 }
