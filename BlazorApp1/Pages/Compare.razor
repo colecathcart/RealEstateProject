@@ -358,8 +358,9 @@ button#defaultbutton {
         <div class="col-md-1"></div>
         <div class="col-md-1"></div>
         <div class="col-md-1"></div>
-        <div class="col-md-1"></div>
-        <div class="col-md-1"></div>
+        <div class="col-md-2" style="text-align:center; padding:20px;vertical-align:top">
+                <h1 style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; background-color: rgb(230,230,230);padding:10px;border-radius:10px;vertical-align:top;">Compare</h1>
+        </div>
         <div class="col-md-1"></div>
         <div class="col-md-1"></div>
         <div class="col-md-1"></div>
@@ -388,9 +389,6 @@ button#defaultbutton {
     <div style="width:100%;">
         <!-- Main Div -->
         <div class="row">
-            <div style="text-align:center; padding:20px">
-                <h1 style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">Compare</h1>
-            </div>
         </div>
         <div style="float:left; width:50%; height:100%; padding-right:10px">
             <!-- Set Div As your requirement -->
@@ -430,6 +428,7 @@ button#defaultbutton {
 
 
             <div hidden="@ListShow">
+                <div style="height:1100px;overflow-x: hidden; overflow-y: auto;">
                 @for(int i = 0; i < Database.filtered.Count; i++){
                 int j = i;
                 <div class="row">
@@ -440,7 +439,10 @@ button#defaultbutton {
                         <div class="candidate-list-details">
                             <div class="candidate-list-info">
                                 <div class="candidate-list-title">
-                                        <h4><a href="candidate-detail.html">@Database.filtered[i].Address</a></h4>
+                                        <h4><button @onclick="() => tohouse(j)" class="btn btn-primary" id="defaultbutton" type="button" style="border-width:0;border-radius:15px;background-color:white;font-size:30px;font-weight:10;padding-left:15px;padding-right:15px">
+                                            <u style="color:#3381ff">@Database.filtered[i].Address</u>
+                                            </button>
+                                        </h4>
                                         <h5><a><i class="fas fa-dollar-sign"></i> $@Database.filtered[i].Price</a></h5>
                                 </div>
                                 <div class="candidate-list-option">
@@ -460,6 +462,7 @@ button#defaultbutton {
                     </div>
                 </div>
                 }
+                </div>
             </div>
         </div>
     </div>
@@ -479,6 +482,11 @@ button#defaultbutton {
         IsShow = !IsShow;
         ListShow = !ListShow;
         rightIndex = j;
+    }
+
+    private void tohouse(int i){
+
+        UriHelper.NavigateTo($"housepage/{i}");
     }
     private void back()
     {
