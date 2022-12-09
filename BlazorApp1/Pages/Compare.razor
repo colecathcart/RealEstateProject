@@ -11,327 +11,326 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
     <style>
 
-html, body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-}
-
-h1:focus {
-    outline: none;
-}
-
-a, .btn-link {
-    color: #0071c1;
-}
-
-.btn-primary {
-    color: #fff;
-    background-color: #1b6ec2;
-    border-color: #1861ac;
-}
-
-.content {
-    padding-top: 1.1rem;
-}
-
-.valid.modified:not([type=checkbox]) {
-    outline: 1px solid #26b050;
-}
-
-.invalid {
-    outline: 1px solid red;
-}
-
-.validation-message {
-    color: red;
-}
-
-#blazor-error-ui {
-    background: lightyellow;
-    bottom: 0;
-    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
-    display: none;
-    left: 0;
-    padding: 0.6rem 1.25rem 0.7rem 1.25rem;
-    position: fixed;
-    width: 100%;
-    z-index: 1000;
-}
-
-    #blazor-error-ui .dismiss {
-        cursor: pointer;
-        position: absolute;
-        right: 0.75rem;
-        top: 0.5rem;
-    }
-
-.blazor-error-boundary {
-    background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTYiIGhlaWdodD0iNDkiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIG92ZXJmbG93PSJoaWRkZW4iPjxkZWZzPjxjbGlwUGF0aCBpZD0iY2xpcDAiPjxyZWN0IHg9IjIzNSIgeT0iNTEiIHdpZHRoPSI1NiIgaGVpZ2h0PSI0OSIvPjwvY2xpcFBhdGg+PC9kZWZzPjxnIGNsaXAtcGF0aD0idXJsKCNjbGlwMCkiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0yMzUgLTUxKSI+PHBhdGggZD0iTTI2My41MDYgNTFDMjY0LjcxNyA1MSAyNjUuODEzIDUxLjQ4MzcgMjY2LjYwNiA1Mi4yNjU4TDI2Ny4wNTIgNTIuNzk4NyAyNjcuNTM5IDUzLjYyODMgMjkwLjE4NSA5Mi4xODMxIDI5MC41NDUgOTIuNzk1IDI5MC42NTYgOTIuOTk2QzI5MC44NzcgOTMuNTEzIDI5MSA5NC4wODE1IDI5MSA5NC42NzgyIDI5MSA5Ny4wNjUxIDI4OS4wMzggOTkgMjg2LjYxNyA5OUwyNDAuMzgzIDk5QzIzNy45NjMgOTkgMjM2IDk3LjA2NTEgMjM2IDk0LjY3ODIgMjM2IDk0LjM3OTkgMjM2LjAzMSA5NC4wODg2IDIzNi4wODkgOTMuODA3MkwyMzYuMzM4IDkzLjAxNjIgMjM2Ljg1OCA5Mi4xMzE0IDI1OS40NzMgNTMuNjI5NCAyNTkuOTYxIDUyLjc5ODUgMjYwLjQwNyA1Mi4yNjU4QzI2MS4yIDUxLjQ4MzcgMjYyLjI5NiA1MSAyNjMuNTA2IDUxWk0yNjMuNTg2IDY2LjAxODNDMjYwLjczNyA2Ni4wMTgzIDI1OS4zMTMgNjcuMTI0NSAyNTkuMzEzIDY5LjMzNyAyNTkuMzEzIDY5LjYxMDIgMjU5LjMzMiA2OS44NjA4IDI1OS4zNzEgNzAuMDg4N0wyNjEuNzk1IDg0LjAxNjEgMjY1LjM4IDg0LjAxNjEgMjY3LjgyMSA2OS43NDc1QzI2Ny44NiA2OS43MzA5IDI2Ny44NzkgNjkuNTg3NyAyNjcuODc5IDY5LjMxNzkgMjY3Ljg3OSA2Ny4xMTgyIDI2Ni40NDggNjYuMDE4MyAyNjMuNTg2IDY2LjAxODNaTTI2My41NzYgODYuMDU0N0MyNjEuMDQ5IDg2LjA1NDcgMjU5Ljc4NiA4Ny4zMDA1IDI1OS43ODYgODkuNzkyMSAyNTkuNzg2IDkyLjI4MzcgMjYxLjA0OSA5My41Mjk1IDI2My41NzYgOTMuNTI5NSAyNjYuMTE2IDkzLjUyOTUgMjY3LjM4NyA5Mi4yODM3IDI2Ny4zODcgODkuNzkyMSAyNjcuMzg3IDg3LjMwMDUgMjY2LjExNiA4Ni4wNTQ3IDI2My41NzYgODYuMDU0N1oiIGZpbGw9IiNGRkU1MDAiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPjwvZz48L3N2Zz4=) no-repeat 1rem/1.8rem, #b32121;
-    padding: 1rem 1rem 1rem 3.7rem;
-    color: white;
-}
-
-    .blazor-error-boundary::after {
-        content: "An error has occurred."
-    }
-
-
-.card {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    margin: auto;
-    text-align: center;
-    font-family: arial;
-    background-color: rgb(220, 237, 250);
-    border-color: black;
-    border-style: solid;
-    border-width: 0px 0px 0px 0px;
-    border-radius: 20px;
-    position:sticky;
-    top: 0px;
-
-}
-
-.price {
-    color: grey;
-    font-size: 22px;
-}
-
-.card button {
-    border: none;
-    outline: 0;
-    padding: 12px;
-    color: white;
-    background-color: #26b050;
-    text-align: center;
-    cursor: pointer;
-    width: 100%;
-    font-size: 18px;
-}
-
-    .card button:hover {
-        opacity: 0.7;
-    }
-
-
-
-
-
-#left {
-        position: fixed;
-        height: 80%;
-        top: 1;
-        bottom: 0;
-    }
-
-button#defaultbutton {
-    padding: 5px;
-    background-color: rgb(127, 180, 240);
-    color: black;
-    border-color: black;
-    font-weight: bold;
-    border-radius: 1px;
-    display: inline-block;
-    margin: 2px;
-}
-
-button#defaultbutton {
-    padding: 5px;
-    background-color: rgb(127, 180, 240);
-    color: black;
-    border-color: black;
-    font-weight: bold;
-    border-radius: 10px;
-    display: inline-block;
-    margin: 2px;
-    font-size: 20px;
-}
-
-.flex-parent {
-    display: flex;
-}
-
-.jc-center {
-    justify-content: center;
-    font-size: 15px;
-}
-
-.job-shortby {
-    margin-top: 10px;
-    margin-bottom: 20px;
-}
-
-/* Candidate List */
-.candidate-list {
-    background: #ffffff;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    border-bottom: 1px solid #eeeeee;
-    margin-bottom: 20px;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    padding: 20px;
-    -webkit-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
-}
-
-    .candidate-list:hover {
-        -webkit-box-shadow: 0px 0px 34px 4px rgba(33, 37, 41, 0.06);
-        box-shadow: 0px 0px 34px 4px rgba(33, 37, 41, 0.06);
-        position: relative;
-        z-index: 99;
-    }
-
-        .candidate-list:hover a.candidate-list-favourite {
-            color: #e74c3c;
-            -webkit-box-shadow: -1px 4px 10px 1px rgba(24, 111, 201, 0.1);
-            box-shadow: -1px 4px 10px 1px rgba(24, 111, 201, 0.1);
+        html, body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
         }
 
-    .candidate-list .candidate-list-image {
-        margin-right: 25px;
-        -webkit-box-flex: 0;
-        -ms-flex: 0 0 80px;
-        flex: 0 0 80px;
-        border: none;
-    }
-
-        .candidate-list .candidate-list-image img {
-            width: 80px;
-            height: 80px;
-            -o-object-fit: cover;
-            object-fit: cover;
+        h1:focus {
+            outline: none;
         }
 
-.candidate-list-title {
-    margin-bottom: 5px;
-    font-size: 25px;
-}
+        a, .btn-link {
+            color: #0071c1;
+        }
 
-.candidate-list-details ul {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    margin-bottom: 0px;
-}
+        .btn-primary {
+            color: #fff;
+            background-color: #1b6ec2;
+            border-color: #1861ac;
+        }
 
-    .candidate-list-details ul li {
-        margin: 5px 10px 5px 0px;
-        font-size: 15px;
-    }
+        .content {
+            padding-top: 1.1rem;
+        }
 
-.candidate-list .candidate-list-favourite-time {
-    margin-left: auto;
-    text-align: center;
-    font-size: 13px;
-    -webkit-box-flex: 0;
-    -ms-flex: 0 0 90px;
-    flex: 0 0 90px;
-}
+        .valid.modified:not([type=checkbox]) {
+            outline: 1px solid #26b050;
+        }
 
-    .candidate-list .candidate-list-favourite-time span {
-        display: block;
-        margin: 0 auto;
-    }
+        .invalid {
+            outline: 1px solid red;
+        }
 
-    .candidate-list .candidate-list-favourite-time .candidate-list-favourite {
-        display: inline-block;
-        position: relative;
-        height: 40px;
-        width: 40px;
-        line-height: 40px;
-        border: 1px solid #eeeeee;
-        border-radius: 100%;
-        text-align: center;
-        -webkit-transition: all 0.3s ease-in-out;
-        transition: all 0.3s ease-in-out;
-        margin-bottom: 20px;
-        font-size: 16px;
-        color: #646f79;
-    }
+        .validation-message {
+            color: red;
+        }
 
-        .candidate-list .candidate-list-favourite-time .candidate-list-favourite:hover {
+        #blazor-error-ui {
+            background: lightyellow;
+            bottom: 0;
+            box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+            display: none;
+            left: 0;
+            padding: 0.6rem 1.25rem 0.7rem 1.25rem;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+
+            #blazor-error-ui .dismiss {
+                cursor: pointer;
+                position: absolute;
+                right: 0.75rem;
+                top: 0.5rem;
+            }
+
+        .blazor-error-boundary {
+            background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTYiIGhlaWdodD0iNDkiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIG92ZXJmbG93PSJoaWRkZW4iPjxkZWZzPjxjbGlwUGF0aCBpZD0iY2xpcDAiPjxyZWN0IHg9IjIzNSIgeT0iNTEiIHdpZHRoPSI1NiIgaGVpZ2h0PSI0OSIvPjwvY2xpcFBhdGg+PC9kZWZzPjxnIGNsaXAtcGF0aD0idXJsKCNjbGlwMCkiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0yMzUgLTUxKSI+PHBhdGggZD0iTTI2My41MDYgNTFDMjY0LjcxNyA1MSAyNjUuODEzIDUxLjQ4MzcgMjY2LjYwNiA1Mi4yNjU4TDI2Ny4wNTIgNTIuNzk4NyAyNjcuNTM5IDUzLjYyODMgMjkwLjE4NSA5Mi4xODMxIDI5MC41NDUgOTIuNzk1IDI5MC42NTYgOTIuOTk2QzI5MC44NzcgOTMuNTEzIDI5MSA5NC4wODE1IDI5MSA5NC42NzgyIDI5MSA5Ny4wNjUxIDI4OS4wMzggOTkgMjg2LjYxNyA5OUwyNDAuMzgzIDk5QzIzNy45NjMgOTkgMjM2IDk3LjA2NTEgMjM2IDk0LjY3ODIgMjM2IDk0LjM3OTkgMjM2LjAzMSA5NC4wODg2IDIzNi4wODkgOTMuODA3MkwyMzYuMzM4IDkzLjAxNjIgMjM2Ljg1OCA5Mi4xMzE0IDI1OS40NzMgNTMuNjI5NCAyNTkuOTYxIDUyLjc5ODUgMjYwLjQwNyA1Mi4yNjU4QzI2MS4yIDUxLjQ4MzcgMjYyLjI5NiA1MSAyNjMuNTA2IDUxWk0yNjMuNTg2IDY2LjAxODNDMjYwLjczNyA2Ni4wMTgzIDI1OS4zMTMgNjcuMTI0NSAyNTkuMzEzIDY5LjMzNyAyNTkuMzEzIDY5LjYxMDIgMjU5LjMzMiA2OS44NjA4IDI1OS4zNzEgNzAuMDg4N0wyNjEuNzk1IDg0LjAxNjEgMjY1LjM4IDg0LjAxNjEgMjY3LjgyMSA2OS43NDc1QzI2Ny44NiA2OS43MzA5IDI2Ny44NzkgNjkuNTg3NyAyNjcuODc5IDY5LjMxNzkgMjY3Ljg3OSA2Ny4xMTgyIDI2Ni40NDggNjYuMDE4MyAyNjMuNTg2IDY2LjAxODNaTTI2My41NzYgODYuMDU0N0MyNjEuMDQ5IDg2LjA1NDcgMjU5Ljc4NiA4Ny4zMDA1IDI1OS43ODYgODkuNzkyMSAyNTkuNzg2IDkyLjI4MzcgMjYxLjA0OSA5My41Mjk1IDI2My41NzYgOTMuNTI5NSAyNjYuMTE2IDkzLjUyOTUgMjY3LjM4NyA5Mi4yODM3IDI2Ny4zODcgODkuNzkyMSAyNjcuMzg3IDg3LjMwMDUgMjY2LjExNiA4Ni4wNTQ3IDI2My41NzYgODYuMDU0N1oiIGZpbGw9IiNGRkU1MDAiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPjwvZz48L3N2Zz4=) no-repeat 1rem/1.8rem, #b32121;
+            padding: 1rem 1rem 1rem 3.7rem;
+            color: white;
+        }
+
+            .blazor-error-boundary::after {
+                content: "An error has occurred."
+            }
+
+
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            margin: auto;
+            text-align: center;
+            font-family: arial;
+            background-color: rgb(220, 237, 250);
+            border-color: black;
+            border-style: solid;
+            border-width: 0px 0px 0px 0px;
+            border-radius: 20px;
+            position: sticky;
+            top: 0px;
+        }
+
+        .price {
+            color: grey;
+            font-size: 22px;
+        }
+
+        .card button {
+            border: none;
+            outline: 0;
+            padding: 12px;
+            color: white;
+            background-color: #26b050;
+            text-align: center;
+            cursor: pointer;
+            width: 100%;
+            font-size: 18px;
+        }
+
+            .card button:hover {
+                opacity: 0.7;
+            }
+
+
+
+
+
+        #left {
+            position: fixed;
+            height: 80%;
+            top: 1;
+            bottom: 0;
+        }
+
+        button#defaultbutton {
+            padding: 5px;
+            background-color: rgb(127, 180, 240);
+            color: black;
+            border-color: black;
+            font-weight: bold;
+            border-radius: 1px;
+            display: inline-block;
+            margin: 2px;
+        }
+
+        button#defaultbutton {
+            padding: 5px;
+            background-color: rgb(127, 180, 240);
+            color: black;
+            border-color: black;
+            font-weight: bold;
+            border-radius: 10px;
+            display: inline-block;
+            margin: 2px;
+            font-size: 20px;
+        }
+
+        .flex-parent {
+            display: flex;
+        }
+
+        .jc-center {
+            justify-content: center;
+            font-size: 15px;
+        }
+
+        .job-shortby {
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+
+        /* Candidate List */
+        .candidate-list {
             background: #ffffff;
-            color: #e74c3c;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            border-bottom: 1px solid #eeeeee;
+            margin-bottom: 20px;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            padding: 20px;
+            -webkit-transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out;
         }
 
-.candidate-banner .candidate-list:hover {
-    position: inherit;
-    -webkit-box-shadow: inherit;
-    box-shadow: inherit;
-    z-index: inherit;
-}
+            .candidate-list:hover {
+                -webkit-box-shadow: 0px 0px 34px 4px rgba(33, 37, 41, 0.06);
+                box-shadow: 0px 0px 34px 4px rgba(33, 37, 41, 0.06);
+                position: relative;
+                z-index: 99;
+            }
 
+                .candidate-list:hover a.candidate-list-favourite {
+                    color: #e74c3c;
+                    -webkit-box-shadow: -1px 4px 10px 1px rgba(24, 111, 201, 0.1);
+                    box-shadow: -1px 4px 10px 1px rgba(24, 111, 201, 0.1);
+                }
 
-/* Candidate Grid */
-.candidate-list.candidate-grid {
-    padding: 0px;
-    display: block;
-    border-bottom: none;
-}
+            .candidate-list .candidate-list-image {
+                margin-right: 25px;
+                -webkit-box-flex: 0;
+                -ms-flex: 0 0 80px;
+                flex: 0 0 80px;
+                border: none;
+            }
 
-.candidate-grid .candidate-list-image {
-    text-align: center;
-    margin-right: 0px;
-}
+                .candidate-list .candidate-list-image img {
+                    width: 80px;
+                    height: 80px;
+                    -o-object-fit: cover;
+                    object-fit: cover;
+                }
 
-    .candidate-grid .candidate-list-image img {
-        height: 300px;
-        width: 100%;
-    }
-
-.candidate-grid .candidate-list-details {
-    text-align: center;
-    padding: 20px 20px 0px 20px;
-    border: 1px solid #eeeeee;
-    border-top: none;
-}
-
-    .candidate-grid .candidate-list-details ul {
-        -webkit-box-pack: center;
-        -ms-flex-pack: center;
-        justify-content: center;
-    }
-
-        .candidate-grid .candidate-list-details ul li {
-            margin: 2px 5px;
+        .candidate-list-title {
+            margin-bottom: 5px;
+            font-size: 25px;
         }
 
-.candidate-grid .candidate-list-favourite-time {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    border-top: 1px solid #eeeeee;
-    margin-top: 10px;
-    padding: 10px 0;
-}
+        .candidate-list-details ul {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+            margin-bottom: 0px;
+        }
 
-    .candidate-grid .candidate-list-favourite-time a {
-        margin-bottom: 0;
-        margin-left: auto;
-    }
+            .candidate-list-details ul li {
+                margin: 5px 10px 5px 0px;
+                font-size: 15px;
+            }
 
-    .candidate-grid .candidate-list-favourite-time span {
-        display: inline-block;
-        margin: 0;
-        -ms-flex-item-align: center;
-        align-self: center;
-    }
+        .candidate-list .candidate-list-favourite-time {
+            margin-left: auto;
+            text-align: center;
+            font-size: 13px;
+            -webkit-box-flex: 0;
+            -ms-flex: 0 0 90px;
+            flex: 0 0 90px;
+        }
 
-.candidate-list.candidate-grid .candidate-list-favourite-time .candidate-list-favourite {
-    margin-bottom: 0px;
-}
+            .candidate-list .candidate-list-favourite-time span {
+                display: block;
+                margin: 0 auto;
+            }
 
-.owl-carousel .candidate-list.candidate-grid {
-    margin-bottom: 20px;
-}
+            .candidate-list .candidate-list-favourite-time .candidate-list-favourite {
+                display: inline-block;
+                position: relative;
+                height: 40px;
+                width: 40px;
+                line-height: 40px;
+                border: 1px solid #eeeeee;
+                border-radius: 100%;
+                text-align: center;
+                -webkit-transition: all 0.3s ease-in-out;
+                transition: all 0.3s ease-in-out;
+                margin-bottom: 20px;
+                font-size: 16px;
+                color: #646f79;
+            }
+
+                .candidate-list .candidate-list-favourite-time .candidate-list-favourite:hover {
+                    background: #ffffff;
+                    color: #e74c3c;
+                }
+
+        .candidate-banner .candidate-list:hover {
+            position: inherit;
+            -webkit-box-shadow: inherit;
+            box-shadow: inherit;
+            z-index: inherit;
+        }
+
+
+        /* Candidate Grid */
+        .candidate-list.candidate-grid {
+            padding: 0px;
+            display: block;
+            border-bottom: none;
+        }
+
+        .candidate-grid .candidate-list-image {
+            text-align: center;
+            margin-right: 0px;
+        }
+
+            .candidate-grid .candidate-list-image img {
+                height: 300px;
+                width: 100%;
+            }
+
+        .candidate-grid .candidate-list-details {
+            text-align: center;
+            padding: 20px 20px 0px 20px;
+            border: 1px solid #eeeeee;
+            border-top: none;
+        }
+
+            .candidate-grid .candidate-list-details ul {
+                -webkit-box-pack: center;
+                -ms-flex-pack: center;
+                justify-content: center;
+            }
+
+                .candidate-grid .candidate-list-details ul li {
+                    margin: 2px 5px;
+                }
+
+        .candidate-grid .candidate-list-favourite-time {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            border-top: 1px solid #eeeeee;
+            margin-top: 10px;
+            padding: 10px 0;
+        }
+
+            .candidate-grid .candidate-list-favourite-time a {
+                margin-bottom: 0;
+                margin-left: auto;
+            }
+
+            .candidate-grid .candidate-list-favourite-time span {
+                display: inline-block;
+                margin: 0;
+                -ms-flex-item-align: center;
+                align-self: center;
+            }
+
+        .candidate-list.candidate-grid .candidate-list-favourite-time .candidate-list-favourite {
+            margin-bottom: 0px;
+        }
+
+        .owl-carousel .candidate-list.candidate-grid {
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 
 <header>
-    
+
     <div class="row">
         <div class="col-md-1">
             <div id="inlinediv">
@@ -347,7 +346,7 @@ button#defaultbutton {
         </div>
         <div class="col-md-1">
             <div class="NavBar">
-                <button id="defaultbutton" style="padding-left: 8px; padding-right: 8px;">
+                <button @onclick="tohome" id="defaultbutton" style="padding-left: 8px; padding-right: 8px;">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-door-fill" viewBox="0 0 16 16">
                         <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5Z" />
                     </svg>
@@ -358,20 +357,21 @@ button#defaultbutton {
         <div class="col-md-1"></div>
         <div class="col-md-1"></div>
         <div class="col-md-1"></div>
-        <div class="col-md-1"></div>
-        <div class="col-md-1"></div>
+        <div class="col-md-2" style="text-align:center; padding:20px;vertical-align:top">
+            <h1 style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; background-color: rgb(230,230,230);padding:10px;border-radius:10px;vertical-align:top;">Compare</h1>
+        </div>
         <div class="col-md-1"></div>
         <div class="col-md-1"></div>
         <div class="col-md-1"></div>
         <div class="col-md-1" style="text-align:right">
-            <button id="defaultbutton" style="padding-left: 8px; padding-right: 8px;" data-toggle="tooltip" data-placement="top" title="Click here to see your saved listings!">
+            <button @onclick="tosaved" id="defaultbutton" style="padding-left: 8px; padding-right: 8px;">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
                     <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
                 </svg>
             </button>
             <p style="padding-left: 4px;">Saved</p>
         </div>
-        <div class="col-md-1" style="text-align:right" @onclick="()=>helpModal.Open()">
+        <div class="col-md-1" style="text-align:right">
             <button id="defaultbutton" style="padding-left: 12px; padding-right: 12px;">?</button>
             <p>Help</p>
         </div>
@@ -384,26 +384,16 @@ button#defaultbutton {
 </header>
 <body>
 
-    <Modal @ref="helpModal">
-        <Body>
-            <p>Comparing listings:</p>
-            <p>You can continue browsing listings on the right of the screen. When you find a listing you want to compare to the one you already selected, press the compare button on the listing!</p>
-            <p>You can find more information on the listing by clicking the listing's address.</p>
-        </Body>
-    </Modal>
 
     <div style="width:100%;">
         <!-- Main Div -->
         <div class="row">
-            <div style="text-align:center; padding:20px">
-                <h1 style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">Compare</h1>
-            </div>
         </div>
         <div style="float:left; width:50%; height:100%; padding-right:10px">
             <!-- Set Div As your requirement -->
             <div class="card">
                 <img src=@Database.filtered[@index].images[0] alt="house 1" style="width:100%; padding:20px; border-radius:30px;">
-                <h2><a href="" data-toggle="tooltip" data-placement="top" title="Click here to view more information on the listing!">@Database.filtered[@index].Address</a></h2>
+                <h2><button @onclick="() => tohouse(index)">@Database.filtered[@index].Address</button></h2>
                 <h4><b>List price: $@Database.filtered[@index].Price</b></h4>
                 <p><i class="fas fa-bed"></i> @Database.filtered[@index].Bedrooms Bedrooms</p>
                 <p><i class="fas fa-bath"></i> @Database.filtered[@index].Bathrooms bathrooms</p>
@@ -412,24 +402,23 @@ button#defaultbutton {
                 <p><i class="fas fa-building"></i><b> Type:</b> @Database.filtered[@index].PropertyType </p>
                 <p><i class="fas fa-tools"></i><b> Year built:</b> @Database.filtered[@index].YearBuilt </p>
                 <p><i class="fas fa-calendar-alt"></i><b> List Date:</b> @Database.filtered[@index].listDate </p>
-                <p><i class="fas fa-car"></i><b> Parking:</b> Underground (1)</p>
-                <p style="text-align:left"><b>Perks :</b></p>
-                <ul>
-                    <li>@Database.filtered[@index].perks[0]</li>
-                    <li>@Database.filtered[@index].perks[1]</li>
-                    <li>@Database.filtered[@index].perks[2]</li>
-                    <li>@Database.filtered[@index].perks[3]</li>
 
-                </ul>
-                <p><button style="background-color:darkgreen"><i class="fas fa-heart"></i><b> Save</b></button></p>
-                <p><button style="background-color:red"><b>Cancel</b></button></p>
+                @if (!Database.saved.Contains(Database.filtered[index]))
+                {
+                    <p><button @onclick="() => saved(index)" style="background-color:darkgreen"><i class="fas fa-heart"></i><b> Save</b></button></p>
+                }
+                else
+                {
+                    <p><button @onclick="() => saved(index)" style="background-color:darkgreen"><i class="fas fa-heart"></i><b> Saved</b></button></p>
+                }
+                <p><button @onclick="back" style="background-color:red"><b>Close</b></button></p>
             </div>
         </div>
         <div style="float:right; width:50%; padding-left:10px">
             <!-- Set Div As your requirement -->
             <div hidden="@IsShow" class="card">
                 <img src=@Database.filtered[@rightIndex].images[0] alt="house 2" style="width:100%; padding:20px; border-radius:30px;">
-                <h2><a href="" data-toggle="tooltip" data-placement="top" title="Click here to view more information on the listing!"> @Database.filtered[@rightIndex].Address </a></h2>
+                <h1><a @onclick="() => tohouse(rightIndex)"> @Database.filtered[@rightIndex].Address </a></h1>
                 <h4><b>List price: $@Database.filtered[@rightIndex].Price </b></h4>
                 <p><i class="fas fa-bed"></i> @Database.filtered[@rightIndex].Bedrooms Bedrooms</p>
                 <p><i class="fas fa-bath"></i> @Database.filtered[@rightIndex].Bathrooms bathrooms</p>
@@ -438,51 +427,85 @@ button#defaultbutton {
                 <p><i class="fas fa-building"></i><b> Type:</b> @Database.filtered[@rightIndex].PropertyType</p>
                 <p><i class="fas fa-tools"></i><b> Year built:</b> @Database.filtered[@rightIndex].YearBuilt</p>
                 <p><i class="fas fa-calendar-alt"></i><b> List Date:</b> @Database.filtered[@rightIndex].listDate</p>
-                <p><i class="fas fa-car"></i><b> Parking:</b> Underground (1)</p>
-                <p style="text-align:left"><b>Perks :</b></p>
-                <ul>
-                    <li>@Database.filtered[@rightIndex].perks[0]</li>
-                    <li>@Database.filtered[@rightIndex].perks[1]</li>
-                    <li>@Database.filtered[@rightIndex].perks[2]</li>
-                    <li>@Database.filtered[@rightIndex].perks[3]</li>
-                </ul>
-                <p><button style="background-color:darkgreen"><i class="fas fa-heart"></i><b> Save</b></button></p>
+
+                @if (!Database.saved.Contains(Database.filtered[rightIndex]))
+                {
+                    <p><button @onclick="() => saved(rightIndex)" style="background-color:darkgreen"><i class="fas fa-heart"></i><b> Save</b></button></p>
+                }
+                else
+                {
+                    <p><button @onclick="() => saved(rightIndex)" style="background-color:darkgreen"><i class="fas fa-heart"></i><b> Saved</b></button></p>
+                }
+
+
                 <p><button @onclick="() => Show(rightIndex)" style="background-color:red"><b>Cancel</b></button></p>
             </div>
 
 
             <div hidden="@ListShow">
-                @for (int i = 0; i < Database.filtered.Count; i++)
-                {
-                    int j = i;
-                    <div class="row">
-                        <div class="candidate-list candidate-grid">
-                            <div class="candidate-list-image">
-                                <img class="img-fluid" src=@Database.filtered[@i].images[0] alt="">
-                            </div>
-                            <div class="candidate-list-details">
-                                <div class="candidate-list-info">
-                                    <div class="candidate-list-title">
-                                        <h4><a href="candidate-detail.html" data-toggle="tooltip" data-placement="top" title="Click here to view more information on the listing!">@Database.filtered[i].Address</a></h4>
-                                        <h5><a><i class="fas fa-dollar-sign"></i> $@Database.filtered[i].Price</a></h5>
-                                    </div>
-                                    <div class="candidate-list-option">
-                                        <ul class="list-unstyled">
-                                            <li><i class="fas fa-home"></i> @Database.filtered[i].Bedrooms bedrooms | @Database.filtered[i].Bathrooms bathrooms</li>
-                                            <li>          </li>
-                                            <li><i class="fas fa-ruler"></i> @Database.filtered[i].SquareFootage sq ft. </li>
-                                            <li>          </li>
-                                        </ul>
-                                    </div>
+                <div style="height:1100px;overflow-x: hidden; overflow-y: auto;">
+                    @for (int i = 0; i < Database.filtered.Count; i++)
+                    {
+                        int j = i;
+                        <div class="row">
+                            <div class="candidate-list candidate-grid">
+                                <div class="candidate-list-image">
+                                    <img class="img-fluid" src=@Database.filtered[@i].images[0] alt="">
                                 </div>
-                                <div class="candidate-list-favourite-time">
-                                    <a class="candidate-list-favourite order-2" href="#" data-toggle="tooltip" data-placement="top" title="Click here to save this listing! You can then view your saved listings by clicking the saved button on the top right of this page."><i class="far fa-heart"></i>Save</a>
-                                    <button @onclick="() => Show(j)" style="background-color:red; border-radius:15px;" data-toggle="tooltip" data-placement="top" title="Click here to compare this listing with others!"><i class="fa fa-signal"></i> Compare</button>
+                                <div class="candidate-list-details">
+                                    <div class="candidate-list-info">
+                                        <div class="candidate-list-title">
+                                            <h4>
+                                                <button @onclick="() => tohouse(j)" class="btn btn-primary" id="defaultbutton" type="button" style="border-width:0;border-radius:15px;background-color:white;font-size:30px;font-weight:10;padding-left:15px;padding-right:15px">
+                                                    <u style="color:#3381ff">@Database.filtered[i].Address</u>
+                                                </button>
+                                            </h4>
+                                            <h5><a><i class="fas fa-dollar-sign"></i> $@Database.filtered[i].Price</a></h5>
+                                        </div>
+                                        <div class="candidate-list-option">
+                                            <ul class="list-unstyled">
+                                                <li><i class="fas fa-home"></i> @Database.filtered[i].Bedrooms bedrooms | @Database.filtered[i].Bathrooms bathrooms</li>
+                                                <li>          </li>
+                                                <li><i class="fas fa-ruler"></i> @Database.filtered[i].SquareFootage sq ft. </li>
+                                                <li>          </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="candidate-list-favourite-time" style="margin-bottom:0px">
+                                        <div id="inlinediv" style="margin-right:10px;margin-bottom:0px">
+                                            <button class="btn btn-primary" @onclick="() => Show(j)" style="padding:11px;padding-top:6px;padding-bottom:6px;font-size:20px" id="defaultbutton" type="button">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bar-chart-fill" viewBox="0 0 16 16">
+                                                    <path d="M1 11a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-3zm5-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V2z" />
+                                                </svg>
+                                            </button>
+                                            <p style="font-size:14px;margin-bottom:0px">Compare</p>
+                                        </div>
+                                        <div id="inlinediv">
+                                            @if (!Database.saved.Contains(Database.filtered[j]))
+                                            {
+                                                <button class="btn btn-primary" @onclick="() => saved(j)" id="defaultbutton" type="button" style="padding:11px;padding-top:6px;padding-bottom:6px;font-size:20px">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+                                                        <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
+                                                    </svg>
+                                                </button>
+                                            }
+                                            else
+                                            {
+                                                <button class="btn btn-primary" @onclick="() => saved(j)" id="defaultbutton" type="button" style="padding:11px;padding-top:6px;padding-bottom:6px;font-size:20px">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                                        <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
+                                                    </svg>
+                                                </button>
+                                            }
+                                            <p style="padding-left: 3px;padding-right:4px;font-size:14px;margin-bottom:0px">Save</p>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
-                    </div>
-                }
+                    }
+                </div>
             </div>
         </div>
     </div>
@@ -491,20 +514,24 @@ button#defaultbutton {
 
 </html>
 @code {
-
-    private Modal helpModal { get; set; }
-
     [Parameter]
     public int index { get; set; }
-    public int rightIndex{ get; set; }
+    public int rightIndex { get; set; }
 
     private bool ListShow { get; set; } = false;
     private bool IsShow { get; set; } = true;
 
-    private void Show(int j) {
+    private void Show(int j)
+    {
         IsShow = !IsShow;
         ListShow = !ListShow;
         rightIndex = j;
+    }
+
+    private void tohouse(int i)
+    {
+
+        UriHelper.NavigateTo($"housepage/{i}");
     }
     private void back()
     {
@@ -514,5 +541,23 @@ button#defaultbutton {
     {
         return (int)one / two;
     }
+    private void tohome()
+    {
+        UriHelper.NavigateTo($"Homepage");
+    }
+    private void tosaved()
+    {
+        UriHelper.NavigateTo($"SavedListings");
+    }
+    private void saved(int j)
+    {
+        if (Database.saved.Contains(Database.filtered[j]))
+        {
+            Database.saved.Remove(Database.filtered[j]);
+        }
+        else
+        {
+            Database.saved.Add(Database.filtered[j]);
+        }
+    }
 }
- 

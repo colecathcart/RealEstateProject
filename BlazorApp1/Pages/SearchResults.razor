@@ -8,10 +8,10 @@
 <!--Saved and Help button-->
 <!--Modify Search button-->
 <!-- Modify Search Section ^ -->
-<div class="container">
+<div class="row">
         <div class="row" style="margin:0px">
-            <div class="flex-parent jc-center" style="margin:0px">
-                <div id="inlinediv" style="margin-bottom:0px;margin-right:435px;">
+            <div class="flex-parent jc-center" style="margin:0px;">
+                <div id="inlinediv" style="margin-bottom:0px;margin-right:438px;">
                     <button @onclick="tores" id="defaultbutton" style="padding-left: 8px; padding-right: 12px;padding-top:6px;padding-bottom:6px;margin-left:0px;border-width:0px;margin-top:10px;font-size:18px">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z"/>
@@ -22,26 +22,38 @@
                                     
                 </div>
                 
-                <h1 style="background-color: rgb(220,220,220);padding:8px;padding-left:20px;padding-right:20px;border-radius:10px;margin-bottom:20px;vertical-align:top"> Search Results </h1>
+                <h2> Search Results </h2>
                 
-            <div id="inlinediv" style="margin-left:390px;margin-bottom:0px">
+            
+            <div id="inlinediv" style="margin-left:350px;margin-bottom:0px">
                 <button id="defaultbutton" style="padding-left: 15px; padding-right: 15px;padding-top:8px;padding-bottom:8px;margin-left:0px;border-width:0px;margin-top:10px">
                 ?
                 </button>
                                         
                 <p style="padding-left: 4px;padding-right:6px;margin-bottom:0px;">Help</p>
             </div>
-    <div id="inlinediv" style="margin-bottom:0px">
-        <button @onclick="tohome" id="defaultbutton" style="padding-left: 11px; padding-right: 11px;padding-top:8px;padding-bottom:8px;margin-left:9px;border-width:0px;margin-top:10px">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-door-fill" viewBox="0 0 16 16">
+            
+            <div id="inlinediv" style="margin-bottom:0px">
+                <button @onclick="tohome" id="defaultbutton" style="padding-left: 11px; padding-right: 11px;padding-top:8px;padding-bottom:8px;margin-left:9px;border-width:0px;margin-top:10px">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-door-fill" viewBox="0 0 16 16">
                 <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5Z"/>
-            </svg>
-        </button>
-        <p style="padding-right:0px;padding-left:2px;margin-left:5px;margin-bottom:0px">Home</p>
-                        
-        
-        </div>
+                </svg>
+                </button>
+                <p style="padding-right:0px;padding-left:2px;margin-left:5px;margin-bottom:0px">Home</p>
             </div>
+
+            <div id="inlinediv">
+                <button @onclick="OnClickSaved" id="defaultbutton" style="padding-left: 11px; padding-right: 11px;padding-top:8px;padding-bottom:8px;margin-left:9px;border-width:0px;margin-top:10px">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+                        <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
+                    </svg>
+                </button>
+                <p style="padding-left: 6px;">Saved</p>
+            </div>
+        </div>
+    </div>
+
+
 
 <!-- Modify Search Section ^ -->
         </div>
@@ -54,7 +66,7 @@
             <div class="dropdown">
                 <p>
                     <button type="button" class="btn btn-primary btn-lg dropdown-toggle" id="defaultbutton" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                        Search With Filters
+                        Modify Search
                     </button>
                 </p>
                 <div class="collapse" id="collapseExample">
@@ -305,6 +317,20 @@
         </div>
     </div>
 </div>
+<div class="job-shortby ml-sm-auto d-flex align-items-center">
+                <form class="form-inline">
+                    <div class="form-group mb-0">
+                        <label class="justify-content-start mr-1"> Sort by :</label>
+                        <div class="short-by">
+                            <select @onchange="@sort" class="form-control basic-select select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                                <option value=1>Price (Lowest to Highest)</option>
+                                <option value=2>Price (Highest to Lowest)</option>
+                                <option value=3>Most Recent</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
         <div class="row">
         @for(int i = 0; i < Database.filtered.Count; i++){
             int j = i;
@@ -321,63 +347,60 @@
                                 </button>
                                 </h4>
                                
-                                <h5><a><i class="fas fa-dollar-sign"></i> $@Database.filtered[i].Price </a></h5>
+                                <h4><a><i class="fas fa-dollar-sign"></i> $ @priceformat(@Database.filtered[i].Price) </a></h4>
                                 <h5><a><i class="fas fa-dollar-sign"></i> @Database.filtered[i].PropertyType </a></h5>
                             </div>
                             <div class="candidate-list-option">
                                 <ul class="list-unstyled">
                                     <li><i class="fas fa-home"></i> @Database.filtered[i].Bedrooms bedrooms | @Database.filtered[i].Bathrooms bathrooms</li>
                                     <li>           </li>
+                                </ul>
+                                <ul class="list-unstyled">    
                                     <li><i class="fas fa-ruler"></i> @Database.filtered[i].SquareFootage sq ft. </li>
                                     <li>          </li>
                                 </ul>
                             </div>
                         </div>
                         <div class="candidate-list-favourite-time" style="margin-bottom:0px">
-                            <button class="btn btn-primary" @onclick="() => tocompare(j)" style="" id="defaultbutton" type="button">
-                                Compare
+                            <div id="inlinediv" style="margin-right:10px;margin-bottom:0px">
+                            <button class="btn btn-primary" @onclick="() => tocompare(j)" style="padding:11px;padding-top:6px;padding-bottom:6px;font-size:20px" id="defaultbutton" type="button">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bar-chart-fill" viewBox="0 0 16 16">
+                                <path d="M1 11a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-3zm5-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V2z"/>
+                                </svg>
                             </button>
-                            <div>
+                            <p style="font-size:14px;margin-bottom:0px">Compare</p>
+                            </div>
                             <div id="inlinediv">
-                            @if(!issaved){
-                                <button @onclick="() => saved(j)" id="defaultbutton" style="padding-left: 8px; padding-right: 8px;margin-left:5px">
+                            @if(!Database.saved.Contains(Database.filtered[j])){
+                                <button class="btn btn-primary" @onclick="() => saved(j)" id="defaultbutton" type="button" style="padding:11px;padding-top:6px;padding-bottom:6px;font-size:20px">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"  fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
                                         <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
                                     </svg>
                                 </button>
                             } else {
-                                <button @onclick="() => saved(j)" id="defaultbutton" style="padding-left: 8px; padding-right: 8px;margin-left:5px">
+                                <button class="btn btn-primary" @onclick="() => saved(j)" id="defaultbutton" type="button" style="padding:11px;padding-top:6px;padding-bottom:6px;font-size:20px">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
                                         <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
                                     </svg>
                                 </button>
                             }
-                        <p style="padding-left: 2px;padding-right:4px;">Save</p>
-                    </div>
-                            
+                            <p style="padding-left: 3px;padding-right:4px;font-size:14px;margin-bottom:0px">Save</p>
                             </div>
-                            
                         </div>
                     </div>
                 </div>
             </div>
         }
         </div>
-        
+
+        <div class="container text-center">
         <div class="row">
-            <div class="col-12 text-center mt-4 mt-sm-5">
-                <ul class="pagination justify-content-center mb-0">
-                    <li class="page-item disabled"> <span class="page-link">Prev</span> </li>
-                    <li class="page-item active" aria-current="page"><span class="page-link">1 </span> <span class="sr-only">(current)</span></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">...</a></li>
-                    <li class="page-item"><a class="page-link" href="#">25</a></li>
-                    <li class="page-item"> <a class="page-link" href="#">Next</a> </li>
-                </ul>
+            <div class="col">
+                <button type="button" class="btn btn-primary btn-lg" @onclick="OnClickAllListings" id="defaultbutton">Explore All Listings</button>
             </div>
         </div>
-    </div>
+        </div>
+
 
 
 
@@ -605,6 +628,16 @@
     }
 </style>
 @code{
+    private void OnClickAllListings()
+    {
+        Database.filtered = Database.houses;
+        UriHelper.NavigateTo($"SearchResults/");
+    }
+    
+    private void OnClickSaved()
+    {
+        UriHelper.NavigateTo($"SavedListings/");
+    }
     public List<string> list = new List<string>();
         public string result;
         public int leng { get; set; }
@@ -615,6 +648,14 @@
         public string houses1 { get; set; }
         public string tooltip = "";
         public bool issaved = false;
+
+        public void sort(ChangeEventArgs e){
+            if(e.Value.ToString() == "1"){
+                Database.filtered.Sort((x, y) => Nullable.Compare(x.Price,y.Price));
+            }else if (e.Value.ToString() == "2"){
+                Database.filtered.Sort((x, y) => Nullable.Compare(y.Price,x.Price));
+            }
+        }
 
         private int index;
         private void test() {
@@ -796,16 +837,26 @@
 
         }
 
+        private string priceformat(double? price){
+            string formatted = price.ToString();
+            if(formatted.Length == 7){
+                formatted = formatted.Insert(4,",");
+                formatted = formatted.Insert(1,",");
+            } else if(formatted.Length == 6){
+                formatted = formatted.Insert(3,",");
+            } else if(formatted.Length == 5){
+                formatted = formatted.Insert(2,",");
+            } else {
+                return "fail";
+            }
+            return formatted;
+        }
+
         private void saved(int j)
         {
-            issaved = !issaved;
-            tooltip = "";
-            if (!issaved)
-            {
+            if(Database.saved.Contains(Database.filtered[j])){
                 Database.saved.Remove(Database.filtered[j]);
-            }
-            else
-            {
+            } else {
                 Database.saved.Add(Database.filtered[j]);
             }
         }
