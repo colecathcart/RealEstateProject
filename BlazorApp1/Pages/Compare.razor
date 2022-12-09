@@ -347,7 +347,7 @@ button#defaultbutton {
         </div>
         <div class="col-md-1">
             <div class="NavBar">
-                <button id="defaultbutton" style="padding-left: 8px; padding-right: 8px;">
+                <button @onclick="tohome" id="defaultbutton" style="padding-left: 8px; padding-right: 8px;">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-door-fill" viewBox="0 0 16 16">
                         <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5Z" />
                     </svg>
@@ -364,7 +364,7 @@ button#defaultbutton {
         <div class="col-md-1"></div>
         <div class="col-md-1"></div>
         <div class="col-md-1" style="text-align:right">
-            <button id="defaultbutton" style="padding-left: 8px; padding-right: 8px;">
+            <button @onclick="tosaved" id="defaultbutton" style="padding-left: 8px; padding-right: 8px;">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
                     <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
                 </svg>
@@ -405,17 +405,9 @@ button#defaultbutton {
                 <p><i class="fas fa-building"></i><b> Type:</b> @Database.filtered[@index].PropertyType </p>
                 <p><i class="fas fa-tools"></i><b> Year built:</b> @Database.filtered[@index].YearBuilt </p>
                 <p><i class="fas fa-calendar-alt"></i><b> List Date:</b> @Database.filtered[@index].listDate </p>
-                <p><i class="fas fa-car"></i><b> Parking:</b> Underground (1)</p>
-                <p style="text-align:left"><b>Perks :</b></p>
-                <ul>
-                    <li>@Database.filtered[@index].perks[0]</li>
-                    <li>@Database.filtered[@index].perks[1]</li>
-                    <li>@Database.filtered[@index].perks[2]</li>
-                    <li>@Database.filtered[@index].perks[3]</li>
-                    
-                </ul>
+
                 <p><button style="background-color:darkgreen"><i class="fas fa-heart"></i><b> Save</b></button></p>
-                <p><button style="background-color:red"><b>Cancel</b></button></p>
+                <p><button @onclick="back" style="background-color:red"><b>Close</b></button></p>
             </div>
         </div>
         <div style="float:right; width:50%; padding-left:10px">
@@ -431,14 +423,7 @@ button#defaultbutton {
                 <p><i class="fas fa-building"></i><b> Type:</b> @Database.filtered[@rightIndex].PropertyType</p>
                 <p><i class="fas fa-tools"></i><b> Year built:</b> @Database.filtered[@rightIndex].YearBuilt</p>
                 <p><i class="fas fa-calendar-alt"></i><b> List Date:</b> @Database.filtered[@rightIndex].listDate</p>
-                <p><i class="fas fa-car"></i><b> Parking:</b> Underground (1)</p>
-                <p style="text-align:left"><b>Perks :</b></p>
-                <ul>
-                    <li>@Database.filtered[@rightIndex].perks[0]</li>
-                    <li>@Database.filtered[@rightIndex].perks[1]</li>
-                    <li>@Database.filtered[@rightIndex].perks[2]</li>
-                    <li>@Database.filtered[@rightIndex].perks[3]</li>
-                </ul>
+
                 <p><button style="background-color:darkgreen"><i class="fas fa-heart"></i><b> Save</b></button></p>
                 <p><button @onclick="() => Show(rightIndex)" style="background-color:red"><b>Cancel</b></button></p>
             </div>
@@ -468,8 +453,8 @@ button#defaultbutton {
                                 </div>
                             </div>
                             <div class="candidate-list-favourite-time">
-                                <a class="candidate-list-favourite order-2" href="#"><i class="far fa-heart"></i>Save</a>
-                                <button @onclick="() => Show(j)" style="background-color:red; border-radius:15px;"><i class="fa fa-signal"></i> Compare</button>
+                                <button class="candidate-list-favourite order-2" href="#"><i class="fas fa-heart"></i></button>
+                                <button class="btn btn-primary" @onclick="() => Show(j)" style="padding-right:30px"><i class="fa fa-signal"></i> Compare</button>
                             </div>
                         </div>
                     </div>
@@ -502,6 +487,14 @@ button#defaultbutton {
     private int calc(double? one, int two)
     {
         return (int)one / two;
+    }
+    private void tohome()
+    {
+        UriHelper.NavigateTo($"Homepage");
+    }
+    private void tosaved()
+    {
+        UriHelper.NavigateTo($"SavedListings");
     }
 }
  
