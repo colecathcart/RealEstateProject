@@ -70,11 +70,20 @@
 </style>
 <body class="p-3 m-0 border-0 bd-example">
 
+    <Modal @ref="helpModal">
+        <Body>
+            <p>You can search listings <em>three</em> ways:</p>
+            <p>1. <em>Know the address of the listing you're looking for?</em> You can enter the address directly in the search bar.</p>
+            <p>2. <em>Want to search listings with specific filters?</em> You can press the <em>Search With Filters</em> button and search listings based on the filters you set.</p>
+            <p>3. <em>Don't know what you're looking for?</em> Press the <em>Explore Listings</em> button to look through all listings!</p>
+        </Body>
+    </Modal>
+
     <div class="container text-end">
         <div class="row">
             <div class="col">
                 <div id="inlinediv">
-                    <button @onclick="OnClickSaved" id="defaultbutton" style="padding-left: 8px; padding-right: 8px;margin-left:5px">
+                    <button @onclick="OnClickSaved" id="defaultbutton" style="padding-left: 8px; padding-right: 8px;margin-left:5px" data-toggle="tooltip" data-placement="top" title="Click here to see your saved listings!">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
                             <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
                         </svg>
@@ -83,7 +92,7 @@
                 </div>
 
                 <div id="inlinediv">
-                    <button id="defaultbutton" style="padding-left: 8px; padding-right: 8px; float:right;">
+                    <button id="defaultbutton" style="padding-left: 8px; padding-right: 8px; float:right;" @onclick="()=>helpModal.Open()">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-question-lg" viewBox="0 0 16 16">
                             <path fill-rule="evenodd" d="M4.475 5.458c-.284 0-.514-.237-.47-.517C4.28 3.24 5.576 2 7.825 2c2.25 0 3.767 1.36 3.767 3.215 0 1.344-.665 2.288-1.79 2.973-1.1.659-1.414 1.118-1.414 2.01v.03a.5.5 0 0 1-.5.5h-.77a.5.5 0 0 1-.5-.495l-.003-.2c-.043-1.221.477-2.001 1.645-2.712 1.03-.632 1.397-1.135 1.397-2.028 0-.979-.758-1.698-1.926-1.698-1.009 0-1.71.529-1.938 1.402-.066.254-.278.461-.54.461h-.777ZM7.496 14c.622 0 1.095-.474 1.095-1.09 0-.618-.473-1.092-1.095-1.092-.606 0-1.087.474-1.087 1.091S6.89 14 7.496 14Z" />
                         </svg>
@@ -110,7 +119,7 @@
                 <div class="input-group">
                     <input value="@address" @onchange="FilterChangedAsync" class="form-control" placeholder="Already know what you're looking for? Enter the address" id="filterfield">
                     <div class="input-group-append">
-                        <button class="btn btn-secondary" type="button" style=" background-color: rgb(127, 180, 240); color: black; border-color: black; font-weight: bold;" @onclick="OnClickSearchAddress">
+                        <button class="btn btn-secondary" type="button" style=" background-color: rgb(127, 180, 240); color: black; border-color: black; font-weight: bold;" @onclick="OnClickSearchAddress" data-toggle="tooltip" data-placement="top" title="Click here to search a specific address.">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                                 <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
 
@@ -130,7 +139,7 @@
             <div class="col">
                 <div class="dropdown">
                     <p>
-                        <button type="button" class="btn btn-primary btn-lg dropdown-toggle" id="defaultbutton" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <button type="button" class="btn btn-primary btn-lg dropdown-toggle" id="defaultbutton" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" data-toggle="tooltip" data-placement="top" title="Clickling here will display more filters.">
                             Search With Filters
                         </button>
                     </p>
@@ -364,7 +373,7 @@
                                                         </div>
                                                     </div>
                                                     <div>
-                                                        <button type="button" class="btn btn-primary btn-lg" id="defaultbutton" @onclick="OnClickSearch">
+                                                        <button type="button" class="btn btn-primary btn-lg" id="defaultbutton" @onclick="OnClickSearch" data-toggle="tooltip" data-placement="top" title="Click here to see listings that fit your filters!">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                                                                 <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
                                                             </svg>Search
@@ -388,7 +397,7 @@
     <div class="container text-center">
         <div class="row">
             <div class="col">
-                <button type="button" class="btn btn-primary btn-lg" @onclick="OnClickAllListings" id="defaultbutton">Explore All Listings</button>
+                <button type="button" class="btn btn-primary btn-lg" @onclick="OnClickAllListings" id="defaultbutton" data-toggle="tooltip" data-placement="top" title="Click here to see all listings that are available!">Explore All Listings</button>
             </div>
         </div>
     </div>
@@ -400,6 +409,8 @@
 
 @code{
 
+
+    private Modal helpModal { get; set; }
     public List<string> list = new List<string>();
     public List<string> CheckBox { get; set; } = new List<string>();
     public string result;
@@ -443,14 +454,14 @@
     public bool appartment { get; set; }
     public string errorMessage { get; set; }
 
-    List<int> beds = new List<int>() {1, 2, 3, 4, 5};
+    List<int> beds = new List<int>() { 1, 2, 3, 4, 5 };
     public int numBeds { get; set; }
 
     List<int> baths = new List<int>() { 1, 2, 3, 4, 5 };
     public int numBaths { get; set; }
 
 
-    List<int> yearsBuilt = new List<int>() { 1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022 };
+    List<int> yearsBuilt = new List<int>() { 1990, 1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022 };
     public int yearBuilt { get; set; }
 
     private void FilterChangedAsync(ChangeEventArgs args)
@@ -507,9 +518,6 @@
 
     private void OnClickSearch()
     {
-
-        Database.filtered = Database.houses;
-
         if (CheckBox.Count() == 0)
         {
 
@@ -563,7 +571,7 @@
         {
 
         }
-        else if(minPrice != null && maxPrice == null)
+        else if (minPrice != null && maxPrice == null)
         {
             Database.filtered = Database.searchByPrice(Database.filtered, minPrice, 10000000000000);
         }
@@ -576,7 +584,7 @@
             Database.filtered = Database.searchByPrice(Database.filtered, minPrice, maxPrice);
         }
 
-        if(yearBuilt != 0)
+        if (yearBuilt != 0)
         {
             Database.filtered = Database.searchByYearBuilt(Database.filtered, yearBuilt);
         }
