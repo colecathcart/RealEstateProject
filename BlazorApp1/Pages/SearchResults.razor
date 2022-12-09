@@ -317,6 +317,20 @@
         </div>
     </div>
 </div>
+<div class="job-shortby ml-sm-auto d-flex align-items-center">
+                <form class="form-inline">
+                    <div class="form-group mb-0">
+                        <label class="justify-content-start mr-1"> Sort by :</label>
+                        <div class="short-by">
+                            <select class="form-control basic-select select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                                <option data-select2-id="2">Price (Lowest to Highest)</option>
+                                <option>Price (Highest to Lowest)</option>
+                                <option>Most Recent</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
         <div class="row">
         @for(int i = 0; i < Database.filtered.Count; i++){
             int j = i;
