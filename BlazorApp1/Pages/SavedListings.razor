@@ -6,6 +6,13 @@
 
     <!--Saved and Help button-->
 
+    <Modal @ref="helpModal">
+        <Body>
+            <p><b>View listings: </b>Click on the listing address to view more information.</p>
+            <p><b>Contact the realtor and/or book a viewing: </b>You can do that by pressing the listing's address!</p>
+        </Body>
+    </Modal>
+
     <div class="container">
         <div class="row" style="margin:0px">
             <div class="flex-parent jc-center" style="margin:0px">
@@ -24,7 +31,7 @@
                 <h1>Saved Listings</h1>
 
             <div id="inlinediv" style="margin-left:400px;margin-bottom:0px">
-                <button id="defaultbutton" style="padding-left: 15px; padding-right: 15px;padding-top:8px;padding-bottom:8px;margin-left:0px;border-width:0px;margin-top:10px">
+                <button @onclick="()=>helpModal.Open()" id="defaultbutton" style="padding-left: 15px; padding-right: 15px;padding-top:8px;padding-bottom:8px;margin-left:0px;border-width:0px;margin-top:10px">
                 ?
                 </button>
                                         
@@ -62,7 +69,7 @@
                     <div class="candidate-list-details">
                         <div class="candidate-list-info">
                             <div class="candidate-list-title">
-                                <h4><button @onclick="() => tohouse(j)" class="btn btn-primary" id="defaultbutton" type="button" style="border-width:0;border-radius:15px;background-color:white;font-size:30px;font-weight:10;padding-left:15px;padding-right:15px">
+                                <h4><button data-toggle="tooltip" data-placement="top" title="Click here to view more information on the listing!" @onclick="() => tohouse(j)" class="btn btn-primary" id="defaultbutton" type="button" style="border-width:0;border-radius:15px;background-color:white;font-size:30px;font-weight:10;padding-left:15px;padding-right:15px">
                                     <u style="color:#3381ff">@Database.saved[i].Address</u>
                                 </button>
                                 </h4>
@@ -83,7 +90,7 @@
                         </div>
                         <div class="candidate-list-favourite-time" style="margin-bottom:0px">
                             <div>
-                            <button @onclick="() => unsave(j)" id="defaultbutton" style="padding-left: 12px; padding-right: 12px;padding-top:6px; padding-bottom: 6px;margin-left:530px;border-width:0;font-size:25px">
+                            <button data-toggle="tooltip" data-placement="top" title="Click here to remove this listing from your saved list." @onclick="() => unsave(j)" id="defaultbutton" style="padding-left: 12px; padding-right: 12px;padding-top:6px; padding-bottom: 6px;margin-left:530px;border-width:0;font-size:25px">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-heartbreak-fill" viewBox="0 0 16 16">
                                 <path d="M8.931.586 7 3l1.5 4-2 3L8 15C22.534 5.396 13.757-2.21 8.931.586ZM7.358.77 5.5 3 7 7l-1.5 3 1.815 4.537C-6.533 4.96 2.685-2.467 7.358.77Z"/>
                                 </svg>
@@ -319,10 +326,12 @@
 
     @code {
 
-    private void OnClickSaved()
-    {
-        UriHelper.NavigateTo($"SavedListings/");
-    }
+        private Modal helpModal { get; set; }
+
+        private void OnClickSaved()
+        {
+            UriHelper.NavigateTo($"SavedListings/");
+        }
         private void tohouse(int i){
 
             UriHelper.NavigateTo($"housepage/{i}");

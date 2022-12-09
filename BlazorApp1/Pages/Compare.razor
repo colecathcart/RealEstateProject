@@ -364,7 +364,7 @@
         <div class="col-md-1"></div>
         <div class="col-md-1"></div>
         <div class="col-md-1" style="text-align:right">
-            <button @onclick="tosaved" id="defaultbutton" style="padding-left: 8px; padding-right: 8px;">
+            <button @onclick="tosaved" id="defaultbutton" style="padding-left: 8px; padding-right: 8px;" data-toggle="tooltip" data-placement="top" title="Click here to see your saved listings!">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
                     <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
                 </svg>
@@ -372,7 +372,7 @@
             <p style="padding-left: 4px;">Saved</p>
         </div>
         <div class="col-md-1" style="text-align:right">
-            <button id="defaultbutton" style="padding-left: 12px; padding-right: 12px;">?</button>
+            <button id="defaultbutton" style="padding-left: 12px; padding-right: 12px;" @onclick="()=>helpModal.Open()">?</button>
             <p>Help</p>
         </div>
     </div>
@@ -384,6 +384,14 @@
 </header>
 <body>
 
+    <Modal @ref="helpModal">
+        <Body>
+            <p>Comparing listings:</p>
+            <p>You can continue browsing listings on the right of the screen. When you find a listing you want to compare to the one you already selected, press the compare button on the listing!</p>
+            <p>You can find more information on the listing by clicking the listing's address.</p>
+        </Body>
+    </Modal>
+
 
     <div style="width:100%;">
         <!-- Main Div -->
@@ -393,7 +401,7 @@
             <!-- Set Div As your requirement -->
             <div class="card">
                 <img src=@Database.filtered[@index].images[0] alt="house 1" style="width:100%; padding:20px; border-radius:30px;">
-                <h2><button @onclick="() => tohouse(index)">@Database.filtered[@index].Address</button></h2>
+                <h2><button  data-toggle="tooltip" data-placement="top" title="Click here to view more information on the listing!" @onclick="() => tohouse(index)">@Database.filtered[@index].Address</button></h2>
                 <h4><b>List price: $@Database.filtered[@index].Price</b></h4>
                 <p><i class="fas fa-bed"></i> @Database.filtered[@index].Bedrooms Bedrooms</p>
                 <p><i class="fas fa-bath"></i> @Database.filtered[@index].Bathrooms bathrooms</p>
@@ -418,7 +426,7 @@
             <!-- Set Div As your requirement -->
             <div hidden="@IsShow" class="card">
                 <img src=@Database.filtered[@rightIndex].images[0] alt="house 2" style="width:100%; padding:20px; border-radius:30px;">
-                <h1><a @onclick="() => tohouse(rightIndex)"> @Database.filtered[@rightIndex].Address </a></h1>
+                <h1><a data-toggle="tooltip" data-placement="top" title="Click here to view more information on the listing!" @onclick="() => tohouse(rightIndex)"> @Database.filtered[@rightIndex].Address </a></h1>
                 <h4><b>List price: $@Database.filtered[@rightIndex].Price </b></h4>
                 <p><i class="fas fa-bed"></i> @Database.filtered[@rightIndex].Bedrooms Bedrooms</p>
                 <p><i class="fas fa-bath"></i> @Database.filtered[@rightIndex].Bathrooms bathrooms</p>
@@ -456,7 +464,7 @@
                                     <div class="candidate-list-info">
                                         <div class="candidate-list-title">
                                             <h4>
-                                                <button @onclick="() => tohouse(j)" class="btn btn-primary" id="defaultbutton" type="button" style="border-width:0;border-radius:15px;background-color:white;font-size:30px;font-weight:10;padding-left:15px;padding-right:15px">
+                                                <button data-toggle="tooltip" data-placement="top" title="Click here to view more information on the listing!" @onclick="() => tohouse(j)" class="btn btn-primary" id="defaultbutton" type="button" style="border-width:0;border-radius:15px;background-color:white;font-size:30px;font-weight:10;padding-left:15px;padding-right:15px">
                                                     <u style="color:#3381ff">@Database.filtered[i].Address</u>
                                                 </button>
                                             </h4>
@@ -473,7 +481,7 @@
                                     </div>
                                     <div class="candidate-list-favourite-time" style="margin-bottom:0px">
                                         <div id="inlinediv" style="margin-right:10px;margin-bottom:0px">
-                                            <button class="btn btn-primary" @onclick="() => Show(j)" style="padding:11px;padding-top:6px;padding-bottom:6px;font-size:20px" id="defaultbutton" type="button">
+                                            <button data-toggle="tooltip" data-placement="top" title="Click here to compare this listing with others!" class="btn btn-primary" @onclick="() => Show(j)" style="padding:11px;padding-top:6px;padding-bottom:6px;font-size:20px" id="defaultbutton" type="button">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bar-chart-fill" viewBox="0 0 16 16">
                                                     <path d="M1 11a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-3zm5-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V2z" />
                                                 </svg>
@@ -483,7 +491,7 @@
                                         <div id="inlinediv">
                                             @if (!Database.saved.Contains(Database.filtered[j]))
                                             {
-                                                <button class="btn btn-primary" @onclick="() => saved(j)" id="defaultbutton" type="button" style="padding:11px;padding-top:6px;padding-bottom:6px;font-size:20px">
+                                                <button data-toggle="tooltip" data-placement="top" title="Click here to save this listing! You can then view your saved listings by clicking the saved button on the top right of this page." class="btn btn-primary" @onclick="() => saved(j)" id="defaultbutton" type="button" style="padding:11px;padding-top:6px;padding-bottom:6px;font-size:20px">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
                                                         <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
                                                     </svg>
@@ -514,6 +522,9 @@
 
 </html>
 @code {
+
+    private Modal helpModal { get; set; }
+
     [Parameter]
     public int index { get; set; }
     public int rightIndex { get; set; }
