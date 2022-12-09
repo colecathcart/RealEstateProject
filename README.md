@@ -1,10 +1,10 @@
 # Real Estate Browsing Website
 **Group 9:**
-Cole Cathcart
-Sami Taha
-Vic (Vu) Phan
-Samiha Hoque
-Shardar Mohammed Quraishi
+* Cole Cathcart
+* Sami Taha
+* Vic (Vu) Phan
+* Samiha Hoque
+* Shardar Mohammed Quraishi
 
 ## Install/Run instructions
 This project was created in visual studio & visual studio code with blazor and is a blazor webassembly project. The following instructions are for use in Visual Studio; VSCode setup requires additional steps that are not covered here (You must use Visual Studio /VSCode to run this webapp, we did not include an executable file in our repository):
