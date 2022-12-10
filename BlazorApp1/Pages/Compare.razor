@@ -429,7 +429,7 @@
             <!-- Set Div As your requirement -->
             <div hidden="@IsShow" class="card">
                 <img src=@Database.filtered[@rightIndex].images[0] alt="house 2" style="width:100%; padding:20px; border-radius:30px;">
-                <h1><a data-toggle="tooltip" data-placement="top" title="Click here to view more information on the listing!" @onclick="() => tohouse(rightIndex)"> @Database.filtered[@rightIndex].Address </a></h1>
+                <h2><a style="color:#3381ff" data-toggle="tooltip" data-placement="top" title="Click here to view more information on the listing!" @onclick="() => tohouse(rightIndex)"> <u>@Database.filtered[@rightIndex].Address</u></a></h2>
                 <h4><b>List price: $@Database.filtered[@rightIndex].Price </b></h4>
                 <p><i class="fas fa-bed"></i> @Database.filtered[@rightIndex].Bedrooms Bedrooms</p>
                 <p><i class="fas fa-bath"></i> @Database.filtered[@rightIndex].Bathrooms bathrooms</p>
