@@ -3,6 +3,10 @@
 
 <PageTitle>House Details</PageTitle>
 
+<!--This page uses some example code taken from the bootstrap 4 documentation at https://getbootstrap.com/docs/4.0/components/.
+    This page also uses a calendar component based off the example at https://www.geeksforgeeks.org/design-a-calendar-using-html-and-css/-->
+
+
 <style>
     button#defaultbutton {
         padding: 5px;
@@ -137,8 +141,9 @@
     </div>
 
 
-    <div style="display:inline-block; vertical-align:top;">
+    <div style="display:inline-block; vertical-align:top">
 
+        
         <div id="inlinediv" style="margin-left:0">
             <button @onclick="()=>helpModal.Open()" id="defaultbutton" style="padding-left: 15px; padding-right: 15px;padding-top:8px;padding-bottom:8px;margin-left:0px;" data-toggle="toast">
                 ?
@@ -182,10 +187,9 @@
             <li>@Database.filtered[@index].perks[3]</li>
         </ul>
 
-    </div>
-    <div style="margin-left:115px;">
+        <div style="padding-top:10px">
         <div style="display:inline-block;vertical-align:top;margin:auto;">
-            <button class="btn btn-primary" style="margin-right:10px;margin-left:175px;" id="defaultbutton" type="button" data-toggle="collapse" data-target="#collapse1" aria-expanded="false" aria-controls="collapseExample">
+            <button class="btn btn-primary" style="margin-right:10px;margin-left:10px" id="defaultbutton" type="button" data-toggle="collapse" data-target="#collapse1" aria-expanded="false" aria-controls="collapseExample">
                 Contact Realtor
             </button>
         </div>
@@ -222,15 +226,21 @@
                 <p style="padding-right: 0px;padding-left:2px;margin-left:0px">Share</p>
 
             </div>
-            <i style="display:inline-block;vertical-align:top;margin-top:10px;margin-left:20px;color:grey">@tooltip</i>
+            
+            
         </div>
+        <br>
+        <i style="vertical-align:top;float:right;margin-top:10px;margin-right:8%;color:grey">@tooltip</i>
     </div>
+
+    </div>
+    
 
     <div class="collapse" id="collapseExample">
         <div class="card card-body">
             <div style="padding: 3px;">
                 <h4>Choose a Date and Time</h4>
-                <div style="display: inline-block;margin-left:180px;">
+                <div style="display: inline-block;margin-left:5%;">
                     <div style="display: inline-block;margin-left:230px">
                         <Calendar></Calendar>
 
@@ -320,7 +330,7 @@
                 </div>
             </div>
 
-            <button @onclick="clear" class="btn btn-primary" style="margin:auto;margin-left:1126px;" id="defaultbutton" type="button" data-toggle="collapse" data-target="#collapse1" aria-expanded="false" aria-controls="collapseExample">
+            <button @onclick="clear2" class="btn btn-primary" style="margin:auto;margin-left:1126px;" id="defaultbutton" type="button" data-toggle="collapse" data-target="#collapse1" aria-expanded="false" aria-controls="collapseExample">
                 Contact Realtor
             </button>
         </div>
@@ -392,6 +402,15 @@
         inputclear1 = "";
         inputclear2 = "";
         inputclear3 = "";
+        tooltip = "showing booked! Check email for confirmation";
+
+    }
+
+    private void clear2(){
+        inputclear1 = "";
+        inputclear2 = "";
+        inputclear3 = "";
+        tooltip = "message sent! Check email for response";
 
     }
 
