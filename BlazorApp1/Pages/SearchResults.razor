@@ -31,7 +31,10 @@
 
             </div>
 
-            <h2> Search Results </h2>
+            
+            <div class="col-md-3" style="text-align:center; vertical-align:top">
+                <h1 style="background-color: rgb(230,230,230); border-radius:10px;vertical-align:top;">Search Results</h1>
+            </div>
 
 
             <div id="inlinediv" style="margin-left:350px;margin-bottom:0px">
@@ -108,19 +111,15 @@
                                                     <span class="input-group-text">$</span>
                                                 </div>
                                                 <input type="text" placeholder="Min" id="filterfield" @bind="minPrice">
-                                                <div class="input-group-append">
-                                                    <span class="input-group-text">.00</span>
-                                                </div>
-                                                <div class="input-group-prepend">
+
+                                                <div class="input-group-prepend" style="padding-left: 10px; padding-right: 10px">
                                                     <span class="input-group-text">-</span>
                                                 </div>
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text">$</span>
                                                 </div>
                                                 <input type="text" placeholder="Max" id="filterfield" @bind="maxPrice">
-                                                <div class="input-group-append">
-                                                    <span class="input-group-text">.00</span>
-                                                </div>
+                                              
                                             </div>
                                         </div>
                                     </div>
@@ -327,7 +326,8 @@
         <div class="form-group mb-0">
             <label class="justify-content-start mr-1"> Sort by :</label>
             <div class="short-by">
-                <select @onchange="@sort" class="form-control basic-select select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                <select @onchange="@sort" class="form-control basic-select select2-hidden-accessible" data-select2-id="0" tabindex="-1" aria-hidden="true">
+                    <option value=0>Featured</option>
                     <option value=1>Price (Lowest to Highest)</option>
                     <option value=2>Price (Highest to Lowest)</option>
                     <option value=3>Most Recent</option>
@@ -368,7 +368,39 @@
                             </ul>
                         </div>
                     </div>
+
                     <div class="candidate-list-favourite-time" style="margin-bottom:0px">
+                            <div id="inlinediv" style="margin-right:10px;margin-bottom:0px">
+                            <button data-toggle="tooltip" data-placement="top" title="Click here to compare this listing with others!" class="btn btn-primary" @onclick="() => tocompare(j)" style="padding:11px;padding-top:6px;padding-bottom:6px;font-size:20px" id="defaultbutton" type="button">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bar-chart-fill" viewBox="0 0 16 16">
+                                    <path d="M1 11a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-3zm5-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V2z" />
+                                </svg>
+                            </button>
+                            <p style="font-size:14px;margin-bottom:0px">Compare</p>
+                            </div>
+                            <div id="inlinediv" style="margin-right:10px;margin-bottom:0px">
+                                @if (!Database.saved.Contains(Database.filtered[j]))
+                            {
+                                <button data-toggle="tooltip" data-placement="top" title="Click here to save this listing! You can then view your saved listings by clicking the saved button on the top right of this page."  @onclick="() => saved(j)" id="defaultbutton" style="padding-left: 12px; padding-right: 12px;padding-top:6px; padding-bottom: 6px;margin-left:490px;border-width:0;font-size:25px">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+                                        <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
+                                    </svg>
+                                </button>
+                            }
+                            else
+                            {
+                                <button class="btn btn-primary" @onclick="() => saved(j)" id="defaultbutton" style="padding-left: 12px; padding-right: 12px;padding-top:6px; padding-bottom: 6px;margin-left:490px;border-width:0;font-size:25px">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
+                                    </svg>
+                                </button>
+                            }
+                            <p style="margin-left:490px;font-size:14px;margin-bottom:0px">Save</p>
+                            </div>
+                            
+                    </div>
+
+                    @* <div class="candidate-list-favourite-time" style="margin-bottom:0px">
                         <div id="inlinediv" style="margin-right:10px;margin-bottom:0px">
                             <button data-toggle="tooltip" data-placement="top" title="Click here to compare this listing with others!" class="btn btn-primary" @onclick="() => tocompare(j)" style="padding:11px;padding-top:6px;padding-bottom:6px;font-size:20px" id="defaultbutton" type="button">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bar-chart-fill" viewBox="0 0 16 16">
@@ -396,7 +428,9 @@
                             }
                             <p style="padding-left: 3px;padding-right:4px;font-size:14px;margin-bottom:0px">Save</p>
                         </div>
-                    </div>
+                    </div> *@
+
+
                 </div>
             </div>
         </div>
