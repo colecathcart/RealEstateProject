@@ -1,3 +1,12 @@
+<!--
+Sami Taha
+UCID: 3O124214
+CITATIONS:
+    Segments of the code found on this page have been taken from one or more of the following sources
+    https://www.syncfusion.com/faq/blazor/general
+    https://learn.microsoft.com/en-us/aspnet/core/blazor/components/data-binding?view=aspnetcore-7.0
+    https://getbootstrap.com/docs/5.2/components
+-->
 @page "/Homepage"
 @page "/"
 @using System.Text.Json;
@@ -84,7 +93,7 @@
         <div class="row">
             <div class="col">
                 <div id="inlinediv">
-                    <button @onclick="OnClickSaved" id="defaultbutton" style="padding-left: 8px; padding-right: 8px;margin-left:5px" data-toggle="tooltip" data-placement="top" title="Click here to see your saved listings!">
+                    <button @onclick="OnClickSaved" id="defaultbutton" style="padding-left: 8px; padding-right: 8px;margin-right:6px" data-toggle="tooltip" data-placement="top" title="Click here to see your saved listings!">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
                             <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
                         </svg>
@@ -93,12 +102,12 @@
                 </div>
 
                 <div id="inlinediv">
-                    <button id="defaultbutton" style="padding-left: 8px; padding-right: 8px; float:right;" @onclick="()=>helpModal.Open()">
+                    <button id="defaultbutton" style="padding-left: 8px; padding-right: 8px;margin-right:6px" @onclick="()=>helpModal.Open()">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-question-lg" viewBox="0 0 16 16">
                             <path fill-rule="evenodd" d="M4.475 5.458c-.284 0-.514-.237-.47-.517C4.28 3.24 5.576 2 7.825 2c2.25 0 3.767 1.36 3.767 3.215 0 1.344-.665 2.288-1.79 2.973-1.1.659-1.414 1.118-1.414 2.01v.03a.5.5 0 0 1-.5.5h-.77a.5.5 0 0 1-.5-.495l-.003-.2c-.043-1.221.477-2.001 1.645-2.712 1.03-.632 1.397-1.135 1.397-2.028 0-.979-.758-1.698-1.926-1.698-1.009 0-1.71.529-1.938 1.402-.066.254-.278.461-.54.461h-.777ZM7.496 14c.622 0 1.095-.474 1.095-1.09 0-.618-.473-1.092-1.095-1.092-.606 0-1.087.474-1.087 1.091S6.89 14 7.496 14Z" />
                         </svg>
                     </button>
-                    <p style="padding-left: 4px;padding-right:6px;margin-bottom:0px;">Help</p>
+                    <p style="padding-left: 8px;padding-right:6px;margin-bottom:0px;">Help</p>
                 </div>
 
             </div>
@@ -178,16 +187,16 @@
                                                         <span class="input-group-text">$</span>
                                                     </div>
                                                     <input type="text" placeholder="Min" id="filterfield" @bind="minPrice">
-                                                    
+
                                                     <div class="input-group-prepend" style="padding-left: 10px; padding-right: 10px">
                                                         <span class="input-group-text">-</span>
                                                     </div>
-                                                    
+
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text">$</span>
                                                     </div>
                                                     <input type="text" placeholder="Max" id="filterfield" @bind="maxPrice">
-                                                    
+
                                                 </div>
                                             </div>
                                         </div>
@@ -353,7 +362,7 @@
                                                                             </div>
                                                                         </div>
                                                                         <br>
-                                                                        
+
                                                                         <div class="row">
                                                                             <div class="col">
                                                                                 <div class="input-group">
@@ -401,10 +410,24 @@
         </div>
     </div>
 
-<!--
-    <p>@result</p>
-    -->
+    <!--
+        <p>@result</p>
+        -->
 </body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @code{
 
