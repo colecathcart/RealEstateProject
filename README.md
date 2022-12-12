@@ -8,8 +8,8 @@
 
 ## Install/Run instructions
 This project was created in visual studio & visual studio code with blazor and is a blazor webassembly project. The following instructions are for use in Visual Studio; VSCode setup requires additional steps that are not covered here (You must use Visual Studio /VSCode to run this webapp, we did not include an executable file in our repository):
-1. Download and unpack the zip file and open the folder "CPSC481Project" in visual studio. 
-2. Click the green "run" button in the top menu. The webapp should open automatically in a browser page
+1. Download and unpack the zip file and open the folder "CPSC481Project-master" in visual studio. 
+2. Click the green "run" button in the top menu. The webapp should open automatically in a browser page. If this does not work, you may need to instead open the sub-folder "BlazorApp1" in VS.
 
 You should now see the homepage of our application on the browser screen. Our project is a real-estate application where users can search for properties, view listing details, save and compare listings, and book showings. We have designed a minimalist interface that aims to appeal to both experienced buyers and those with less tech-or-market experience. Here is a guide on how to navigate our app and explore the features we have implemented:
 
